@@ -23,4 +23,9 @@ public class ClientDAOImpl implements ClientDAO {
         TypedQuery<Client> query = entityManager.createQuery("from Client c", Client.class);
         return query.getResultList();
     }
+
+    @Override
+    public void saveClient(Client theClient) {
+        entityManager.persist(theClient);
+    }
 }

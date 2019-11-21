@@ -22,4 +22,11 @@ public class ClientServiceImpl implements CllientService {
     public List<Client> getClients() {
         return clientDAO.getClients();
     }
+
+    @Override
+    @Transactional
+    public void saveClient(Client theClient) {
+        clientDAO.saveClient(theClient);
+
+    }
 }

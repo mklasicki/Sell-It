@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 
 import java.util.List;
@@ -37,6 +39,12 @@ public class ClientController {
     Client theClient = new Client();
     model.addAttribute("client", theClient);
         return "client-form";
+    }
+
+    @PostMapping("/saveClient")
+    public String saveClient(@ModelAttribute("client") Client theClient) {
+        cllientService.saveClient(theClient);
+        return "redirect:/list";
     }
 
 }

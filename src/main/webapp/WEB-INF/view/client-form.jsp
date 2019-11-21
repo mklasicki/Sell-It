@@ -41,5 +41,8 @@
     </table>
 
 </form:form>
+<p>
+    <a href="${pageContext.request.contextPath}/api">Powrót do strony głównej</a>
+</p>
 </body>
 </html>

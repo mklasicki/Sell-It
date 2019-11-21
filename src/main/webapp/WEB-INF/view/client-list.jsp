@@ -31,7 +31,7 @@
         </thead>
         <c:forEach var="temp" items="${clients}">
         <tr>
-            <td>${temp.fitstName}</td>
+            <td>${temp.firstName}</td>
             <td>${temp.lastName}</td>
             <td>${temp.adress}</td>
             <td>${temp.email}</td>
