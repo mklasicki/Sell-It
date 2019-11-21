@@ -17,6 +17,7 @@
 </head>
 <body>
 <form:form action="saveClient" modelAttribute="client" method="post">
+    <form:hidden path="id"/>
     <table>
         <tbody>
         <tr>

@@ -34,4 +34,6 @@ public class ClientDAOImpl implements ClientDAO {
         Client client = entityManager.find(Client.class, id);
         return client;
     }
+
+
 }

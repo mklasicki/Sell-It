@@ -34,4 +34,6 @@ public class ClientServiceImpl implements CllientService {
     public Client getClient(int id) {
         return clientDAO.getClient(id);
     }
+
+
 }
