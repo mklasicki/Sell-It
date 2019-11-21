@@ -55,4 +55,10 @@ public class ClientController {
         return "client-form";
     }
 
+    @GetMapping("/showFormForDelete")
+    public String showFormForDelete(@RequestParam("clientId") int id, Model model) {
+        Client theClient = cllientService.getClient(id);
+        model.addAttribute("client", theClient);
+        return "client-form";
+    }
 }
