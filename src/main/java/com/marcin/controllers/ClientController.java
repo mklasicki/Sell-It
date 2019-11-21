@@ -34,7 +34,8 @@ public class ClientController {
 
     @GetMapping("/showFormForAdd")
     public String showFormForAdd(Model model){
-
+    Client theClient = new Client();
+    model.addAttribute("client", theClient);
         return "client-form";
     }
 
