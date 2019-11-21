@@ -23,6 +23,20 @@
             <td><label>Imię</label></td>
             <td><form:input path="firstName" /></td>
         </tr>
+        <tr>
+            <td><label>Nazwisko</label></td>
+            <td><form:input path="lastName" /></td>
+        </tr>
+        <tr>
+            <td><label>Adres</label></td>
+            <td><form:input path="adress" /></td>
+        </tr>
+        <tr>
+            <td><label>E-mail</label></td>
+            <td><form:input path="email" /></td>
+        </tr>
+            <td><label></label></td>
+            <td><input type="submit" value="Zapisz"></td>
         </tbody>
     </table>
 
