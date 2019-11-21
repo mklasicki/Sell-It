@@ -28,4 +28,10 @@ public class ClientDAOImpl implements ClientDAO {
     public void saveClient(Client theClient) {
         entityManager.persist(theClient);
     }
+
+    @Override
+    public Client getClient(int id) {
+        Client client = entityManager.find(Client.class, id);
+        return client;
+    }
 }

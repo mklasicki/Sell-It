@@ -8,4 +8,6 @@ public interface ClientDAO {
     List<Client> getClients();
 
     void saveClient(Client theClient);
+
+    Client getClient(int id);
 }
