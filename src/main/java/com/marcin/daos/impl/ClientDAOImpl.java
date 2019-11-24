@@ -43,5 +43,9 @@ public class ClientDAOImpl implements ClientDAO {
         return client;
     }
 
-
+    @Override
+    public void deleteCustomer(int id) {
+        Client client = entityManager.find(Client.class, id);
+        entityManager.remove(client);
+    }
 }

@@ -43,7 +43,7 @@
                 <c:url var="updateLink" value="/showFormForUpdate">
                     <c:param name="clientId" value="${temp.id}"/>
                 </c:url>
-                <c:url var="deleteLink" value="/showFormForDelete">
+                <c:url var="deleteLink" value="/deleteClient">
                     <c:param name="clientId" value="${temp.id}"/>
                 </c:url>
                 <tr>
@@ -51,7 +51,11 @@
                     <td>${temp.lastName}</td>
                     <td>${temp.adress}</td>
                     <td>${temp.email}</td>
-                    <td><a href="${updateLink}">Edytuj</a>/<a href="${deleteLink}">Usuń</a></td>
+                    <td><a href="${updateLink}">Edytuj</a>
+                        |
+                        <a href="${deleteLink}"
+                           onclick="if(!(confirm('Czy napewno usunąć tego klienta z listy?')))return false">Usuń</a>
+                    </td>
                 </tr>
             </c:forEach>
         </table>
@@ -76,16 +80,18 @@
 
     #clientTable {
         width: 100%;
-        border: 2px solid black;
+        border: 1px solid black;
     }
 
     th {
         background-color: #4CAF50;
         color: white;
+        border: 1px solid black;
     }
 
     tr:nth-child(even) {
         background-color: #f2f2f2;
+        border: 1px solid black;
     }
 
 </style>
