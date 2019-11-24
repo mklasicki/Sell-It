@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html>
 <head>
     <div id="wrapper">
@@ -17,29 +17,27 @@
 </head>
 <body>
 <form:form action="saveClient" modelAttribute="client" method="post">
-
+    <form:hidden path="id"/>
     <table>
         <tbody>
         <tr>
-            <!-- to było trochę trudne do znalezienia dla mnie, czyli umiejscowienie parametru id. Wyjaśnię jak się spotkamy-->
-            <form:hidden path="id"/>
             <td><label>Imię</label></td>
-            <td><form:input path="firstName"/></td>
+            <td><form:input path="firstName" /></td>
         </tr>
         <tr>
             <td><label>Nazwisko</label></td>
-            <td><form:input path="lastName"/></td>
+            <td><form:input path="lastName" /></td>
         </tr>
         <tr>
             <td><label>Adres</label></td>
-            <td><form:input path="adress"/></td>
+            <td><form:input path="adress" /></td>
         </tr>
         <tr>
             <td><label>E-mail</label></td>
-            <td><form:input path="email"/></td>
+            <td><form:input path="email" /></td>
         </tr>
-        <td><label></label></td>
-        <td><input type="submit" value="Zapisz"></td>
+            <td><label></label></td>
+            <td><input type="submit" value="Zapisz"></td>
         </tbody>
     </table>
 

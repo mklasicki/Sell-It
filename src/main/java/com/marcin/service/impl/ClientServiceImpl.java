@@ -27,9 +27,10 @@ public class ClientServiceImpl implements CllientService {
     public void saveClient(Client theClient) {
         if (theClient.isNew()) {
             clientDAO.saveClient(theClient);
-        }
-        else {
+
+        } else {
             clientDAO.update(theClient);
+
         }
     }
 
@@ -38,6 +39,5 @@ public class ClientServiceImpl implements CllientService {
     public Client getClient(int id) {
         return clientDAO.getClient(id);
     }
-
 
 }

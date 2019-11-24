@@ -40,5 +40,10 @@ public class ClientDAOImpl implements ClientDAO {
         return client;
     }
 
+    @Override
+    public Client updateClient(Client theClient) {
+     return entityManager.merge(theClient);
+    }
+
 
 }

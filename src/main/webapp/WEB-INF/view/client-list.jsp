@@ -46,6 +46,7 @@
         </tr>
         </c:forEach>
     </table>
+        <a href="${pageContext.request.contextPath}/api">Powrót do strony głównej</a>
 </div>
 </div>
 <br><br>
