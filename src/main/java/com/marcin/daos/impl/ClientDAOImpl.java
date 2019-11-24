@@ -34,15 +34,13 @@ public class ClientDAOImpl implements ClientDAO {
         return entityManager.merge(client);
     }
 
+    /**
+     * @noinspection UnnecessaryLocalVariable
+     */
     @Override
     public Client getClient(int id) {
         Client client = entityManager.find(Client.class, id);
         return client;
-    }
-
-    @Override
-    public Client updateClient(Client theClient) {
-     return entityManager.merge(theClient);
     }
 
 

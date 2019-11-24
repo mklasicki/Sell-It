@@ -10,7 +10,7 @@ public class ClientDbApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ClientDbApplication.class, args);
 
-			}
+    }
 
 
 
