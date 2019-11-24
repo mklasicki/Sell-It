@@ -18,7 +18,6 @@ public class ClientServiceImpl implements CllientService {
     }
 
     @Override
-    @Transactional
     public List<Client> getClients() {
         return clientDAO.getClients();
     }
@@ -26,7 +25,12 @@ public class ClientServiceImpl implements CllientService {
     @Override
     @Transactional
     public void saveClient(Client theClient) {
-        clientDAO.saveClient(theClient);
+        if (theClient.isNew()) {
+            clientDAO.saveClient(theClient);
+        }
+        else {
+            clientDAO.update(theClient);
+        }
     }
 
     @Override
