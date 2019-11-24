@@ -1,7 +1,6 @@
 package com.marcin.domain;
 
 
-
 import javax.persistence.*;
 
 @Entity
@@ -16,12 +15,28 @@ public class Client {
     private String adress;
     private String email;
 
-    public Client(){
+    public Client() {
 
+    }
+
+      /* zawsze klient nowy będzie miał ten identyfikator
+        równy zero, bo używasz tutaj typy "int"
+        więc możesz tak sprawdzać czy encja jest nowa czy nie
+        Jakby był typ "String" to wtedy trzeba by było sprawdzić czy sting jest pusty.
+        Jest to zwiazane z tym, że nowe obiekty z typami prymitywnymi są od razu inicjalizowane
+        i taki int ma przy inicjalizacji 0
+       */
+
+    public boolean isNew() {
+        return id == 0;
     }
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstName() {
