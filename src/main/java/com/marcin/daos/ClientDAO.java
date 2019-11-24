@@ -12,5 +12,5 @@ public interface ClientDAO {
 
     Client getClient(int id);
 
-
+    Client update(Client client);
 }
