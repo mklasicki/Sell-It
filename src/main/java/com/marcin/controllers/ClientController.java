@@ -52,8 +52,10 @@ public class ClientController {
     }
 
     @GetMapping("/deleteClient")
-    public String showFormForDelete(@RequestParam("clientId") int id) {
+    public String showFormForDelete(@RequestParam("clientId") int id, Model model) {
         cllientService.deleteCustomer(id);
+        List<Client> theClients = cllientService.getClients();
+        model.addAttribute("clients", theClients);
         return "client-list";
     }
 
