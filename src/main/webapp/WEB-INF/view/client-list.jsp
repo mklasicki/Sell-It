@@ -10,7 +10,7 @@
 <body>
 <div id="wrapper">
     <div id="header">
-        <h2 align="center">Lista klientów.</h2>
+        <h2>Lista klientów.</h2>
     </div>
     <div id="container">
         <!-- add button and search bar -->
