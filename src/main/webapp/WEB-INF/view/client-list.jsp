@@ -29,7 +29,7 @@
         </div>
         <br><br>
         <!-- table for customers -->
-        <table style="width:100%" border="1px solid">
+        <table id="clientTable">
             <thead>
             <tr>
                 <th>Imię</th>
@@ -62,6 +62,7 @@
 </div>
 <br><br>
 <style>
+
     #addButton {
         float: left;
         width: 30%;
@@ -72,6 +73,21 @@
         float: right;
         width: 50%;
     }
+
+    #clientTable {
+        width: 100%;
+        border: 2px solid black;
+    }
+
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
 </style>
 </body>
 </html>
