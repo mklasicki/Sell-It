@@ -4,6 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <html>
 <head>
+    <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
     <title>Lista klientów</title>
 </head>
 <body>
@@ -65,35 +66,5 @@
     </div>
 </div>
 <br><br>
-<style>
-
-    #addButton {
-        float: left;
-        width: 30%;
-        margin: 5px;
-    }
-
-    #searchBar {
-        float: right;
-        width: 50%;
-    }
-
-    #clientTable {
-        width: 100%;
-        border: 1px solid black;
-    }
-
-    th {
-        background-color: #4CAF50;
-        color: white;
-        border: 1px solid black;
-    }
-
-    tr:nth-child(even) {
-        background-color: #f2f2f2;
-        border: 1px solid black;
-    }
-
-</style>
 </body>
 </html>
