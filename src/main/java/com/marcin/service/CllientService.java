@@ -12,5 +12,4 @@ public interface CllientService  {
 
     Client getClient(int id);
 
-
 }

@@ -17,11 +17,9 @@
 </head>
 <body>
 <form:form action="saveClient" modelAttribute="client" method="post">
-
     <table>
         <tbody>
         <tr>
-            <!-- to było trochę trudne do znalezienia dla mnie, czyli umiejscowienie parametru id. Wyjaśnię jak się spotkamy-->
             <form:hidden path="id"/>
             <td><label>Imię</label></td>
             <td><form:input path="firstName"/></td>
