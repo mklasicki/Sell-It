@@ -8,8 +8,6 @@ import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.*;
 
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -53,11 +51,12 @@ public class ClientController {
         return "client-form";
     }
 
-    @GetMapping("/showFormForDelete")
+    @GetMapping("/deleteClient")
     public String showFormForDelete(@RequestParam("clientId") int id, Model model) {
-        Client theClient = cllientService.getClient(id);
-        model.addAttribute("client", theClient);
-        return "client-form";
+        cllientService.deleteCustomer(id);
+        List<Client> theClients = cllientService.getClients();
+        model.addAttribute("clients", theClients);
+        return "client-list";
     }
 
     @GetMapping("/searchClient")
