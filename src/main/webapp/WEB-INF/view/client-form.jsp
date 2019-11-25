@@ -37,8 +37,9 @@
                 <td><form:input path="adress"/></td>
             </tr>
             <tr>
-                <td><label>E-mail</label></td>
-                <td><form:input path="email"/></td>
+                <td><label>E-mail (*)</label></td>
+                <td><form:input path="email"/>
+                    <form:errors path="email" cssClass="error"/></td>
             </tr>
             <td><input type="submit" value="Zapisz"></td>
             </tbody>

@@ -2,6 +2,8 @@ package com.marcin.domain;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 
 @Entity
 @Table(name = "clients")
@@ -13,12 +15,11 @@ public class Client {
     private String firstName;
     private String lastName;
     private String adress;
+    @NotNull(message = "to pole nie może byc puste")
     private String email;
 
     public Client() {
-
     }
-
 
     public boolean isNew() {
         return id == 0;

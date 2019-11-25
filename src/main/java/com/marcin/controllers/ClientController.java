@@ -6,8 +6,10 @@ import com.marcin.service.CllientService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -39,9 +41,14 @@ public class ClientController {
     }
 
     @PostMapping("/saveClient")
-    public String saveClient(@ModelAttribute("client") Client theClient) {
-        cllientService.saveClient(theClient);
-        return "redirect:/list";
+    public String saveClient(@Valid @ModelAttribute("client") Client theClient, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "client-form";
+        } else {
+            cllientService.saveClient(theClient);
+            return "redirect:/list";
+        }
+
     }
 
     @GetMapping("/showFormForUpdate")
