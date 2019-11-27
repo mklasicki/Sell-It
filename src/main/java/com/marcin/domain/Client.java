@@ -2,6 +2,11 @@ package com.marcin.domain;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
+
+
 
 @Entity
 @Table(name = "clients")
@@ -13,12 +18,12 @@ public class Client {
     private String firstName;
     private String lastName;
     private String adress;
+    @NotBlank(message = "to pole nie może byc puste")
+    @Email(message = "niepoprawny format")
     private String email;
 
     public Client() {
-
     }
-
 
     public boolean isNew() {
         return id == 0;
