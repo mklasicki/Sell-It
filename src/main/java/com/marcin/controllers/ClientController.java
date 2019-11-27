@@ -42,6 +42,7 @@ public class ClientController {
 
     @PostMapping("/saveClient")
     public String saveClient(@Valid @ModelAttribute("client") Client theClient, BindingResult bindingResult) {
+
         if (bindingResult.hasErrors()) {
             return "client-form";
         } else {

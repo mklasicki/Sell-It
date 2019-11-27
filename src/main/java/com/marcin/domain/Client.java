@@ -2,7 +2,10 @@ package com.marcin.domain;
 
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
+
 
 
 @Entity
@@ -15,7 +18,8 @@ public class Client {
     private String firstName;
     private String lastName;
     private String adress;
-    @NotNull(message = "to pole nie może byc puste")
+    @NotBlank(message = "to pole nie może byc puste")
+    @Email(message = "niepoprawny format")
     private String email;
 
     public Client() {

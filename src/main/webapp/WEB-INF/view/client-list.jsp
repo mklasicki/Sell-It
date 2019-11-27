@@ -32,7 +32,7 @@
         <!-- table for customers -->
         <table id="clientTable">
             <thead>
-            <tr>
+            <tr id="clientTableRow">
                 <th>Imię</th>
                 <th>Nazwisko</th>
                 <th>Adres</th>
