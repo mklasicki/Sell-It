@@ -28,8 +28,12 @@ public class SecurityController extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api").permitAll()
                 .antMatchers("/list").authenticated()
                 .antMatchers("/showFormForAdd").authenticated()
+                .antMatchers("/h2-console").permitAll()
                 .and()
                 .httpBasic();
+
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
     }
 
     @Bean
