@@ -1,28 +1,22 @@
 package com.marcin.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class User {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String username;
     private String password;
-    private int active;
-    private String roles = "";
-    private String permissions = "";
 
-    public User(String username, String password, String roles, String permissions) {
+    public User() {
+    }
+
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.roles = roles;
-        this.permissions = permissions;
     }
 
     public long getId() {
@@ -49,29 +43,6 @@ public class User {
         this.password = password;
     }
 
-    public int getActive() {
-        return active;
-    }
-
-    public void setActive(int active) {
-        this.active = active;
-    }
-
-    public String getRoles() {
-        return roles;
-    }
-
-    public void setRoles(String roles) {
-        this.roles = roles;
-    }
-
-    public String getPermissions() {
-        return permissions;
-    }
-
-    public void setPermissions(String permissions) {
-        this.permissions = permissions;
-    }
 }
 
 
