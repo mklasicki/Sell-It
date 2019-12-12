@@ -9,9 +9,9 @@
 </head>
 <body>
 <div id="header">
-    <h2>Załóż nowe konto, wypełnij formularz.</h2>
+    <h2>Aby założyc nowe konto wypełnij formularz i zatwierdź.</h2>
 </div>
-<div id="addClientForm">
+<div id="addUserForm">
     <form:form action="saveUser" modelAttribute="user" method="post">
         <table>
             <tbody>
@@ -28,8 +28,8 @@
         </table>
     </form:form>
 </div>
-<p>
+<div id="mainPageLink">
     <a href="${pageContext.request.contextPath}/api">Powrót do strony głównej</a>
-</p>
+</div>
 </body>
 </html>

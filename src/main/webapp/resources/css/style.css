@@ -32,3 +32,20 @@ th {
 .error {
     color: red;
 }
+
+#addUserForm {
+    border: 1px solid black;
+    align-content: center;
+    height: 80px;
+    width: 280px;
+    margin: auto;
+}
+
+#addUserButton {
+    margin: auto;
+}
+
+#mainPageLink {
+    text-align: center;
+}
+
