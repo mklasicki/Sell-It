@@ -63,6 +63,9 @@
         <p>
             <a href="${pageContext.request.contextPath}/api">Powrót do strony głównej</a>
         </p>
+        <p>
+            <a href="<c:url value="/logout" />">Wyloguj.</a>
+        </p>
     </div>
 </div>
 <br><br>
