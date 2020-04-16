@@ -14,6 +14,7 @@ public class DbInit implements CommandLineRunner {
     private PasswordEncoder passwordEncoder;
 
 
+
     public DbInit(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
@@ -22,10 +23,11 @@ public class DbInit implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        User marcin = new User("marcin", passwordEncoder.encode("marcin123"));
-        User stefan = new User("stefan", passwordEncoder.encode("stefan123"));
+        User marcin = new User("marcin", passwordEncoder.encode("marcin123"), "mklasicki@gmail.com", true);
+        User stefan = new User("stefan", passwordEncoder.encode("stefan123"), "stefanek@wp.pl", true);
         userRepository.save(marcin);
         userRepository.save(stefan);
     }
 
 }
+

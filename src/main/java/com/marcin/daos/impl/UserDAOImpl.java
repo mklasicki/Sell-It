@@ -5,6 +5,7 @@ import com.marcin.domain.User;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 @Repository
 public class UserDAOImpl implements UserDao {
@@ -19,4 +20,8 @@ public class UserDAOImpl implements UserDao {
     public void saveUser(User newUser) {
         entityManager.persist(newUser);
     }
+
+
 }
+
+

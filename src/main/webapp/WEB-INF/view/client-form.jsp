@@ -39,7 +39,11 @@
             <tr>
                 <td><label>E-mail (*)</label></td>
                 <td><form:input path="email"/>
-                    <form:errors path="email" cssClass="error"/></td>
+                 <form:errors path="email" cssClass="error"/></td>
+            </tr>
+            <tr>
+                <td><label>Wprowadz adres obrazu</label></td>
+                <td><form:input path ="image"/></td>
             </tr>
             <td><input type="submit" value="Zapisz"></td>
             </tbody>
@@ -47,7 +51,7 @@
     </form:form>
 </div>
 <p>
-    <a href="${pageContext.request.contextPath}/api">Powrót do strony głównej</a>
+    <a href="${pageContext.request.contextPath}/">Powrót do strony głównej</a>
 </p>
 </body>
 </html>

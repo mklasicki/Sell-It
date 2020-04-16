@@ -8,6 +8,9 @@
     <title>Lista klientów</title>
 </head>
 <body>
+<h3>Witaj </h3>
+
+
 <div id="wrapper">
     <div id="header">
         <h2>Lista klientów.</h2>
@@ -28,6 +31,7 @@
                 </div>
             </div>
         </div>
+
         <br><br>
         <!-- table for customers -->
         <table id="clientTable">
@@ -37,6 +41,7 @@
                 <th>Nazwisko</th>
                 <th>Adres</th>
                 <th>E-Mail</th>
+                <th>Zdjęcie</th>
                 <th>Akcja</th>
             </tr>
             </thead>
@@ -52,6 +57,7 @@
                     <td>${temp.lastName}</td>
                     <td>${temp.adress}</td>
                     <td>${temp.email}</td>
+                    <td><img src= "${temp.image}"></td>
                     <td><a href="${updateLink}">Edytuj</a>
                         |
                         <a href="${deleteLink}"
