@@ -1,34 +1,314 @@
-#header {
-    text-align: center;
+
+* {
+    box-sizing: border-box;
 }
 
-#addButton {
-    float: left;
-    width: 30%;
-    margin: 5px;
+body {
+    background-image: url("/resources/images/tło.png");
+    font-family: 'Lato', sans-serif;
+    font-size: 22px;
 }
 
-#searchBar {
-    float: right;
-    width: 50%;
+/*CSS for main paige */
+
+#category-header {
+    display: inline-block;
+    margin-top: 45px;
+    letter-spacing: 3px;
+    margin-bottom: 0px;
 }
 
-#clientTable {
-    width: 100%;
-    border: 1px solid black;
+#container {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 3px 3px 20px 2px #ccc;
+    border-radius: 10px 10px 0 0;
 }
 
-th {
-    background-color: #4CAF50;
+#menu {
+    height: 125px;
+    background-color: #fce45dd3;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    border-radius: 10px 10px 0 0;
+}
+
+#search-button {
+    background-color: #008CBA;
+    border: none;
     color: white;
-    border: 1px solid black;
+    padding: 5px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
-#clientTableRow:nth-child(even) {
-    background-color: #f2f2f2;
-    border: 1px solid black;
+input {
+    height: 31px;
+    width: 220px;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+    background-color: whitesmoke;
+    font-size: 18px;
 }
 
-.error {
-    color: red;
+#content {
+    background-color: whitesmoke;
+    text-align: center;
+    margin-top: -30px;
+    height: fit-content;
+    resize: vertical;
+    overflow: hidden;
 }
+
+li {
+    display: inline;
+    padding: 20px;
+}
+
+#content-list-header {
+    margin-top: 10px;
+    padding: 10px;
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 18px;
+    color: #008CBA;
+}
+
+#content-list {
+    height: 500px;
+    background-color: white;
+    height: fit-content;
+    resize: vertical;
+    overflow: hidden;
+}
+
+.list-items {
+    display: block;
+}
+
+/*CSS for login page. */
+
+.login-button {
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    padding: 5px 20px;
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: 1px;
+    display: inline-block;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#login-container {
+    height: 420px;
+    width: 380px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: whitesmoke;
+    box-shadow: 3px 3px 20px 2px #ccc;
+    border-radius: 0px 0px 10px 10px;
+    display: block;
+    text-align: center;
+    padding-top: 40px;
+}
+
+#login-head {
+    width: 380px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 15px;
+    height: 60px;
+    background-color: #fce45dd3;
+    box-shadow: 3px 3px 20px 2px #ccc;
+    border-radius: 10px 10px 0px 0px;
+    display: block;
+    text-align: center;
+    margin-top: 80px;
+    border-bottom: 1px solid #ccc;
+    letter-spacing: 2px;
+}
+
+#search-button:hover {
+    background-color: #007BAA;
+}
+
+.login-button:hover {
+    background-color: #007BAA;
+}
+
+#login-header {
+    display: inline;
+}
+
+.product-tile {
+    width: 960px;
+    margin: 20px;
+    height: 220px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 6px 3px #ccc;
+}
+
+#photo-tile {
+    width: 300px;
+    height: 200px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    float: left;
+}
+
+#name-tile {
+    width: 200px;
+    height: 200px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    float: left;
+}
+
+#description-tile {
+    width: 320px;
+    height: 200px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    float: left;
+}
+
+#price-tile {
+    width: 100px;
+    height: 200px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    float: left;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+/* CSS for adding product site*/
+
+#wrapper {
+    margin-top: 20px;
+    width: 700px;
+    height: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    text-align: center;
+    letter-spacing: 2px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 20px 2px #ccc;
+}
+
+#add-product-head {
+    height: 80px;
+    background-color: #fce45dd3;
+    letter-spacing: 2px;
+    border-bottom: 2px solid #ccc;
+    border-radius: 10px 10px 0px 0px;
+    padding: 1px;
+}
+
+
+#product-name {
+    font-size: 22px;
+    padding: 10px;
+    height:100px;
+    background-color: whitesmoke;
+    border-bottom: 2px solid #ccc;
+}
+
+#add-product-input {
+    height: 26px;
+    width: 300px;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+    background-color: white;
+    font-size: 18px;
+}
+
+
+#product-category {
+    height: 150px;
+    padding: 10px;
+    font-size: 22px;
+    background-color: white;
+    border-bottom: 2px solid #ccc;
+}
+
+#product-description {
+    height: 50px;
+    padding: 10px;
+    background-color: whitesmoke;
+}
+
+
+#textarea-product-description {
+    height: 150px;
+    width: 400px;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+    background-color: white;
+    font-family: 'Lato', sans-serif;
+    font-size: 18px;
+}
+
+#text-area {
+    height: 180px;
+    background-color: whitesmoke;
+    border-bottom: 2px solid #ccc;
+}
+
+#product-price {
+    padding: 20px;
+    height: 70px;
+    border-bottom: 2px solid #ccc;
+
+}
+
+#product-photo-add {
+    height: 80px;
+    padding: 20px;
+    background-color: whitesmoke;
+    border-bottom: 2px solid #ccc;
+}
+
+#add-product-button {
+    padding-top: 30px;
+
+}
+
+input {
+    background-color: white;
+}
+
+img {
+ width: 200px;
+ height: 200px;
+
+}
+
+
+
+

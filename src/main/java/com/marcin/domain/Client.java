@@ -1,12 +1,8 @@
 package com.marcin.domain;
 
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-
-
-
 
 @Entity
 @Table(name = "clients")
@@ -21,6 +17,7 @@ public class Client {
     @NotBlank(message = "to pole nie może byc puste")
     @Email(message = "niepoprawny format")
     private String email;
+    private String image;
 
     public Client() {
     }
@@ -67,6 +64,14 @@ public class Client {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @Override

@@ -1,16 +1,55 @@
-<!doctype html>
-<%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<!DOCTYPE html>
+
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+
+<html lang="pl">
+
 <head>
-    <title>Strona główna</title>
+    <meta charset="UTF-8">
+    <title>Strona główna.</title>
+    <meta name="description" content="Stronka do ćwiczeń, mam nadzieje, że bedzie się szybko rozwijała.">
+    <meta name="keywords" content="strona, www, ćwiczenia" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
+    <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
+    <link href="<c:url value="/resources/css/fontello.css" />" rel="stylesheet">
+
 </head>
 <body>
-<div id="container">
-    <div id="label">
-        <h1>Siemanko na pierwszej stronie!!</h1>
-    </div>
-    <div id="link">
-        <p><a href="${pageContext.request.contextPath}/list">Lista klientów.</a></p>
-        <p><a href="${pageContext.request.contextPath}/showFormForAdd">Dodaj klienta.</a></p>
-    </div>
-</div>
+    <a href="/addProduct">Dodaj nowy</a>
+    <div id="container">
+        <div id="menu">
+            <ol>
+                <li><a href="/loginPage">Zaloguj się</a></li>
+                <li><a href="/showFormForAddUser">Załóż konto</a></li>
+                <li>Kontakt</li>
+                <li><input type="text" placeholder=" Szukaj przedmiotu"></li>
+                <li><button id="search-button" type="submit" name="name">Szukaj</button></li>
+            </ol>
+        </div>
+        <div id="content">
+            <h3 id="category-header">Kategorie przedmiotów</h3>
+                <ol>
+                    <li><i class="icon-laptop"></i> Elektronika</li>
+                    <li><i class="icon-home"></i> Nieruchomości</li>
+                    <li><i class="icon-cab"></i> Motoryzacja</li>
+                    <li><i class="icon-award"></i> Sport</li>
+                    <li><i class="icon-leaf"></i> Dom i Ogród</li>
+                </ol>
+            <div id="content-list">
+                <h3 id="content-list-header">Ostatnio dodane ogłoszenia</h3>
+                    <c:forEach var="temp" items="${products}">
+                        <div class="product-tile">
+                            <div id="photo-tile"><img class="product-photo" src= "${temp.image}"></div>
+                            <div id="name-tile">${temp.productName}</div>
+                            <div id="description-tile">${temp.productDescription}</div>
+                            <div id="price-tile">${temp.productPrice}</div>
+                        </div>
+                    </c:forEach>
+            </div>
+        </div>
 </body>
+
+</html>
