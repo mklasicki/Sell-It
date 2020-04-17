@@ -1,6 +1,8 @@
 package com.marcin.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User {
@@ -12,16 +14,11 @@ public class User {
     private String password;
     private String email;
     private boolean enabled;
-
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REFRESH,
+            CascadeType.DETACH, CascadeType.MERGE})
+    private List<Product> products = new ArrayList<>();
 
     public User() {
-    }
-
-    public User(String username, String password, String email, boolean enabled) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.enabled = enabled;
     }
 
     public boolean isNew() {
@@ -66,6 +63,23 @@ public class User {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public void addProduct(Product product) {
+        if (products == null) {
+            products = new ArrayList<>();
+        }
+
+        products.add(product);
+        product.setUser(this);
     }
 
 

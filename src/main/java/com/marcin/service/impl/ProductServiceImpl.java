@@ -33,7 +33,19 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional
-    public Product getProduct(int id) {
+    public Product getProduct(Long id) {
         return productDAO.getProduct(id);
+    }
+
+    @Override
+    @Transactional
+    public Product findProductByName(String productName) {
+        return productDAO.getProductByName(productName);
+    }
+
+    @Override
+    @Transactional
+    public boolean deleteProduct(String productName) {
+        return productDAO.deleteProduct(productName);
     }
 }

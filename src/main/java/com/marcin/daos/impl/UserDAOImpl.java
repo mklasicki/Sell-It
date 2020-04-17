@@ -3,9 +3,10 @@ package com.marcin.daos.impl;
 import com.marcin.daos.UserDao;
 import com.marcin.domain.User;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
+
 
 @Repository
 public class UserDAOImpl implements UserDao {
@@ -17,10 +18,10 @@ public class UserDAOImpl implements UserDao {
     }
 
     @Override
-    public void saveUser(User newUser) {
-        entityManager.persist(newUser);
+    @Transactional
+    public void saveUser(User user) {
+        entityManager.persist(user);
     }
-
 
 }
 

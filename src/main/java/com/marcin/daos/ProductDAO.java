@@ -11,5 +11,11 @@ public interface ProductDAO {
 
     void saveProduct(Product theProduct);
 
-    Product getProduct(int id);
+    Product getProduct(Long id);
+
+    Product getProductByName(String productName);
+
+    boolean deleteProduct(String productName);
+
+
 }

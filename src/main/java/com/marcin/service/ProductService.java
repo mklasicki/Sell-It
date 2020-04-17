@@ -11,5 +11,11 @@ public interface ProductService {
 
     void saveProduct(Product theProduct);
 
-    Product getProduct(int id);
+    Product getProduct(Long id);
+
+    Product findProductByName(String productName);
+
+    boolean deleteProduct(String productName);
+
+
 }

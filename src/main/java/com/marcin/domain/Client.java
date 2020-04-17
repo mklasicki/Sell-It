@@ -4,12 +4,10 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
-@Entity
-@Table(name = "clients")
+
 public class Client {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
     private int id;
     private String firstName;
     private String lastName;
