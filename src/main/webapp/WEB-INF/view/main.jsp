@@ -30,18 +30,19 @@
         </div>
         <div id="content">
             <h3 id="category-header">Kategorie przedmiotów</h3>
-                <ol>
-                    <li><i class="icon-laptop"></i> Elektronika</li>
-                    <li><i class="icon-home"></i> Nieruchomości</li>
-                    <li><i class="icon-cab"></i> Motoryzacja</li>
-                    <li><i class="icon-award"></i> Sport</li>
-                    <li><i class="icon-leaf"></i> Dom i Ogród</li>
-                </ol>
+            <br/>
+            <ol class="category-list">
+                <c:forEach items="${categories}" var="category">
+                <div class="category-item">
+                <li data-category-id="${category.id}"><img class="category-icon" src=${category.iconUrl} alt="category icon">${category.name}</li>
+                </div>
+                </c:forEach>
+            </ol>
             <div id="content-list">
                 <h3 id="content-list-header">Ostatnio dodane ogłoszenia</h3>
                     <c:forEach var="temp" items="${products}">
                         <div class="product-tile">
-                            <div id="photo-tile"><img class="product-photo" src= "${temp.image}"></div>
+                            <div id="photo-tile"><img class="product-photo" src= "${temp.image}" alt="product-photo"></div>
                             <div id="name-tile">${temp.productName}</div>
                             <div id="description-tile">${temp.productDescription}</div>
                             <div id="price-tile">${temp.productPrice}</div>

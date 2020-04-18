@@ -309,6 +309,20 @@ img {
 
 }
 
+.category-list {
+    display: inline-flex;
+}
+
+.category-item {
+
+}
+
+.category-icon {
+ width: 24px;
+ height: 24px;
+ padding-right: 5px;
+ vertical-align: bottom;
+}
 
 
 

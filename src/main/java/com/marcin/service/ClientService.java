@@ -4,7 +4,7 @@ import com.marcin.domain.Client;
 import java.util.List;
 
 
-public interface CllientService  {
+public interface ClientService {
 
      List<Client> getClients();
 

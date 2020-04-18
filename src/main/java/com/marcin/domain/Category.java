@@ -8,7 +8,13 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "active")
+    private Boolean active;
+    @Column(name = "iconurl")
+    private String iconUrl;
+
     @OneToOne(mappedBy = "category", cascade = CascadeType.ALL)
     private Product product;
 
@@ -33,5 +39,21 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public String getIconUrl() {
+        return iconUrl;
+    }
+
+    public void setIconUrl(String iconUrl) {
+        this.iconUrl = iconUrl;
     }
 }
