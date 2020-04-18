@@ -12,7 +12,7 @@
     <meta name="keywords" content="strona, www, ćwiczenia" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
-     <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
+    <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
     <link href="<c:url value="/resources/css/fontello.css" />" rel="stylesheet">
 
 
@@ -25,33 +25,31 @@
         <form:form action="saveProduct" modelAttribute="product"  method="post">
         <div id="product-name">
             <div>Nazwa</div>
-                <form:input path="productName" id="add-product-input" name="add-product" type="text"/>
+                <form:input path="name" id="add-product-input" name="add-product" type="text"/>
         </div>
         <div id="product-category">
             Wybierz kategorię
                 <div id="category-checkbox">
-                    <ol>
-                        <li><i class="icon-laptop" ></i>Elektronika</li>
-                        <li><i class="icon-home" ></i> Nieruchomości</li>
-                        <li><i class="icon-cab" ></i> Motoryzacja</li>
-                        <li><i class="icon-award" ></i> Sport</li>
-                        <li><i class="icon-leaf" ></i> Dom i Ogród</li>
-                    </ol>
+                    <form:select path="category">
+                        <c:forEach items="${categories}" var="category">
+                            <option value="${category.id}">${category.name}</option>
+                        </c:forEach>
+                    </form:select>
                 </div>
         </div>
                 <div id="product-description">
-                    Opisz przedmiot
+                    Opis przedmiotu
                 </div>
                 <div id="text-area">
-                    <form:textarea path="productDescription" id="textarea-product-description"/>
+                    <form:textarea path="description" id="textarea-product-description"/>
                 </div>
                 <div id="product-price">
                     <label>Podaj cenę </label>
-                        <form:input path="productPrice" type="text"/>
+                        <form:input path="price" type="text"/>
                 </div>
                 <div id="product-photo-add">
                      Dodaj zdjęcie
-                        <form:input path="image" type="text"/>
+                        <form:input path="imageUrl" type="text"/>
                 </div>
                 <div id="add-product-button">
                       <button type="submit" class="login-button">Prześlij</button>
@@ -59,5 +57,4 @@
             </form:form>
     </div>
 </body>
-
 </html>

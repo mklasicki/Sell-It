@@ -3,22 +3,29 @@ package com.marcin.controllers;
 
 import com.marcin.domain.Category;
 import com.marcin.domain.Product;
+import com.marcin.dto.RegisterProductDTO;
+import com.marcin.facades.CategoryFacade;
+import com.marcin.facades.ProductFacade;
 import com.marcin.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.NoResultException;
-import javax.validation.Valid;
 import java.util.List;
 
 @Controller
 public class ProductController {
 
-    ProductService productService;
+    private final ProductFacade productFacade;
 
-    public ProductController(ProductService productService) {
+    private final ProductService productService;
+    private final CategoryFacade categoryFacade;
+
+    public ProductController(ProductFacade productFacade, ProductService productService, CategoryFacade categoryFacade) {
+        this.productFacade = productFacade;
         this.productService = productService;
+        this.categoryFacade = categoryFacade;
     }
 
     @GetMapping("/main")
@@ -30,14 +37,16 @@ public class ProductController {
 
     @GetMapping("/addProduct")
     public String showProduct(Model model) {
-        Product theProduct = new Product();
-        model.addAttribute("product", theProduct);
+        RegisterProductDTO registerProductDTO = new RegisterProductDTO();
+        List<Category> categories = categoryFacade.getAllCategories();
+        model.addAttribute("categories", categories);
+        model.addAttribute("product", registerProductDTO);
         return "product-form2";
     }
 
-    @RequestMapping("/saveProduct")
-    public String saveProduct(@ModelAttribute("product") Product theProduct) {
-        productService.saveProduct(theProduct);
+    @PostMapping("/saveProduct")
+    public String saveProduct(@ModelAttribute("product") RegisterProductDTO registerProductDTO) {
+        productFacade.registerNewProduct(registerProductDTO);
         return "redirect:/myPage";
     }
 

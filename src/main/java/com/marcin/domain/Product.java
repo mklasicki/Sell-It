@@ -9,7 +9,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String productName;
-    private int productPrice;
+    private float productPrice;
     private String productDescription;
     private String image;
     @OneToOne(cascade = CascadeType.ALL)
@@ -20,10 +20,8 @@ public class Product {
     @JoinColumn(name = "user_id")
     private User user;
 
-
     public Product() {
     }
-
 
     public boolean isNew() {
         return id == 0;
@@ -45,11 +43,11 @@ public class Product {
         this.productName = productName;
     }
 
-    public int getProductPrice() {
+    public float getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(int productPrice) {
+    public void setProductPrice(float productPrice) {
         this.productPrice = productPrice;
     }
 

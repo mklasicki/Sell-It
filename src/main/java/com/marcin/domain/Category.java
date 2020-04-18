@@ -15,9 +15,6 @@ public class Category {
     @Column(name = "iconurl")
     private String iconUrl;
 
-    @OneToOne(mappedBy = "category", cascade = CascadeType.ALL)
-    private Product product;
-
     public Category() {
     }
 

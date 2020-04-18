@@ -22,4 +22,9 @@ public class CategoryDAOImpl implements CategoryDAO {
                 .createQuery("select c from Category c", Category.class)
                 .getResultList();
     }
+
+    @Override
+    public Category findById(Long id) {
+        return entityManager.find(Category.class, id);
+    }
 }

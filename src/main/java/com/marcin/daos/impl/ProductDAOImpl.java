@@ -2,8 +2,8 @@ package com.marcin.daos.impl;
 
 import com.marcin.daos.ProductDAO;
 import com.marcin.domain.Product;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 
 import javax.persistence.EntityManager;
@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public class ProductDAOImpl implements ProductDAO {
 
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     public ProductDAOImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
@@ -37,14 +37,14 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
-    public void saveProduct(Product theProduct) {
-        entityManager.persist(theProduct);
+    @Transactional
+    public void saveProduct(Product product) {
+        entityManager.persist(product);
     }
 
     @Override
     public Product getProduct(Long id) {
-        Product product = new Product();
-        product = entityManager.find(Product.class, id);
+        Product product = entityManager.find(Product.class, id);
         return product;
     }
 

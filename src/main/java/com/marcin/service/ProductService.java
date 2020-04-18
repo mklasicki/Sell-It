@@ -2,6 +2,7 @@ package com.marcin.service;
 
 
 import com.marcin.domain.Product;
+import com.marcin.dto.RegisterProductDTO;
 
 import java.util.List;
 
@@ -17,5 +18,5 @@ public interface ProductService {
 
     boolean deleteProduct(String productName);
 
-
+    void registerNewProduct(RegisterProductDTO registerProductDTO);
 }
