@@ -12,9 +12,6 @@ public class Product {
     private float productPrice;
     private String productDescription;
     private String image;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "category_id")
-    private Category category;
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH,
             CascadeType.DETACH, CascadeType.MERGE})
     @JoinColumn(name = "user_id")
@@ -65,14 +62,6 @@ public class Product {
 
     public void setImage(String image) {
         this.image = image;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 
     public User getUser() {

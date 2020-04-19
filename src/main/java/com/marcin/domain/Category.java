@@ -1,6 +1,8 @@
 package com.marcin.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Category {
@@ -15,7 +17,11 @@ public class Category {
     @Column(name = "iconurl")
     private String iconUrl;
 
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Product> products;
+
     public Category() {
+        products = new ArrayList<>();
     }
 
     public Category(String name) {
@@ -52,5 +58,17 @@ public class Category {
 
     public void setIconUrl(String iconUrl) {
         this.iconUrl = iconUrl;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public void addProduct(Product product) {
+        this.products.add(product);
     }
 }

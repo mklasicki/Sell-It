@@ -65,8 +65,7 @@ public class ProductServiceImpl implements ProductService {
     private Product createProductFrom(RegisterProductDTO registerProductDTO, Category category) {
         Product product = new Product();
         product.setUser(new User()); // TODO: dodać też użytkownika z bazy bo teraz za każdym razem tworzy nowego użytkownika w bazie
-        product.setCategory(category);
-
+        category.addProduct(product);
         product.setProductDescription(registerProductDTO.getDescription());
         product.setProductName(registerProductDTO.getName());
         product.setProductPrice(registerProductDTO.getPrice());
