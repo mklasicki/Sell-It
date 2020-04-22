@@ -1,27 +1,28 @@
 package com.marcin.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String username;
     private String password;
     private String email;
     private boolean enabled;
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REFRESH,
+            CascadeType.DETACH, CascadeType.MERGE})
+    private List<Product> products;
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REFRESH,
+            CascadeType.DETACH, CascadeType.MERGE})
+    private List<Authorities> roles;
 
 
     public User() {
-    }
-
-    public User(String username, String password, String email, boolean enabled) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.enabled = enabled;
     }
 
     public boolean isNew() {
@@ -68,7 +69,39 @@ public class User {
         this.enabled = enabled;
     }
 
+    public List<Product> getProducts() {
+        return products;
+    }
 
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public void addProduct(Product product) {
+        if (products == null) {
+            products = new ArrayList<>();
+        }
+
+        products.add(product);
+        product.setUser(this);
+    }
+
+    public void setRoles(List<Authorities> roles) {
+        this.roles = roles;
+    }
+
+    public List<Authorities> getRoles() {
+        return roles;
+    }
+
+    public void addAuthority(Authorities authority) {
+        if (roles == null) {
+            roles = new ArrayList<>();
+        }
+
+        roles.add(authority);
+        authority.setUser(this);
+    }
 }
 
 

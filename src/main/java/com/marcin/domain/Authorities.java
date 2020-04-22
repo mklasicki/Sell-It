@@ -1,29 +1,22 @@
 package com.marcin.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+
+import javax.persistence.*;
 
 @Entity
-@Table(name = "Authorities")
 public class Authorities {
 
     @Id
-    private String username;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     private String authority;
+    private String username;
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH,
+            CascadeType.DETACH, CascadeType.MERGE})
+    @JoinColumn(name = "user_id")
+    private User user;
 
-
-    public Authorities(String username, String authority) {
-        this.username = username;
-        this.authority = authority;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+    public Authorities() {
     }
 
     public String getAuthority() {
@@ -32,5 +25,21 @@ public class Authorities {
 
     public void setAuthority(String authority) {
         this.authority = authority;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
