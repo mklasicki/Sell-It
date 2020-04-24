@@ -325,4 +325,27 @@ img {
 }
 
 
+#addUserForm {
+    width: 400px;
+    height: 400px;
+    margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    box-shadow: 3px 3px 20px 2px #ccc;
+}
+
+#main-page-link {
+    margin-top: 40px;
+    text-align: center;
+
+}
+
+.user-form-input {
+    margin-top: 40px;
+
+}
+
 

@@ -9,6 +9,7 @@ import com.marcin.dto.RegisterProductDTO;
 import com.marcin.service.CategoryService;
 import com.marcin.service.ProductService;
 import com.marcin.service.UserService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -63,15 +64,16 @@ public class ProductServiceImpl implements ProductService {
     public void registerNewProduct(RegisterProductDTO registerProductDTO) {
 
         Category category = categoryService.getCategoryById(Long.parseLong(registerProductDTO.getCategory()));
-        Product product = createProductFrom(registerProductDTO, category);
+               Product product = createProductFrom(registerProductDTO, category);
         productDAO.saveProduct(product);
     }
 
     private Product createProductFrom(RegisterProductDTO registerProductDTO, Category category) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        System.out.println("Przypisano produkt do usera " + username + " o id " + userService.findUserByName(username).getId());
         Product product = new Product();
-        product.setUser(new User()); // TODO: dodać też użytkownika z bazy bo teraz za każdym razem tworzy nowego użytkownika w bazie
+        product.setUser(userService.findUserByName(username)); // TODO: dodać też użytkownika z bazy bo teraz za każdym razem tworzy nowego użytkownika w bazie
         product.setCategory(category);
-
         product.setProductDescription(registerProductDTO.getDescription());
         product.setProductName(registerProductDTO.getName());
         product.setProductPrice(registerProductDTO.getPrice());
