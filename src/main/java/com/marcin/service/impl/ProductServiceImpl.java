@@ -64,7 +64,7 @@ public class ProductServiceImpl implements ProductService {
     public void registerNewProduct(RegisterProductDTO registerProductDTO) {
 
         Category category = categoryService.getCategoryById(Long.parseLong(registerProductDTO.getCategory()));
-               Product product = createProductFrom(registerProductDTO, category);
+        Product product = createProductFrom(registerProductDTO, category);
         productDAO.saveProduct(product);
     }
 
@@ -72,7 +72,7 @@ public class ProductServiceImpl implements ProductService {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         System.out.println("Przypisano produkt do usera " + username + " o id " + userService.findUserByName(username).getId());
         Product product = new Product();
-        product.setUser(userService.findUserByName(username)); // TODO: dodać też użytkownika z bazy bo teraz za każdym razem tworzy nowego użytkownika w bazie
+        product.setUser(userService.findUserByName(username));
         product.setCategory(category);
         product.setProductDescription(registerProductDTO.getDescription());
         product.setProductName(registerProductDTO.getName());

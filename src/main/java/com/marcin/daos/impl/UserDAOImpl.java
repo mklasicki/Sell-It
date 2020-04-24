@@ -1,14 +1,13 @@
 package com.marcin.daos.impl;
 
 import com.marcin.daos.UserDao;
-import com.marcin.domain.Product;
 import com.marcin.domain.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 
@@ -24,15 +23,30 @@ public class UserDAOImpl implements UserDao {
     }
 
     @Override
+    public List<User> getAll() {
+        TypedQuery<User> query = entityManager.createQuery("from User u ", User.class);
+        return query.getResultList();
+    }
+
+    @Override
     @Transactional
-    public void saveUser(User user) {
-        String pass = user.getPassword();
-        System.out.println("zapisane hasło to " + pass);
-      //  String encodedPass = bCryptPasswordEncoder.encode(pass);
-      //  System.out.println("Hasło zahashowane to " + encodedPass);
-        user.setEnabled(true);
-    //    user.setPassword(encodedPass);
-        entityManager.persist(user);
+    public void saveUser(User user)  {
+        List<User> users = getAll();
+
+        if (users.isEmpty()) {
+            System.out.println("Nie ma takiego usera, można go zapisać");
+            entityManager.persist(user);
+            System.out.println("Zapisano nowego usera " + user.getUsername());
+        } else if (checkByUserName(user.getUsername())) {
+            System.out.println("User o imieniu " + user.getUsername() + " juz istnieje, nie można go zapisać");
+        } else if (checkByEmail(user.getEmail())) {
+            System.out.println("Adres mail " + user.getEmail() + " juz istnieje w bazie danych, nie można zapisać");
+        } else {
+            System.out.println("Nie ma takiego usera, można go zapisać");
+            entityManager.persist(user);
+            System.out.println("Zapisano nowego usera " + user.getUsername());
+        }
+
     }
 
     @Override
@@ -42,13 +56,52 @@ public class UserDAOImpl implements UserDao {
 
     @Override
     public User findUserByName(String username) {
-        User user =(User) entityManager.createQuery(
+        User user = (User) entityManager.createQuery(
                 "select u " +
                         "from User u  " +
                         "where u.username like :username")
                 .setParameter("username", username)
                 .getSingleResult();
         return user;
+    }
+
+    @Override
+    public boolean checkByUserName(String username) {
+       User user = null;
+        try {
+            user = (User) entityManager.createQuery(
+                    "select u " +
+                            "from User u  " +
+                            "where u.username like :username")
+                    .setParameter("username", username)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            System.out.println("Brak wyników wyszukiwania");
+        }
+
+       if(user != null) {
+           return true;
+       }
+        return false;
+    }
+
+    @Override
+    public boolean checkByEmail(String email) {
+       User user = null;
+        try {
+            user = (User) entityManager.createQuery(
+                    "select u " +
+                            "from User u  " +
+                            "where u.email like : email ")
+                    .setParameter("email", email)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            System.out.println("Brak wyników wyszukiwania");
+        }
+        if(user != null) {
+            return true;
+        }
+        return false;
     }
 }
 

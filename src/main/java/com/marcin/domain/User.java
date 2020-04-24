@@ -102,6 +102,19 @@ public class User {
         roles.add(authority);
         authority.setUser(this);
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", enabled=" + enabled +
+                ", products=" + products +
+                ", roles=" + roles +
+                '}';
+    }
 }
 
 

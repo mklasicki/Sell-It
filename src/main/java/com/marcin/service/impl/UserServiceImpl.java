@@ -15,6 +15,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -24,6 +26,11 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl(UserDao userDao, AuthoritiesService authoritiesService) {
         this.userDao = userDao;
         this.authoritiesService = authoritiesService;
+    }
+
+    @Override
+    public List<User> getAll() {
+        return userDao.getAll();
     }
 
     @Override
@@ -53,15 +60,27 @@ public class UserServiceImpl implements UserService {
     }
 
     private User createUserFrom(RegisterUserDTO registerUserDTO, Authorities authorities) {
-       User user = new User();
-       user.setUsername(registerUserDTO.getUsername());
-       user.setPassword(registerUserDTO.getPassword());
-       user.setEmail(registerUserDTO.getEmail());
-       user.setEnabled(true);
-       authorities.setAuthority("ROLE_USER");
-       authorities.setUsername(user.getUsername());
-       authorities.setUser(user);
-       user.addAuthority(authorities);
-       return user;
+          User user = new User();
+          user.setUsername(registerUserDTO.getUsername());
+          user.setPassword(registerUserDTO.getPassword());
+          user.setEmail(registerUserDTO.getEmail());
+          user.setEnabled(true);
+          authorities.setAuthority("ROLE_USER");
+          authorities.setUsername(user.getUsername());
+          authorities.setUser(user);
+          user.addAuthority(authorities);
+          return user;
+
+    }
+
+    @Override
+    public boolean checkByUserName(String username) {
+        return userDao.checkByUserName(username);
+
+    }
+
+    @Override
+    public boolean checkByEmail(String email) {
+        return userDao.checkByEmail(email);
     }
 }
