@@ -9,19 +9,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
 
 @Controller
- class ProfilPageController {
+public class ProfilePageController {
 
     private final ProductService productService;
 
-    public ProfilPageController(ProductService productService) {
+    public ProfilePageController(ProductService productService) {
         this.productService = productService;
     }
 
     @GetMapping("myPage")
     public String myPage(Model model) {
-        List<Product> theProducts = productService.getProducts();
-        model.addAttribute("products", theProducts);
+        List<Product> products = productService.getProducts();
+        model.addAttribute("products", products);
         return "my-page";
     }
-
 }

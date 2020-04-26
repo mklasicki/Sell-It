@@ -25,7 +25,7 @@
                     Zalogowany jako: <security:authentication property="principal.username" />
                 </security:authorize>
             <ol>
-                <li><a href="/main">Wyloguj się</a></li>
+                <li><a href="/logout">Wyloguj się</a></li>
                 <li><a href="/showFormForAddUser">Edytuj Profil</a></li>
                 <li><a href="/addProduct">Dodaj nowy</a></li>
                 <li><input type="text" placeholder=" Szukaj przedmiotu"></li>
@@ -46,7 +46,7 @@
                 <h3 id="content-list-header">Ostatnio dodane ogłoszenia</h3>
                     <c:forEach var="temp" items="${products}">
                         <div class="product-tile">
-                            <div id="photo-tile"><img class="product-photo" src= "${temp.image}"></div>
+                            <div id="photo-tile"><img class="product-photo" src="images/${temp.image}" alt="${productName}"></div>
                             <div id="name-tile">${temp.productName}</div>
                             <div id="description-tile">${temp.productDescription}</div>
                             <div id="price-tile">${temp.productPrice}</div>

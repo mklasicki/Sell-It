@@ -2,9 +2,11 @@ package com.marcin.daos.impl;
 
 import com.marcin.daos.UserDao;
 import com.marcin.domain.User;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
@@ -14,12 +16,12 @@ import java.util.List;
 @Repository
 public class UserDAOImpl implements UserDao {
 
-    private EntityManager entityManager;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final Logger log = LoggerFactory.getLogger(UserDAOImpl.class);
 
-    public UserDAOImpl(EntityManager entityManager, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    private final EntityManager entityManager;
+
+    public UserDAOImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @Override
@@ -30,23 +32,22 @@ public class UserDAOImpl implements UserDao {
 
     @Override
     @Transactional
-    public void saveUser(User user)  {
+    public void saveUser(User user) {
         List<User> users = getAll();
 
         if (users.isEmpty()) {
-            System.out.println("Nie ma takiego usera, można go zapisać");
+            log.info("Nie ma takiego usera, można go zapisać");
             entityManager.persist(user);
-            System.out.println("Zapisano nowego usera " + user.getUsername());
+            log.info("Zapisano nowego usera {}", user.getUsername());
         } else if (checkByUserName(user.getUsername())) {
-            System.out.println("User o imieniu " + user.getUsername() + " juz istnieje, nie można go zapisać");
+            log.info("User o imieniu {} juz istnieje, nie można go zapisać", user.getUsername());
         } else if (checkByEmail(user.getEmail())) {
-            System.out.println("Adres mail " + user.getEmail() + " juz istnieje w bazie danych, nie można zapisać");
+            log.info("Adres mail {} juz istnieje w bazie danych, nie można zapisać", user.getEmail());
         } else {
-            System.out.println("Nie ma takiego usera, można go zapisać");
+            log.info("Nie ma takiego usera, można go zapisać");
             entityManager.persist(user);
-            System.out.println("Zapisano nowego usera " + user.getUsername());
+            log.info("Zapisano nowego usera {}", user.getUsername());
         }
-
     }
 
     @Override
@@ -67,7 +68,7 @@ public class UserDAOImpl implements UserDao {
 
     @Override
     public boolean checkByUserName(String username) {
-       User user = null;
+        User user = null;
         try {
             user = (User) entityManager.createQuery(
                     "select u " +
@@ -76,18 +77,15 @@ public class UserDAOImpl implements UserDao {
                     .setParameter("username", username)
                     .getSingleResult();
         } catch (NoResultException e) {
-            System.out.println("Brak wyników wyszukiwania");
+            log.info("Brak wyników wyszukiwania");
         }
 
-       if(user != null) {
-           return true;
-       }
-        return false;
+        return user != null;
     }
 
     @Override
     public boolean checkByEmail(String email) {
-       User user = null;
+        User user = null;
         try {
             user = (User) entityManager.createQuery(
                     "select u " +
@@ -96,12 +94,9 @@ public class UserDAOImpl implements UserDao {
                     .setParameter("email", email)
                     .getSingleResult();
         } catch (NoResultException e) {
-            System.out.println("Brak wyników wyszukiwania");
+            log.info("Brak wyników wyszukiwania");
         }
-        if(user != null) {
-            return true;
-        }
-        return false;
+        return user != null;
     }
 }
 

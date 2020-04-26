@@ -23,6 +23,7 @@ public class User {
 
 
     public User() {
+        // needed by Hibernate
     }
 
     public boolean isNew() {
@@ -108,7 +109,7 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
+                ", password=[PROTECTED]" + '\'' +
                 ", email='" + email + '\'' +
                 ", enabled=" + enabled +
                 ", products=" + products +

@@ -27,8 +27,8 @@ public class StorageServiceImpl implements StorageService {
     private final Path rootLocation;
 
     @Autowired
-    public StorageServiceImpl(StorageProperities properities) {
-        this.rootLocation = Paths.get(properities.getLocation());
+    public StorageServiceImpl(StorageProperities storageProperities) {
+        this.rootLocation = Paths.get(storageProperities.getLocation());
     }
 
 
@@ -37,17 +37,20 @@ public class StorageServiceImpl implements StorageService {
         try {
             Files.createDirectories(rootLocation);
         } catch (IOException e) {
-            throw new StorageException("Could not inatialize storage",e);
+            throw new StorageException("Could not inatialize storage", e);
         }
 
     }
 
     @Override
-    public void store(MultipartFile file) {
+    public String store(MultipartFile file) {
 
+        if (file == null || file.getOriginalFilename() == null) {
+            throw new StorageException("Origin filename must exist");
+        }
         String filename = StringUtils.cleanPath(file.getOriginalFilename());
         try {
-            if(file.isEmpty()) {
+            if (file.isEmpty()) {
                 throw new StorageException("Cannot store file" +
                         "with relative path outside current directory" + filename);
             }
@@ -61,14 +64,11 @@ public class StorageServiceImpl implements StorageService {
                 Files.copy(inputStream, this.rootLocation.resolve(filename),
                         StandardCopyOption.REPLACE_EXISTING);
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new StorageException("Failed to store file " + filename, e);
         }
-
-        }
-
-
+        return filename;
+    }
 
     @Override
     public Stream<Path> loadAll() {
@@ -76,11 +76,9 @@ public class StorageServiceImpl implements StorageService {
             return Files.walk(this.rootLocation, 1)
                     .filter(path -> !path.equals(this.rootLocation))
                     .map(this.rootLocation::relativize);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new StorageException("Failed to read stored files", e);
         }
-
     }
 
     @Override
@@ -95,21 +93,18 @@ public class StorageServiceImpl implements StorageService {
             Resource resource = new UrlResource(file.toUri());
             if (resource.exists() || resource.isReadable()) {
                 return resource;
-            }
-            else {
+            } else {
                 throw new StorageFileNotFoundException(
                         "Could not read file: " + filename);
 
             }
-        }
-        catch (MalformedURLException e) {
+        } catch (MalformedURLException e) {
             throw new StorageFileNotFoundException("Could not read file: " + filename, e);
         }
     }
 
     @Override
     public void deleteAll() {
-
         FileSystemUtils.deleteRecursively(rootLocation.toFile());
     }
 }

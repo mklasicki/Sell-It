@@ -1,6 +1,5 @@
 package com.marcin.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -16,24 +15,30 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-     private DataSource dataSource;
+    private final DataSource dataSource;
+
+    public SecurityConfiguration(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
-//                .inMemoryAuthentication().withUser("marcin").password(passwordEncoder().encode("pass123")).roles("USER");
-               .jdbcAuthentication().dataSource(dataSource).usersByUsernameQuery("select username, password, enabled " +
-                       "from user where username=?")
-              .authoritiesByUsernameQuery("select username, authority from authorities where username=?");
-}
+//               .inMemoryAuthentication().withUser("marcin").password(passwordEncoder().encode("pass123")).roles("USER");
+                .jdbcAuthentication().dataSource(dataSource).usersByUsernameQuery("select username, password, enabled " +
+                "from user where username=?")
+                .authoritiesByUsernameQuery("select username, authority from authorities where username=?");
+    }
 
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers("/myPage").authenticated()
                 .antMatchers("/list").authenticated()
-                .antMatchers("/").permitAll()
                 .antMatchers("/showFormForAdd").authenticated()
+                .antMatchers("/addProduct").authenticated()
                 .antMatchers("/h2-console").permitAll()
+                .antMatchers("/").permitAll()
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -48,9 +53,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    BCryptPasswordEncoder passwordEncoder() {
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-
 }

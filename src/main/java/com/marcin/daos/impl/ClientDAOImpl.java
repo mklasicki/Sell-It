@@ -4,7 +4,6 @@ import com.marcin.daos.ClientDAO;
 import com.marcin.domain.Client;
 import org.springframework.stereotype.Repository;
 
-
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.List;
 @Repository
 public class ClientDAOImpl implements ClientDAO {
 
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     public ClientDAOImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
@@ -34,13 +33,9 @@ public class ClientDAOImpl implements ClientDAO {
         return entityManager.merge(client);
     }
 
-    /**
-     * @noinspection UnnecessaryLocalVariable
-     */
     @Override
     public Client getClient(int id) {
-        Client client = entityManager.find(Client.class, id);
-        return client;
+        return entityManager.find(Client.class, id);
     }
 
     @Override
