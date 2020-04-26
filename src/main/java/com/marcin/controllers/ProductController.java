@@ -9,14 +9,13 @@ import com.marcin.facades.ProductFacade;
 import com.marcin.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import javax.persistence.NoResultException;
-import java.security.Principal;
+import javax.validation.Valid;
 import java.util.List;
+
+import static org.apache.tomcat.util.http.fileupload.FileUtils.*;
 
 @Controller
 public class ProductController {
@@ -48,8 +47,11 @@ public class ProductController {
     }
 
     @PostMapping("/saveProduct")
-    public String saveProduct(@ModelAttribute("product") RegisterProductDTO registerProductDTO, Principal principal) {
-        registerProductDTO.setPrincipal(principal);
+    public String saveProduct(@Valid @ModelAttribute("product") RegisterProductDTO registerProductDTO,
+                              BindingResult bindingResult ) {
+        if (bindingResult.hasErrors()) {
+            return "product-form2";
+        }
         productFacade.registerNewProduct(registerProductDTO);
         return "redirect:/myPage";
     }
@@ -64,8 +66,8 @@ public class ProductController {
     public String searchProductByName(@RequestParam("productName") String productName, Model model) throws NoResultException {
         List<Product> products = productService.findProductByName(productName);
         if (products.isEmpty()) {
-            return "error";
-        }
+           return "error";
+       }
         try {
             model.addAttribute("products", products);
             return "test";

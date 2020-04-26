@@ -7,7 +7,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.sql.DataSource;
 
@@ -15,30 +14,28 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private final DataSource dataSource;
+
+     private final DataSource dataSource;
 
     public SecurityConfiguration(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
+
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
-//               .inMemoryAuthentication().withUser("marcin").password(passwordEncoder().encode("pass123")).roles("USER");
                 .jdbcAuthentication().dataSource(dataSource).usersByUsernameQuery("select username, password, enabled " +
-                "from user where username=?")
+                       "from user where username=?")
                 .authoritiesByUsernameQuery("select username, authority from authorities where username=?");
-    }
+}
 
-    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/myPage").authenticated()
                 .antMatchers("/list").authenticated()
-                .antMatchers("/showFormForAdd").authenticated()
-                .antMatchers("/addProduct").authenticated()
-                .antMatchers("/h2-console").permitAll()
                 .antMatchers("/").permitAll()
+                .antMatchers("/showFormForAdd").authenticated()
+                .antMatchers("/h2-console").permitAll()
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -53,7 +50,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 }

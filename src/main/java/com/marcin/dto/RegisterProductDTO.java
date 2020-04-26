@@ -1,29 +1,27 @@
 package com.marcin.dto;
 
 
-import org.springframework.web.multipart.MultipartFile;
-
-import java.security.Principal;
+import javax.validation.constraints.NotNull;
 
 public class RegisterProductDTO {
 
+    @NotNull(message = "To pole nie może być puste.")
     private String name;
     private String category;
     private String description;
+    @NotNull(message = "To pole nie może być puste")
     private Float price;
-    private MultipartFile image;
-    private Principal principal;
+    private String image;
 
     public RegisterProductDTO() {
     }
 
-    public RegisterProductDTO(String name, String category, String description, Float price, MultipartFile image, Principal principal) {
+    public RegisterProductDTO(String name, String category, String description, Float price, String image) {
         this.name = name;
         this.category = category;
         this.description = description;
         this.price = price;
         this.image = image;
-        this.principal = principal;
     }
 
     public String getName() {
@@ -50,27 +48,17 @@ public class RegisterProductDTO {
         this.description = description;
     }
 
-    public Float getPrice() {
-        return price;
-    }
+    public Float getPrice() { return price; }
 
     public void setPrice(Float price) {
         this.price = price;
     }
 
-    public MultipartFile getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(MultipartFile image) {
+    public void setImage(String image) {
         this.image = image;
-    }
-
-    public Principal getPrincipal() {
-        return principal;
-    }
-
-    public void setPrincipal(Principal principal) {
-        this.principal = principal;
     }
 }
