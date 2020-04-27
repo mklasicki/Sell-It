@@ -5,6 +5,7 @@ import com.marcin.domain.Authorities;
 import com.marcin.domain.User;
 import com.marcin.dto.RegisterUserDTO;
 import com.marcin.service.UserService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,9 +15,12 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final UserDao userDao;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public UserServiceImpl(UserDao userDao) {
+    public UserServiceImpl(UserDao userDao, BCryptPasswordEncoder bCryptPasswordEncoder)
+    {
         this.userDao = userDao;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @Override
@@ -53,7 +57,7 @@ public class UserServiceImpl implements UserService {
     private User createUserFrom(RegisterUserDTO registerUserDTO, Authorities authorities) {
         User user = new User();
         user.setUsername(registerUserDTO.getUsername());
-        user.setPassword(registerUserDTO.getPassword());
+        user.setPassword(bCryptPasswordEncoder.encode(registerUserDTO.getPassword()));
         user.setEmail(registerUserDTO.getEmail());
         user.setEnabled(true);
         authorities.setAuthority("ROLE_USER");

@@ -22,7 +22,7 @@
         <div id="add-product-head">
             <h3 id="add-product-header">Dodaj nowy przedmiot</h3>
         </div>
-        <form:form action="saveProduct" modelAttribute="product"  method="post" >
+        <form:form action="saveProduct" modelAttribute="product"  method="post" enctype="multipart/form-data">
               <div id="product-name">
             <div>Nazwa</div>
                 <form:input path="name" id="add-product-input" name="add-product" type="text"/>

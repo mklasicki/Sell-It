@@ -10,13 +10,17 @@ public interface ProductService {
 
     List<Product> getProducts();
 
+    List<Product> userProducts(Long id);
+
     void saveProduct(Product theProduct);
 
     Product getProduct(Long id);
 
     List<Product> findProductByName(String productName);
 
-   // boolean deleteProduct(String productName);
+    void deleteProduct(Long id);
 
     void registerNewProduct(RegisterProductDTO registerProductDTO);
+
+
 }

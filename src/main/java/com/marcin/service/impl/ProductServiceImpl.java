@@ -40,6 +40,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Product> userProducts(Long id) {
+        return productDAO.getProducts();
+    }
+
+    @Override
     @Transactional
     public void saveProduct(Product theProduct) {
         productDAO.saveProduct(theProduct);
@@ -58,9 +63,16 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public void registerNewProduct(RegisterProductDTO registerProductDTO) {
         Product product = createProductFrom(registerProductDTO);
         productDAO.saveProduct(product);
+    }
+
+    @Override
+    @Transactional
+    public void deleteProduct(Long id) {
+        productDAO.deleteProduct(id);
     }
 
     private Product createProductFrom(RegisterProductDTO registerProductDTO) {
@@ -80,4 +92,8 @@ public class ProductServiceImpl implements ProductService {
 
         return product;
     }
+
+
+
+
 }

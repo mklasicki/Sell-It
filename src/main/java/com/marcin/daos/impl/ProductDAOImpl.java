@@ -2,6 +2,7 @@ package com.marcin.daos.impl;
 
 import com.marcin.daos.ProductDAO;
 import com.marcin.domain.Product;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
@@ -23,6 +24,7 @@ public class ProductDAOImpl implements ProductDAO {
         TypedQuery<Product> query = entityManager.createQuery("from Product p", Product.class);
         return query.getResultList();
     }
+
 
     @Override
     public List<Product> getProductByName(String productName) {
@@ -51,16 +53,10 @@ public class ProductDAOImpl implements ProductDAO {
         return entityManager.find(Product.class, id);
     }
 
-//    @Override
-//    public boolean deleteProduct(String productName) {
-//        Product product = getProductByName(productName);
-//        if (product.getId() != 0) {
-//            entityManager.remove(product);
-//            System.out.println("Produkt " + product.getProductName() + " został pomyslnie usunięty");
-//            return true;
-//        } else {
-//            System.out.println("Nastapił jakiś błąd");
-//            return false;
-//        }
-//    }
+    @Override
+    public void deleteProduct(Long id) {
+       Product product = entityManager.find(Product.class, id);
+        entityManager.remove(product);
+    }
+
 }
