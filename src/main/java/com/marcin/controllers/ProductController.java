@@ -25,8 +25,8 @@ public class ProductController {
     private final CategoryFacade categoryFacade;
     private final UserService userService;
 
-    public ProductController(ProductFacade productFacade, ProductService productService, CategoryFacade categoryFacade
-    ,UserService userService) {
+    public ProductController(ProductFacade productFacade, ProductService productService,
+                             CategoryFacade categoryFacade,UserService userService) {
         this.productFacade = productFacade;
         this.productService = productService;
         this.categoryFacade = categoryFacade;

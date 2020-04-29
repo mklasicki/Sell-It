@@ -3,7 +3,6 @@ package com.marcin.facades.impl;
 import com.marcin.domain.Product;
 import com.marcin.domain.User;
 import com.marcin.dto.RegisterProductDTO;
-import com.marcin.dto.RegisterUserDTO;
 import com.marcin.facades.ProductFacade;
 import com.marcin.service.ProductService;
 import com.marcin.service.UserService;
