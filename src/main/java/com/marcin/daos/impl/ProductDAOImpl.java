@@ -64,6 +64,7 @@ public class ProductDAOImpl implements ProductDAO {
     public void deleteProduct(Long id) {
        Product product = entityManager.find(Product.class, id);
         entityManager.remove(product);
+
     }
 
 }

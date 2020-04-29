@@ -34,7 +34,7 @@ public class ProfilePageController {
     public String showUserProducts(Model model, Principal principal) {
         List<Product> userProducts = searchFacade.showMyProducts(principal.getName());
         model.addAttribute("userProducts",userProducts);
-        return "my-product-page";
+        return "my-products-page";
     }
 
 }
