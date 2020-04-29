@@ -3,12 +3,10 @@ package com.marcin.controllers;
 
 import com.marcin.domain.Category;
 import com.marcin.domain.Product;
-import com.marcin.domain.User;
 import com.marcin.dto.RegisterProductDTO;
 import com.marcin.facades.CategoryFacade;
 import com.marcin.facades.ProductFacade;
 import com.marcin.service.ProductService;
-import com.marcin.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,14 +21,12 @@ public class ProductController {
     private final ProductFacade productFacade;
     private final ProductService productService;
     private final CategoryFacade categoryFacade;
-    private final UserService userService;
 
     public ProductController(ProductFacade productFacade, ProductService productService,
-                             CategoryFacade categoryFacade,UserService userService) {
+                             CategoryFacade categoryFacade) {
         this.productFacade = productFacade;
         this.productService = productService;
         this.categoryFacade = categoryFacade;
-        this.userService = userService;
     }
 
     @GetMapping("/main")
@@ -57,13 +53,6 @@ public class ProductController {
         return "redirect:/myPage";
     }
 
-    @GetMapping("/showMyProducts")
-    public String getUserProducts(Model model, Principal principal){
-        User user = userService.findUserByName(principal.getName());
-        List<Product> userProducts = productFacade.userProducts(user.getId(), productService.getProducts());
-        model.addAttribute("userProducts", userProducts);
-        return "my-products-page";
-    }
 
     @GetMapping("/deleteProduct")
     public String showFormForDelete(@RequestParam("productId") Long id, Model model) {

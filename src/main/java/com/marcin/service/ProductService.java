@@ -10,8 +10,6 @@ public interface ProductService {
 
     List<Product> getProducts();
 
-    List<Product> userProducts(Long id);
-
     void saveProduct(Product theProduct);
 
     Product getProduct(Long id);
@@ -22,5 +20,8 @@ public interface ProductService {
 
     void registerNewProduct(RegisterProductDTO registerProductDTO);
 
+    List<Product> getProductByUserId(Long userId);
 
-}
+
+
+ }

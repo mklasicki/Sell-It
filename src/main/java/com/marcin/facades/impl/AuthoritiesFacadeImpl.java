@@ -5,8 +5,6 @@ import com.marcin.facades.AuthoritiesFacade;
 
 public class AuthoritiesFacadeImpl implements AuthoritiesFacade {
 
-
-
     @Override
     public void registerNewAuthority(RegisterAuthoritiesDTO registerAuthoritiesDTO) {
 

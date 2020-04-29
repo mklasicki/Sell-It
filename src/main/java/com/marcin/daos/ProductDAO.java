@@ -17,4 +17,6 @@ public interface ProductDAO {
 
     void deleteProduct(Long id);
 
+    List<Product> getProductByUserId(Long userId);
+
 }

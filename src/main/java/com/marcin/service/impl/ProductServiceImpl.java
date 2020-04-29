@@ -31,16 +31,11 @@ public class ProductServiceImpl implements ProductService {
         this.categoryService = categoryService;
         this.userService = userService;
         this.storageService = storageService;
-    }
+            }
 
     @Override
     @Transactional
     public List<Product> getProducts() {
-        return productDAO.getProducts();
-    }
-
-    @Override
-    public List<Product> userProducts(Long id) {
         return productDAO.getProducts();
     }
 
@@ -70,6 +65,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Product> getProductByUserId(Long userId) {
+        return productDAO.getProductByUserId(userId);
+    }
+
+    @Override
     @Transactional
     public void deleteProduct(Long id) {
         productDAO.deleteProduct(id);
@@ -79,7 +79,6 @@ public class ProductServiceImpl implements ProductService {
         Category category = categoryService.getCategoryById(Long.parseLong(registerProductDTO.getCategory()));
         User user = userService.findUserByName(registerProductDTO.getPrincipal().getName());
         String imageUrl = storageService.store(registerProductDTO.getImage());
-
         Product product = new Product();
         product.setUser(user);
         product.setCategory(category);
@@ -92,8 +91,5 @@ public class ProductServiceImpl implements ProductService {
 
         return product;
     }
-
-
-
 
 }
