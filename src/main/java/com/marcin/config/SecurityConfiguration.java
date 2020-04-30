@@ -31,7 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/list").authenticated()
+                .antMatchers("/my-page").authenticated()
                 .antMatchers("/").permitAll()
                 .antMatchers("/showFormForAdd").authenticated()
                 .antMatchers("/h2-console").permitAll()

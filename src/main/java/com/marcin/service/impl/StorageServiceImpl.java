@@ -67,6 +67,7 @@ public class StorageServiceImpl implements StorageService {
         } catch (IOException e) {
             throw new StorageException("Failed to store file " + filename, e);
         }
+
         return filename;
     }
 

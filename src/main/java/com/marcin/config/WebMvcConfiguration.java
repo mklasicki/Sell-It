@@ -21,7 +21,8 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
     private static final String FILESYSTEM_ACCESS = "file:";
     private final StorageProperities storageProperities;
 
-    public WebMvcConfiguration(StorageProperities storageProperities) {
+    public WebMvcConfiguration(StorageProperities storageProperities)
+    {
         this.storageProperities = storageProperities;
     }
 
