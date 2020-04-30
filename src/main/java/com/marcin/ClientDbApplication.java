@@ -15,6 +15,7 @@ public class ClientDbApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ClientDbApplication.class, args);
 
+<<<<<<< HEAD
 
 	}
 
@@ -25,5 +26,7 @@ public class ClientDbApplication {
 			storageService.deleteAll();
 			storageService.init();
 		};
+=======
+>>>>>>> d9c827b3bd82bc443da06eac34eb78633448d4ed
 	}
 }

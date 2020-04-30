@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<<<<<<< HEAD
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
@@ -35,4 +36,24 @@
             </div>
         </div>
 </body>
+=======
+
+<html>
+<head>
+
+</head>
+<body>
+<h1>Działa</h1>
+
+
+${product.productName}
+${product.productPrice}
+${product.productDescription}
+
+
+
+</body>
+
+
+>>>>>>> d9c827b3bd82bc443da06eac34eb78633448d4ed
 </html>
