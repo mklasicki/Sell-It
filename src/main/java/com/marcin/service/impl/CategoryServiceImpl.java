@@ -24,14 +24,6 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-<<<<<<< HEAD
-=======
-    public List<Category> getAllCategories() {
-        return findAll();
-    }
-
-    @Override
->>>>>>> d9c827b3bd82bc443da06eac34eb78633448d4ed
     public List<Category> getAllActiveCategories() {
         List<Category> categories = findAll();
         return categories.stream().filter(Category::isActive).collect(Collectors.toList());

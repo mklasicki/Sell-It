@@ -6,14 +6,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
 import javax.persistence.EntityManager;
-<<<<<<< HEAD
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import java.util.List;
-=======
->>>>>>> d9c827b3bd82bc443da06eac34eb78633448d4ed
+
 
 
 @Repository
@@ -28,7 +25,6 @@ public class UserDAOImpl implements UserDao {
     }
 
     @Override
-<<<<<<< HEAD
     public List<User> getAll() {
         TypedQuery<User> query = entityManager.createQuery("from User u ", User.class);
         return query.getResultList();
@@ -102,13 +98,8 @@ public class UserDAOImpl implements UserDao {
         }
         return user != null;
     }
-=======
-    @Transactional
-    public void saveUser(User user) {
-        entityManager.persist(user);
-    }
 
->>>>>>> d9c827b3bd82bc443da06eac34eb78633448d4ed
+
 }
 
 

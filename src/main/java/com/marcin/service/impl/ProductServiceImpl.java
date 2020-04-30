@@ -19,7 +19,7 @@ import java.util.List;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-<<<<<<< HEAD
+
     private final Logger log = LoggerFactory.getLogger(ProductServiceImpl.class);
 
     private final ProductDAO productDAO;
@@ -33,15 +33,6 @@ public class ProductServiceImpl implements ProductService {
         this.userService = userService;
         this.storageService = storageService;
             }
-=======
-    private final ProductDAO productDAO;
-    private final CategoryService categoryService;
-
-    public ProductServiceImpl(ProductDAO productDAO, CategoryService categoryService) {
-        this.productDAO = productDAO;
-        this.categoryService = categoryService;
-    }
->>>>>>> d9c827b3bd82bc443da06eac34eb78633448d4ed
 
     @Override
     @Transactional
@@ -62,18 +53,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    @Transactional
-<<<<<<< HEAD
     public List<Product> findProductByName(String productName) {
-=======
-    public Product findProductByName(String productName) {
->>>>>>> d9c827b3bd82bc443da06eac34eb78633448d4ed
-        return productDAO.getProductByName(productName);
+        return null;
     }
 
     @Override
     @Transactional
-<<<<<<< HEAD
     public void registerNewProduct(RegisterProductDTO registerProductDTO) {
         Product product = createProductFrom(registerProductDTO);
         productDAO.saveProduct(product);
@@ -107,29 +92,4 @@ public class ProductServiceImpl implements ProductService {
         return product;
     }
 
-=======
-    public boolean deleteProduct(String productName) {
-        return productDAO.deleteProduct(productName);
-    }
-
-    @Override
-    public void registerNewProduct(RegisterProductDTO registerProductDTO) {
-
-        Category category = categoryService.getCategoryById(Long.parseLong(registerProductDTO.getCategory()));
-        Product product = createProductFrom(registerProductDTO, category);
-        productDAO.saveProduct(product);
-    }
-
-    private Product createProductFrom(RegisterProductDTO registerProductDTO, Category category) {
-        Product product = new Product();
-        product.setUser(new User()); // TODO: dodać też użytkownika z bazy bo teraz za każdym razem tworzy nowego użytkownika w bazie
-        product.setCategory(category);
-
-        product.setProductDescription(registerProductDTO.getDescription());
-        product.setProductName(registerProductDTO.getName());
-        product.setProductPrice(registerProductDTO.getPrice());
-        product.setImage(registerProductDTO.getImageUrl());
-        return product;
-    }
->>>>>>> d9c827b3bd82bc443da06eac34eb78633448d4ed
 }

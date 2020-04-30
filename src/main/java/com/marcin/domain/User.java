@@ -16,20 +16,13 @@ public class User {
     private boolean enabled;
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REFRESH,
             CascadeType.DETACH, CascadeType.MERGE})
-<<<<<<< HEAD
     private List<Product> products;
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REFRESH,
             CascadeType.DETACH, CascadeType.MERGE})
     private List<Authorities> roles;
 
-
     public User() {
-        // needed by Hibernate
-=======
-    private List<Product> products = new ArrayList<>();
 
-    public User() {
->>>>>>> d9c827b3bd82bc443da06eac34eb78633448d4ed
     }
 
     public boolean isNew() {
@@ -88,18 +81,11 @@ public class User {
         if (products == null) {
             products = new ArrayList<>();
         }
-<<<<<<< HEAD
-=======
 
         products.add(product);
         product.setUser(this);
     }
 
->>>>>>> d9c827b3bd82bc443da06eac34eb78633448d4ed
-
-        products.add(product);
-        product.setUser(this);
-    }
 
     public void setRoles(List<Authorities> roles) {
         this.roles = roles;

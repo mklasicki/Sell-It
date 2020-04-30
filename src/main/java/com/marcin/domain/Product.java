@@ -1,10 +1,7 @@
 package com.marcin.domain;
 
 import javax.persistence.*;
-<<<<<<< HEAD
-import javax.validation.constraints.NotNull;
-=======
->>>>>>> d9c827b3bd82bc443da06eac34eb78633448d4ed
+
 
 @Entity
 public class Product {
@@ -12,21 +9,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull(message = "To pole nie może być puste")
     private String productName;
-<<<<<<< HEAD
-    @NotNull(message = "To Pole nie może byc puste")
-    private float productPrice;
-    private String productDescription;
-    private String image;
-    @OneToOne(cascade  = {CascadeType.PERSIST, CascadeType.REFRESH,
-            CascadeType.DETACH, CascadeType.MERGE})
-    @JoinColumn(name = "category_id")
-    private Category category;
-
-    @ManyToOne
-    @JoinColumn(columnDefinition = "user_id")
-=======
     private float productPrice;
     private String productDescription;
     private String image;
@@ -36,7 +19,6 @@ public class Product {
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH,
             CascadeType.DETACH, CascadeType.MERGE})
     @JoinColumn(name = "user_id")
->>>>>>> d9c827b3bd82bc443da06eac34eb78633448d4ed
     private User user;
 
     public Product() {
@@ -78,13 +60,10 @@ public class Product {
         this.productDescription = productDescription;
     }
 
-<<<<<<< HEAD
     public void setImage(String image) {
         this.image = image;
     }
 
-=======
->>>>>>> d9c827b3bd82bc443da06eac34eb78633448d4ed
     public String getImage() {
         return image;
     }
@@ -115,19 +94,4 @@ public class Product {
                 '}';
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }

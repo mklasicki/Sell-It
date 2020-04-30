@@ -14,7 +14,6 @@ public interface ProductService {
 
     Product getProduct(Long id);
 
-<<<<<<< HEAD
     List<Product> findProductByName(String productName);
 
     void deleteProduct(Long id);
@@ -23,14 +22,4 @@ public interface ProductService {
 
     List<Product> getProductByUserId(Long userId);
 
-
-
  }
-=======
-    Product findProductByName(String productName);
-
-    boolean deleteProduct(String productName);
-
-    void registerNewProduct(RegisterProductDTO registerProductDTO);
-}
->>>>>>> d9c827b3bd82bc443da06eac34eb78633448d4ed

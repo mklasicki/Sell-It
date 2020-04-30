@@ -14,26 +14,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
     <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
     <link href="<c:url value="/resources/css/fontello.css" />" rel="stylesheet">
-
-
 </head>
 <body>
     <div id="wrapper">
         <div id="add-product-head">
             <h3 id="add-product-header">Dodaj nowy przedmiot</h3>
         </div>
-<<<<<<< HEAD
-        <form:form action="saveProduct" modelAttribute="product"  method="post" enctype="multipart/form-data">
-              <div id="product-name">
-            <div>Nazwa</div>
-                <form:input path="name" id="add-product-input" name="add-product" type="text"/>
-                <form:errors path="name" cssClass="error"/>
-=======
+
         <form:form action="saveProduct" modelAttribute="product"  method="post">
         <div id="product-name">
             <div>Nazwa</div>
                 <form:input path="name" id="add-product-input" name="add-product" type="text"/>
->>>>>>> d9c827b3bd82bc443da06eac34eb78633448d4ed
         </div>
         <div id="product-category">
             Wybierz kategorię
@@ -54,18 +45,10 @@
                 <div id="product-price">
                     <label>Podaj cenę </label>
                         <form:input path="price" type="text"/>
-<<<<<<< HEAD
-                        <form:errors path="price" cssClass="error"/>
                 </div>
                 <div id="product-photo-add">
                      Dodaj zdjęcie
                         <input name="image" type="file"/>
-=======
-                </div>
-                <div id="product-photo-add">
-                     Dodaj zdjęcie
-                        <form:input path="imageUrl" type="text"/>
->>>>>>> d9c827b3bd82bc443da06eac34eb78633448d4ed
                 </div>
                 <div id="add-product-button">
                       <button type="submit" class="login-button">Prześlij</button>
@@ -73,8 +56,5 @@
             </form:form>
     </div>
 </body>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> d9c827b3bd82bc443da06eac34eb78633448d4ed
+
