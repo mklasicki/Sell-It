@@ -23,6 +23,7 @@ public class User {
 
 
     public User() {
+        // needed by Hibernate
     }
 
     public boolean isNew() {
@@ -101,6 +102,19 @@ public class User {
 
         roles.add(authority);
         authority.setUser(this);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password=[PROTECTED]" + '\'' +
+                ", email='" + email + '\'' +
+                ", enabled=" + enabled +
+                ", products=" + products +
+                ", roles=" + roles +
+                '}';
     }
 }
 

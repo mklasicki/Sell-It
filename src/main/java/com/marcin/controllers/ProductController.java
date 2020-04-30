@@ -7,19 +7,13 @@ import com.marcin.dto.RegisterProductDTO;
 import com.marcin.facades.CategoryFacade;
 import com.marcin.facades.ProductFacade;
 import com.marcin.service.ProductService;
-import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import javax.persistence.NoResultException;
-import javax.validation.Valid;
-import java.io.File;
-import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
 
-import static org.apache.tomcat.util.http.fileupload.FileUtils.*;
 
 @Controller
 public class ProductController {
@@ -28,7 +22,8 @@ public class ProductController {
     private final ProductService productService;
     private final CategoryFacade categoryFacade;
 
-    public ProductController(ProductFacade productFacade, ProductService productService, CategoryFacade categoryFacade) {
+    public ProductController(ProductFacade productFacade, ProductService productService,
+                             CategoryFacade categoryFacade) {
         this.productFacade = productFacade;
         this.productService = productService;
         this.categoryFacade = categoryFacade;
@@ -51,16 +46,21 @@ public class ProductController {
     }
 
     @PostMapping("/saveProduct")
-    public String saveProduct(@ModelAttribute("product") RegisterProductDTO registerProductDTO) {
+    public String saveProduct(@ModelAttribute("product") RegisterProductDTO registerProductDTO,
+                              Principal principal) {
+        registerProductDTO.setPrincipal(principal);
         productFacade.registerNewProduct(registerProductDTO);
         return "redirect:/myPage";
     }
 
-//    @GetMapping("/deleteProduct")
-//    public String deleteProduct(@RequestParam("productName") String productName, Model model) {
-//        productService.deleteProduct(productName);
-//        return "test";
-//    }
+
+    @GetMapping("/deleteProduct")
+    public String showFormForDelete(@RequestParam("productId") Long id, Model model) {
+        productService.deleteProduct(id);
+        List<Product> theProducts = productService.getProducts();
+        model.addAttribute("products", theProducts);
+        return "my-page";
+    }
 
     @GetMapping("/searchProduct")
     public String searchProductByName(@RequestParam("productName") String productName, Model model) throws NoResultException {

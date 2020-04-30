@@ -22,15 +22,15 @@
         <div id="add-product-head">
             <h3 id="add-product-header">Dodaj nowy przedmiot</h3>
         </div>
-        <form:form action="saveProduct" modelAttribute="product"  method="post" >
+        <form:form action="saveProduct" modelAttribute="product"  method="post" enctype="multipart/form-data">
               <div id="product-name">
             <div>Nazwa</div>
                 <form:input path="name" id="add-product-input" name="add-product" type="text"/>
+                <form:errors path="name" cssClass="error"/>
         </div>
         <div id="product-category">
             Wybierz kategorię
                 <div id="category-checkbox">
-
                     <form:select path="category">
                         <c:forEach items="${categories}" var="category">
                             <option value="${category.id}">${category.name}</option>
@@ -47,7 +47,7 @@
                 <div id="product-price">
                     <label>Podaj cenę </label>
                         <form:input path="price" type="text"/>
-                        <form:errors path="price"/>
+                        <form:errors path="price" cssClass="error"/>
                 </div>
                 <div id="product-photo-add">
                      Dodaj zdjęcie

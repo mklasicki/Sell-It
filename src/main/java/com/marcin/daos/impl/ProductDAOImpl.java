@@ -14,8 +14,8 @@ public class ProductDAOImpl implements ProductDAO {
 
     private final EntityManager entityManager;
 
-    public ProductDAOImpl(EntityManager entityManager) {
-        this.entityManager = entityManager;
+
+    public ProductDAOImpl(EntityManager entityManager) { this.entityManager = entityManager;
     }
 
     @Override
@@ -37,7 +37,16 @@ public class ProductDAOImpl implements ProductDAO {
             System.out.println("Nie masz żadnych przedmiotów na liście");
         }
         return products;
+    }
 
+    @Override
+    @Transactional
+    public List<Product> getProductByUserId(Long userId) {
+        List<Product> userProducts = entityManager.createQuery(
+                    "select p from Product p where user_id like: user_id")
+                .setParameter("user_id", userId)
+                .getResultList();
+        return userProducts;
     }
 
     @Override
@@ -51,16 +60,11 @@ public class ProductDAOImpl implements ProductDAO {
         return entityManager.find(Product.class, id);
     }
 
-//    @Override
-//    public boolean deleteProduct(String productName) {
-//        Product product = getProductByName(productName);
-//        if (product.getId() != 0) {
-//            entityManager.remove(product);
-//            System.out.println("Produkt " + product.getProductName() + " został pomyslnie usunięty");
-//            return true;
-//        } else {
-//            System.out.println("Nastapił jakiś błąd");
-//            return false;
-//        }
-//    }
+    @Override
+    public void deleteProduct(Long id) {
+       Product product = entityManager.find(Product.class, id);
+        entityManager.remove(product);
+
+    }
+
 }

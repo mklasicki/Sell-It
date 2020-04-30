@@ -16,7 +16,12 @@ public interface ProductService {
 
     List<Product> findProductByName(String productName);
 
-   // boolean deleteProduct(String productName);
+    void deleteProduct(Long id);
 
     void registerNewProduct(RegisterProductDTO registerProductDTO);
-}
+
+    List<Product> getProductByUserId(Long userId);
+
+
+
+ }
