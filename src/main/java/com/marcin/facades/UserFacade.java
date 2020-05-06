@@ -1,9 +1,9 @@
 package com.marcin.facades;
 
-import com.marcin.dto.RegisterUserDTO;
+import com.marcin.dto.UserDTO;
 
 public interface UserFacade {
 
-     void registerNewUser(RegisterUserDTO registerUserDTO);
+     void registerNewUser(UserDTO userDTO);
 
 }

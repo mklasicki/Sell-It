@@ -4,6 +4,7 @@ import com.marcin.daos.UserDao;
 import com.marcin.domain.Authorities;
 import com.marcin.domain.User;
 import com.marcin.dto.RegisterUserDTO;
+import com.marcin.dto.UserDTO;
 import com.marcin.service.UserService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -48,7 +49,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public void registerNewUser(RegisterUserDTO registerUserDTO) {
+    public void registerNewUser(User user) {
         Authorities authority = new Authorities();
         User user = createUserFrom(registerUserDTO, authority);
         userDao.saveUser(user);

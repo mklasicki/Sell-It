@@ -1,6 +1,7 @@
 package com.marcin.controllers;
 
-import com.marcin.dto.RegisterUserDTO;
+
+import com.marcin.dto.UserDTO;
 import com.marcin.facades.UserFacade;
 import com.marcin.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -21,13 +22,13 @@ public class UserController {
        }
 
     @GetMapping("/showFormForAddUser")
-    public String showFormForAddUser(@ModelAttribute("user") RegisterUserDTO registerUserDTO) {
+    public String showFormForAddUser(@ModelAttribute("userDTO") UserDTO userDTO) {
         return "addUserForm";
     }
 
     @PostMapping("/saveUser")
-    public String saveClient(@ModelAttribute("user") RegisterUserDTO registerUserDTO) {
-            userFacade.registerNewUser(registerUserDTO);
+    public String saveClient(@ModelAttribute("userDTO") UserDTO userDTO) {
+            userFacade.registerNewUser(userDTO);
             return "redirect:/main";
         }
     }

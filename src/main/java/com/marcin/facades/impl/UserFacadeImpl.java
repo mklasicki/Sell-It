@@ -1,8 +1,7 @@
 package com.marcin.facades.impl;
 
 
-
-import com.marcin.dto.RegisterUserDTO;
+import com.marcin.dto.UserDTO;
 import com.marcin.facades.UserFacade;
 import com.marcin.service.AuthoritiesService;
 import com.marcin.service.UserService;
@@ -20,7 +19,7 @@ public class UserFacadeImpl implements UserFacade {
     }
 
     @Override
-    public void registerNewUser(RegisterUserDTO registerUserDTO) {
-        userService.registerNewUser(registerUserDTO);
+    public void registerNewUser(UserDTO userDTO) {
+        userService.registerNewUser(userDTO);
     }
 }

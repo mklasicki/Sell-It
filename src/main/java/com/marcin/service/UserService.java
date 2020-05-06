@@ -2,6 +2,7 @@ package com.marcin.service;
 
 import com.marcin.domain.User;
 import com.marcin.dto.RegisterUserDTO;
+import com.marcin.dto.UserDTO;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public interface UserService {
 
     User findUserByName(String username);
 
-    void registerNewUser(RegisterUserDTO registerUserDTO);
+    void registerNewUser(User user);
 
     User findUserById(long id);
 
