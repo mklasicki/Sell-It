@@ -337,7 +337,7 @@ img {
 
 #addUserForm {
     width: 400px;
-    height: 400px;
+    height: 500px;
     margin-top: 60px;
     margin-left: auto;
     margin-right: auto;
@@ -355,12 +355,16 @@ img {
 
 .user-form-input {
     margin-top: 40px;
-
-
 }
 
 .error {
-    color:red;
+    color: red;
+    font-size: 18px;
+    position: fixed;
+    margin-left: 15px;
 }
 
-
+.check {
+    margin-top 20px;
+    font-size: 18px;
+}

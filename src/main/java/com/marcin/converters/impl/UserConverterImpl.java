@@ -25,6 +25,7 @@ public class UserConverterImpl implements Converter<UserDTO, User> {
         user.setUsername(userDTO.getUsername());
         user.setPassword(encoder.encode(userDTO.getPassword()));
         user.setEmail(userDTO.getEmail());
+        user.setEnabled(userDTO.isEnabled());
 
         log.info("Konwersja z user {} na userDTO {} ", user, userDTO);
 

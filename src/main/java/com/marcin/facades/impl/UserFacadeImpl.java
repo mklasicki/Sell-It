@@ -31,7 +31,6 @@ public class UserFacadeImpl implements UserFacade {
     User createUserForm(UserDTO userDTO, Authorities authorities) {
 
         User user = (User) converter.to(userDTO);
-        user.setEnabled(true);
         authorities.setAuthority("ROLE_USER");
         authorities.setUsername(user.getUsername());
         user.addAuthority(authorities);
