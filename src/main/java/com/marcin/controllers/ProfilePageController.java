@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
+
 import java.security.Principal;
 import java.util.List;
 
@@ -36,5 +37,6 @@ public class ProfilePageController {
         model.addAttribute("userProducts",userProducts);
         return "my-products-page";
     }
+
 
 }
