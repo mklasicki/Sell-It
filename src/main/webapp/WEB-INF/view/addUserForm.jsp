@@ -13,7 +13,7 @@
             <h2>Załóż nowe konto</h2>
         </div>
 
-        <form:form id="userFormTable" action="saveUser" modelAttribute="user" method="post">
+        <form:form id="userFormTable" action="saveUser" modelAttribute="userDTO" method="post">
             <div class="user-form-input">
                 <label for="username">Login: </label>
                 <form:input path="username" placeholder=" login" />
