@@ -18,6 +18,7 @@ import java.util.List;
 
 
 @Controller
+@RequestMapping("/user")
 public class UserController {
 
     private final UserFacade userFacade;
@@ -27,12 +28,12 @@ public class UserController {
         this.userFacade = userFacade;
        }
 
-    @GetMapping("/showFormForAddUser")
+    @GetMapping("/register")
     public String showFormForAddUser(@ModelAttribute("userDTO") UserDTO userDTO) {
         return "addUserForm";
     }
 
-    @PostMapping("/saveUser")
+    @PostMapping("/save")
     public String saveClient(@Valid @ModelAttribute("userDTO") UserDTO userDTO, BindingResult result) {
             if(result.hasErrors()) {
                 List<ObjectError> errors = result.getAllErrors();

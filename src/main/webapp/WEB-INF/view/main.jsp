@@ -23,7 +23,7 @@
         <form:form action="searchProduct" modelAttribute="products"  method="get">
             <ol>
                 <li><a href="/login">Zaloguj się</a></li>
-                <li><a href="/showFormForAddUser">Załóż konto</a></li>
+                <li><a href="/user/register">Załóż konto</a></li>
                 <li>Kontakt</li>
                 <li><input type="text" placeholder=" Szukaj przedmiotu" name="productName"/></li>
                 <li><button id="search-button" type="submit" name="name">Szukaj</button></li>
