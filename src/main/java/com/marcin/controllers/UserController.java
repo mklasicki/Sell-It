@@ -47,7 +47,7 @@ public class UserController {
             }
 
             userFacade.registerNewUser(userDTO);
-            return "redirect:/main";
+            return "result-page";
         }
     }
 
