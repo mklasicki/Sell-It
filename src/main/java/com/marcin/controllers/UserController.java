@@ -1,35 +1,65 @@
 package com.marcin.controllers;
 
-import com.marcin.dto.RegisterUserDTO;
+
+import com.marcin.dto.UserDTO;
 import com.marcin.facades.UserFacade;
-import com.marcin.service.UserService;
+import com.marcin.service.MailService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.mail.MessagingException;
+import javax.validation.Valid;
+import java.util.List;
 
 
 @Controller
+@RequestMapping("/user")
 public class UserController {
 
-    private final UserService userService;
     private final UserFacade userFacade;
+    private final MailService mailService;
+    private final Logger log = LoggerFactory.getLogger(UserController.class);
 
-    public UserController(UserService userService, UserFacade userFacade) {
-        this.userService = userService;
+    public UserController(UserFacade userFacade, MailService mailService) {
         this.userFacade = userFacade;
-       }
+        this.mailService = mailService;
+    }
 
-    @GetMapping("/showFormForAddUser")
-    public String showFormForAddUser(@ModelAttribute("user") RegisterUserDTO registerUserDTO) {
+    @GetMapping("/register")
+    public String showFormForAddUser(@ModelAttribute("userDTO") UserDTO userDTO) {
         return "addUserForm";
     }
 
-    @PostMapping("/saveUser")
-    public String saveClient(@ModelAttribute("user") RegisterUserDTO registerUserDTO) {
-            userFacade.registerNewUser(registerUserDTO);
-            return "redirect:/main";
+    @PostMapping("/save")
+    public String saveClient(@Valid @ModelAttribute("userDTO") UserDTO userDTO, BindingResult result) throws MessagingException {
+        if (result.hasErrors()) {
+            List<ObjectError> errors = result.getAllErrors();
+            for (ObjectError error : errors) {
+
+                log.info("Wystąpily błedy podczas wypełniania formularza {}", error);
+
+            }
+
+            return "addUserForm";
         }
+
+        userFacade.registerNewUser(userDTO);
+
+        mailService.SendMail(userDTO.getEmail(), "Potwierdzenie stworzenia konta",
+                "" + "<h2>Twoje dane do logowania to : </h2>"
+                        + "<p>Login: </p>"
+                        + userDTO.getUsername()
+                        + "<p>Hasło: </p>"
+                        + userDTO.getPassword(), true);
+        return "result-page";
     }
+}
 
 
