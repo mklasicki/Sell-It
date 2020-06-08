@@ -6,11 +6,13 @@ import com.marcin.dto.ProductDTO;
 import com.marcin.service.CategoryService;
 import com.marcin.service.StorageService;
 import com.marcin.service.UserService;
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component
+@AllArgsConstructor
 public class ProductConverterImpl implements Converter<ProductDTO, Product> {
 
     private final UserService userService;
@@ -18,14 +20,11 @@ public class ProductConverterImpl implements Converter<ProductDTO, Product> {
     private final StorageService storageService;
     private final Logger log = LoggerFactory.getLogger(ProductConverterImpl.class);
 
-    public ProductConverterImpl(UserService userService, CategoryService categoryService, StorageService storageService) {
-        this.userService = userService;
-        this.categoryService = categoryService;
-        this.storageService = storageService;
-    }
+
 
     @Override
     public Product to(ProductDTO productDTO) {
+
         Product product = new Product();
         product.setId(productDTO.getId());
         product.setProductName(productDTO.getName());
