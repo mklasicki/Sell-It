@@ -7,10 +7,15 @@ import com.marcin.dto.ProductDTO;
 import com.marcin.facades.CategoryFacade;
 import com.marcin.facades.ProductFacade;
 import com.marcin.service.ProductService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import javax.persistence.NoResultException;
+import javax.validation.Valid;
 import java.security.Principal;
 
 
@@ -23,6 +28,8 @@ public class ProductController {
     private final ProductFacade productFacade;
     private final ProductService productService;
     private final CategoryFacade categoryFacade;
+    private final Logger log = LoggerFactory.getLogger(ProductController.class);
+
 
     public ProductController(ProductFacade productFacade, ProductService productService, CategoryFacade categoryFacade) {
             this.productFacade = productFacade;
@@ -47,8 +54,18 @@ public class ProductController {
         }
 
         @PostMapping("/saveProduct")
-        public String saveProduct (@ModelAttribute("product")ProductDTO productDTO, Principal principal){
-           productDTO.setPrincipal(principal);
+        public String saveProduct (@Valid @ModelAttribute("product")ProductDTO productDTO, BindingResult result, Principal principal){
+
+            if (result.hasErrors()) {
+                List<ObjectError> errors = result.getAllErrors();
+                for (ObjectError error: errors ) {
+                    log.info("Wystąpiły błędy podczas wypełniania formularza {}", error);
+                }
+
+                return "product-form";
+            }
+
+            productDTO.setPrincipal(principal);
             productFacade.registerNewProduct(productDTO);
                 return "redirect:/myPage";
             }
