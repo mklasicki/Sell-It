@@ -58,6 +58,7 @@ While creating new one you can add picture, name, description, category  and pri
 2. Filter items by category.
 3. Add page with item details and with contact to the owner of that item.
 4. Update of front end of application.
+5. Write tests.
 
 
 
