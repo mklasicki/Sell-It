@@ -2,11 +2,12 @@
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
+* [Functionality](#functionality)
 * [Database structure](#database-structure)
 * [Setup](#setup)
 * [To do](#to-do)
 
-# General info
+## General info
 
 This project is a simple web application that allows the user to manage content of items for sale.
 The main purpose of creating this application is to learn the technologies listed below.
@@ -28,7 +29,10 @@ Project is created with:
 
 ## Functionality
 
-Application includes main page where all items for sale are shown. You can  search item by name.
+Application includes main page where all items for sale are shown.You can  search item by name.
+
+![Main page](./images/main-page.jpg)
+
 User can create a profile by short registration form.
 After logging in user can create new advert of items for sale, update and delete exsisting ones. 
 While creating new one you can add picture, name, description, category  and price. 
