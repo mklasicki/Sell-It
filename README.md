@@ -48,7 +48,7 @@ While creating new one you can add picture, name, description, category  and pri
 
 ## Database structure
 
-![Database structure](./images/database-structure.jpg)
+![Database structure](./images/database.jpg)
 
 ## Setup
 
