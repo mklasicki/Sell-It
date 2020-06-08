@@ -58,8 +58,11 @@ public class UserController {
                         + userDTO.getUsername()
                         + "<p>Hasło: </p>"
                         + userDTO.getPassword(), true);
+        log.info("Zapisano nowego usera {} wysłano mail na adres {}", userDTO.getUsername(), userDTO.getEmail());
+
         return "result-page";
     }
+
 }
 
 
