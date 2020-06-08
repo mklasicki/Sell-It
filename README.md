@@ -2,9 +2,9 @@
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
-* [To do](#to-do)
 * [Database structure](#database-structure)
 * [Setup](#setup)
+* [To do](#to-do)
 
 # General info
 
@@ -35,6 +35,9 @@ While creating new one you can add picture, name, description, category  and pri
 
 
 ## Database structure
+
+![Database structure](./images/database-structure.jpg)
+
 
 ## Setup
 
