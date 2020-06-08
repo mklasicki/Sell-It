@@ -33,6 +33,11 @@ User can create a profile by short registration form.
 After logging in user can create new advert of items for sale, update and delete exsisting ones. 
 While creating new one you can add picture, name, description, category  and price. 
 
+
+## Database structure
+
+## Setup
+
 ## To do
 
 1. Filter items by time of creating new item advert.
@@ -40,9 +45,6 @@ While creating new one you can add picture, name, description, category  and pri
 3. Add page with item details and with contact to the owner of that item.
 4. Update of front end of application.
 
-## Database structure
-
-## Setup
 
 
 
