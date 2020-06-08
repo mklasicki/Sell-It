@@ -34,14 +34,21 @@ Application includes main page where all items for sale are shown.You can  searc
 ![Main page](./images/main-page.jpg)
 
 User can create a profile by short registration form.
-After logging in user can create new advert of items for sale, update and delete exsisting ones. 
+
+![Registration form](./images/registration-form.jpg)
+
+After logging in
+
+![Login form](./images/login-form.jpg)
+
+user can create new advert of items for sale, update and delete exsisting ones. 
 While creating new one you can add picture, name, description, category  and price. 
 
+![Add item form](./images/add-item-form.jpg)
 
 ## Database structure
 
 ![Database structure](./images/database-structure.jpg)
-
 
 ## Setup
 
