@@ -43,7 +43,7 @@ public class ProductController {
             List<Category> categories = categoryFacade.getAllCategories();
             model.addAttribute("categories", categories);
             model.addAttribute("product", registerProductDTO);
-            return "product-form2";
+            return "product-form";
         }
 
         @PostMapping("/saveProduct")
