@@ -4,7 +4,6 @@
 * [Technologies](#technologies)
 * [Functionality](#functionality)
 * [Database structure](#database-structure)
-* [Setup](#setup)
 * [To do](#to-do)
 
 ## General info
@@ -49,8 +48,6 @@ While creating new one you can add picture, name, description, category  and pri
 ## Database structure
 
 ![Database structure](./images/database.jpg)
-
-## Setup
 
 ## To do
 
