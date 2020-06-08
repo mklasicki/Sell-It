@@ -3,7 +3,7 @@ package com.marcin.controllers;
 
 import com.marcin.domain.Category;
 import com.marcin.domain.Product;
-import com.marcin.dto.RegisterProductDTO;
+import com.marcin.dto.ProductDTO;
 import com.marcin.facades.CategoryFacade;
 import com.marcin.facades.ProductFacade;
 import com.marcin.service.ProductService;
@@ -39,17 +39,17 @@ public class ProductController {
 
         @GetMapping("/addProduct")
         public String showProduct (Model model){
-            RegisterProductDTO registerProductDTO = new RegisterProductDTO();
+           ProductDTO productDTO = new ProductDTO();
             List<Category> categories = categoryFacade.getAllCategories();
             model.addAttribute("categories", categories);
-            model.addAttribute("product", registerProductDTO);
+            model.addAttribute("product", productDTO);
             return "product-form";
         }
 
         @PostMapping("/saveProduct")
-        public String saveProduct (@ModelAttribute("product") RegisterProductDTO registerProductDTO, Principal principal){
-            registerProductDTO.setPrincipal(principal);
-            productFacade.registerNewProduct(registerProductDTO);
+        public String saveProduct (@ModelAttribute("product")ProductDTO productDTO, Principal principal){
+           productDTO.setPrincipal(principal);
+            productFacade.registerNewProduct(productDTO);
                 return "redirect:/myPage";
             }
 

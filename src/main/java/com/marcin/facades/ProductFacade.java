@@ -1,9 +1,9 @@
 package com.marcin.facades;
 
-import com.marcin.dto.RegisterProductDTO;
+import com.marcin.dto.ProductDTO;
 
 public interface ProductFacade {
 
-    void registerNewProduct(RegisterProductDTO registerProductDTO);
+    void registerNewProduct(ProductDTO productDTO);
 
 }

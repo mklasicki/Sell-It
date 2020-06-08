@@ -9,8 +9,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Strona główna.</title>
-    <meta name="keywords" content="strona, www, ćwiczenia" />
+    <title>Twoje ogłoszenia.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
     <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
@@ -25,7 +24,7 @@
          <form:form action="searchProduct" modelAttribute="products"  method="get">
             <ol>
                 <li><a href="/logout">Wyloguj się</a></li>
-                <li><a href="/showFormForAddUser">Edytuj Profil</a></li>
+                <li><a href="/user/update">Edytuj Profil</a></li>
                 <li><a href="/addProduct">Dodaj nowy</a></li>
                 <li><input type="text" placeholder=" Szukaj przedmiotu" name="productName"></li>
                 <li><button id="search-button" type="submit" name="name">Szukaj</button></li>

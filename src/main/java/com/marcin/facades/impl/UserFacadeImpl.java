@@ -8,17 +8,21 @@ import com.marcin.dto.UserDTO;
 import com.marcin.facades.UserFacade;
 import com.marcin.service.AuthoritiesService;
 import com.marcin.service.UserService;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
-@AllArgsConstructor
 public class UserFacadeImpl implements UserFacade {
 
     private final UserService userService;
     private final AuthoritiesService authoritiesService;
     private final Converter converter;
 
+    public UserFacadeImpl(UserService userService, AuthoritiesService authoritiesService, @Qualifier("userConverterImpl") Converter converter) {
+        this.userService = userService;
+        this.authoritiesService = authoritiesService;
+        this.converter = converter;
+    }
 
     @Override
     public void registerNewUser(UserDTO userDTO) {

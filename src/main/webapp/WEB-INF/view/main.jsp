@@ -9,7 +9,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Strona główna.</title>
-    <meta name="description" content="Stronka do ćwiczeń, mam nadzieje, że bedzie się szybko rozwijała.">
     <meta name="keywords" content="strona, www, ćwiczenia" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
@@ -32,13 +31,12 @@
         </div>
         <div id="content">
             <h3 id="category-header">Kategorie przedmiotów</h3>
-            <br/>
-            <ol class="category-list">
-                <c:forEach items="${categories}" var="category">
-                <div class="category-item">
-                <li data-category-id="${category.id}"><img class="category-icon" src=${category.iconUrl} alt="category icon">${category.name}</li>
-                </div>
-                </c:forEach>
+           <ol>
+               <li><i class="icon-laptop"></i> Elektronika</li>
+                <li><i class="icon-home"></i> Nieruchomości</li>
+                <li><i class="icon-cab"></i> Motoryzacja</li>
+                 <li><i class="icon-award"></i> Sport</li>
+                 <li><i class="icon-leaf"></i> Dom i Ogród</li>
             </ol>
             <div id="content-list">
                 <h3 id="content-list-header">Ostatnio dodane ogłoszenia</h3>
