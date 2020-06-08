@@ -4,7 +4,7 @@ import com.marcin.domain.User;
 
 import java.util.List;
 
-public interface UserService {
+public interface UserService  {
 
     void saveUser(User user);
 
@@ -17,4 +17,7 @@ public interface UserService {
     boolean checkByUserName(String username);
 
     boolean checkByEmail(String email);
+
+    void updateUser(User user);
+
 }

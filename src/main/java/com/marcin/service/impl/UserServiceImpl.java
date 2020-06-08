@@ -50,4 +50,9 @@ public class UserServiceImpl implements UserService {
     public boolean checkByEmail(String email) {
         return userDao.checkByEmail(email);
     }
+
+    @Override
+    public void updateUser(User user) {
+        userDao.updateUser(user);
+    }
 }
