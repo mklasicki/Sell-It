@@ -42,6 +42,7 @@ public class UserConverterImpl implements Converter<UserDTO, User> {
         userDTO.setEmail(user.getEmail());
         userDTO.setUsername(user.getUsername());
         userDTO.setPassword(userDTO.getPassword());
+        userDTO.setAuthority("ROLE_USER");
 
         return userDTO;
     }

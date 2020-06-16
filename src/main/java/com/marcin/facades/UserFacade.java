@@ -10,4 +10,8 @@ public interface UserFacade {
 
      void sendCredentialsMail(UserDTO userDTO) throws MessagingException;
 
+     UserDTO getUserById(Long id);
+
+     void update(UserDTO userDTO);
+
 }

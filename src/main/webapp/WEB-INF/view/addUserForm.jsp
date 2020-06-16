@@ -14,6 +14,7 @@
         </div>
 
         <form:form id="userFormTable" action="save" modelAttribute="userDTO" method="post">
+           <form:hidden path="id" value="${userDTO.id}"/>
             <div class="user-form-input">
                 <label for="username">Login: </label>
                 <form:input path="username" placeholder=" login" />

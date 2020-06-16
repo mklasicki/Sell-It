@@ -56,4 +56,17 @@ public class UserFacadeImpl implements UserFacade {
                         + "<p>Hasło: </p>"
                         + userDTO.getPassword(), true);
     }
+
+    @Override
+    public UserDTO getUserById(Long id) {
+        User user = userService.findUserById(id);
+        UserDTO userDTO = (UserDTO) converter.from(user);
+        return userDTO;
+    }
+
+    @Override
+    public void update(UserDTO userDTO) {
+        User user = (User) converter.to(userDTO);
+        userService.updateUser(user);
+    }
 }
