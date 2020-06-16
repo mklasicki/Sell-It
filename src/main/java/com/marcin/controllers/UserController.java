@@ -24,12 +24,10 @@ import java.util.List;
 public class UserController {
 
     private final UserFacade userFacade;
-    private final MailService mailService;
     private final Logger log = LoggerFactory.getLogger(UserController.class);
 
     public UserController(UserFacade userFacade, MailService mailService) {
         this.userFacade = userFacade;
-        this.mailService = mailService;
     }
 
     @GetMapping("/register")
@@ -51,13 +49,8 @@ public class UserController {
         }
 
         userFacade.registerNewUser(userDTO);
+        userFacade.sendCredentialsMail(userDTO);
 
-        mailService.SendMail(userDTO.getEmail(), "Potwierdzenie stworzenia konta",
-                "" + "<h2>Twoje dane do logowania to : </h2>"
-                        + "<p>Login: </p>"
-                        + userDTO.getUsername()
-                        + "<p>Hasło: </p>"
-                        + userDTO.getPassword(), true);
         log.info("Zapisano nowego usera {} wysłano mail na adres {}", userDTO.getUsername(), userDTO.getEmail());
 
         return "result-page";
