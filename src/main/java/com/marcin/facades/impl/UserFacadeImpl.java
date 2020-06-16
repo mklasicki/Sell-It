@@ -7,9 +7,12 @@ import com.marcin.domain.User;
 import com.marcin.dto.UserDTO;
 import com.marcin.facades.UserFacade;
 import com.marcin.service.AuthoritiesService;
+import com.marcin.service.MailService;
 import com.marcin.service.UserService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+
+import javax.mail.MessagingException;
 
 @Service
 public class UserFacadeImpl implements UserFacade {
@@ -17,11 +20,14 @@ public class UserFacadeImpl implements UserFacade {
     private final UserService userService;
     private final AuthoritiesService authoritiesService;
     private final Converter converter;
+    private final MailService mailService;
 
-    public UserFacadeImpl(UserService userService, AuthoritiesService authoritiesService, @Qualifier("userConverterImpl") Converter converter) {
+    public UserFacadeImpl(UserService userService, AuthoritiesService authoritiesService
+            , @Qualifier("userConverterImpl") Converter converter, MailService mailService) {
         this.userService = userService;
         this.authoritiesService = authoritiesService;
         this.converter = converter;
+        this.mailService = mailService;
     }
 
     @Override
@@ -41,4 +47,26 @@ public class UserFacadeImpl implements UserFacade {
         return user;
     }
 
+    @Override
+    public void sendCredentialsMail(UserDTO userDTO) throws MessagingException {
+        mailService.SendMail(userDTO.getEmail(), "Potwierdzenie stworzenia konta",
+                "" + "<h2>Twoje dane do logowania to : </h2>"
+                        + "<p>Login: </p>"
+                        + userDTO.getUsername()
+                        + "<p>Hasło: </p>"
+                        + userDTO.getPassword(), true);
+    }
+
+    @Override
+    public UserDTO getUserById(Long id) {
+        User user = userService.findUserById(id);
+        UserDTO userDTO = (UserDTO) converter.from(user);
+        return userDTO;
+    }
+
+    @Override
+    public void update(UserDTO userDTO) {
+        User user = (User) converter.to(userDTO);
+        userService.updateUser(user);
+    }
 }

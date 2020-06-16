@@ -13,7 +13,7 @@
             <h2>Edytuj dane konta</h2>
         </div>
 
-        <form:form id="userFormTable" action="update" modelAttribute="userDTO" method="post">
+        <form:form id="userFormTable" action="updateUser" modelAttribute="userDTO" method="post">
             <div class="user-form-input">
                 <form:hidden path="id" />
                 <label for="username">Login: </label>
