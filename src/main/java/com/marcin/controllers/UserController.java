@@ -54,7 +54,7 @@ public class UserController {
         } else {
             userFacade.update(userDTO);
 
-            log.info("Udało sie zaktualizować dane usera o id", userDTO.getId());
+            log.info("Udało sie zaktualizować dane usera o id {}", userDTO.getId());
         }
 
         return "result-page";
