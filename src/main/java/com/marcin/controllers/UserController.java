@@ -2,7 +2,7 @@ package com.marcin.controllers;
 
 
 import com.marcin.dto.RegisterUserDTO;
-import com.marcin.dto.UserDTO;
+import com.marcin.dto.UpdateUserDTO;
 import com.marcin.facades.UserFacade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,40 +35,48 @@ public class UserController {
 
     @PostMapping("/save")
     public String saveClient(@Valid @ModelAttribute("registerUserDTO") RegisterUserDTO registerUserDTO, BindingResult result) throws MessagingException {
-        if (registerUserDTO.getId() == null) {
-            if (result.hasErrors()) {
-                List<ObjectError> errors = result.getAllErrors();
-                for (ObjectError error : errors) {
+        if (result.hasErrors()) {
+            List<ObjectError> errors = result.getAllErrors();
+            for (ObjectError error : errors) {
 
-                    log.info("Wystąpily błedy podczas wypełniania formularza {}", error);
+                log.info("Wystąpily błedy podczas wypełniania formularza {}", error);
 
-                }
-
-                return "addUserForm";
             }
 
-            userFacade.registerNewUser(registerUserDTO);
-            userFacade.sendCredentialsMail(registerUserDTO);
-
-            log.info("Zapisano nowego usera {} wysłano mail na adres {}", registerUserDTO.getUsername(), registerUserDTO.getEmail());
-
-        } else {
-            userFacade.update(registerUserDTO);
-
-            log.info("Udało sie zaktualizować dane usera o id {}", registerUserDTO.getId());
+            return "register-user-form";
         }
 
-        return "result-page";
+        userFacade.registerNewUser(registerUserDTO);
+        userFacade.sendCredentialsMail(registerUserDTO);
+
+        log.info("Zapisano nowego usera {} wysłano mail na adres {}", registerUserDTO.getUsername(), registerUserDTO.getEmail());
+
+        return "register-success-page";
+
     }
+
 
     @GetMapping("/update")
-    public String update(@RequestParam("id") Long id, Model model) {
-        UserDTO userDTO = userFacade.getUserById(id);
-        model.addAttribute("userDTO", userDTO);
-        return "addUserForm";
+    public String update(Model model) {
+        UpdateUserDTO updateUserDTO = new UpdateUserDTO();
+        updateUserDTO.setUsername("Marcin");
+        updateUserDTO.setSurname("Klasicki");
+        updateUserDTO.setEmail("jakiś@wp.pl");
+        model.addAttribute("updateUserDTO", updateUserDTO);
+        return "update-user-form";
     }
 
+    @PostMapping("/updateUser")
+    public String updateUser() {
+
+        return "update-success-page";
+    }
 }
 
+/*
+ userFacade.update(registerUserDTO);
 
+ log.info("Udało sie zaktualizować dane usera o id {}", registerUserDTO.getId());
+
+ */
 

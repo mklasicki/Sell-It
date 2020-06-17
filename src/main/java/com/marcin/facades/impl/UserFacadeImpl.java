@@ -4,6 +4,8 @@ package com.marcin.facades.impl;
 import com.marcin.converters.Converter;
 import com.marcin.domain.Authorities;
 import com.marcin.domain.User;
+import com.marcin.dto.RegisterUserDTO;
+import com.marcin.dto.UpdateUserDTO;
 import com.marcin.dto.UserDTO;
 import com.marcin.facades.UserFacade;
 import com.marcin.service.AuthoritiesService;
@@ -23,7 +25,7 @@ public class UserFacadeImpl implements UserFacade {
     private final MailService mailService;
 
     public UserFacadeImpl(UserService userService, AuthoritiesService authoritiesService
-            , @Qualifier("userConverterImpl") Converter converter, MailService mailService) {
+            , @Qualifier("registerUserConverterImpl") Converter converter, MailService mailService) {
         this.userService = userService;
         this.authoritiesService = authoritiesService;
         this.converter = converter;
@@ -31,16 +33,16 @@ public class UserFacadeImpl implements UserFacade {
     }
 
     @Override
-    public void registerNewUser(UserDTO userDTO) {
+    public void registerNewUser(RegisterUserDTO registerUserDTO) {
 
         Authorities authority = new Authorities();
-        User user = createUserForm(userDTO, authority);
+        User user = createUserForm(registerUserDTO, authority);
         userService.saveUser(user);
     }
 
-    User createUserForm(UserDTO userDTO, Authorities authorities) {
+    User createUserForm(RegisterUserDTO registerUserDTO, Authorities authorities) {
 
-        User user = (User) converter.to(userDTO);
+        User user = (User) converter.to(registerUserDTO);
         authorities.setAuthority("ROLE_USER");
         authorities.setUsername(user.getUsername());
         user.addAuthority(authorities);
@@ -48,25 +50,25 @@ public class UserFacadeImpl implements UserFacade {
     }
 
     @Override
-    public void sendCredentialsMail(UserDTO userDTO) throws MessagingException {
-        mailService.SendMail(userDTO.getEmail(), "Potwierdzenie stworzenia konta",
+    public void sendCredentialsMail(RegisterUserDTO registerUserDTO) throws MessagingException {
+        mailService.SendMail(registerUserDTO.getEmail(), "Potwierdzenie stworzenia konta",
                 "" + "<h2>Twoje dane do logowania to : </h2>"
                         + "<p>Login: </p>"
-                        + userDTO.getUsername()
+                        + registerUserDTO.getUsername()
                         + "<p>Hasło: </p>"
-                        + userDTO.getPassword(), true);
+                        + registerUserDTO.getPassword(), true);
     }
 
     @Override
-    public UserDTO getUserById(Long id) {
+    public UpdateUserDTO getUserById(Long id) {
         User user = userService.findUserById(id);
-        UserDTO userDTO = (UserDTO) converter.from(user);
-        return userDTO;
+        UpdateUserDTO updateUserDTO = (UpdateUserDTO) converter.from(user);
+        return updateUserDTO;
     }
 
     @Override
-    public void update(UserDTO userDTO) {
-        User user = (User) converter.to(userDTO);
+    public void update( UpdateUserDTO updateUserDTO) {
+        User user = (User) converter.to(updateUserDTO);
         userService.updateUser(user);
     }
 }
