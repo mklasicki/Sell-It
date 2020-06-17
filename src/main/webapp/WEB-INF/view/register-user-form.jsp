@@ -13,14 +13,27 @@
             <h2>Załóż nowe konto</h2>
         </div>
 
-        <form:form id="userFormTable" action="save" modelAttribute="userDTO" method="post">
-           <form:hidden path="id" value="${userDTO.id}"/>
+        <form:form id="userFormTable" action="save" modelAttribute="registerUserDTO" method="post">
             <div class="user-form-input">
-                <label for="username">Login: </label>
-                <form:input path="username" placeholder=" login" />
+                <label for="username">Imię: </label>
+                <form:input path="username" placeholder="imię" />
                 <form:errors path="username" class="error" />
             </div>
             <div class="user-form-input">
+                <label for="surname">Nazwisko: </label>
+                <form:input path="surname" placeholder="nazwisko" />
+                <form:errors path="password" class="error" />
+            </div>
+            <div>
+            <form:checkbox path="gender" value="Mężczyzna"/>Mężczyzna
+             <form:checkbox path="gender" value="Kobieta"/>Kobieta
+            </div>
+             <div class="user-form-input">
+                <label for="login">Login: </label>
+                <form:input path="login" placeholder="login" />
+                <form:errors path="login" class="error" />
+             </div>
+             <div class="user-form-input">
                 <label for="password">Hasło: </label>
                 <form:password path="password" placeholder="password" />
                 <form:errors path="password" class="error" />
@@ -45,8 +58,6 @@
     <div id="main-page-link">
         <a href="${pageContext.request.contextPath}/">Powrót do strony głównej</a>
     </div>
-
-
 
 </body>
        </html>

@@ -5,7 +5,7 @@
 <html>
 <head>
     <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
-    <title>Dodaj/Edytuj klienta.</title>
+    <title>Edytuj profil</title>
 </head>
 <body>
     <div id="addUserForm">
@@ -17,7 +17,7 @@
             <div class="user-form-input">
                 <form:hidden path="id" />
                 <label for="username">Login: </label>
-                <form:input path="username" placeholder=" login" />
+                <form:input path="username" placeholder="login" />
                 <form:errors path="username" class="error" />
             </div>
             <div class="user-form-input">

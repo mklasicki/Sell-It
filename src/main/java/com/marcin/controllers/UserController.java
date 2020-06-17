@@ -1,6 +1,7 @@
 package com.marcin.controllers;
 
 
+import com.marcin.dto.RegisterUserDTO;
 import com.marcin.dto.UserDTO;
 import com.marcin.facades.UserFacade;
 import org.slf4j.Logger;
@@ -28,13 +29,13 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public String showFormForAddUser(@ModelAttribute("userDTO") UserDTO userDTO) {
-        return "addUserForm";
+    public String showFormForAddUser(@ModelAttribute("registerUserDTO") RegisterUserDTO registerUserDTO) {
+        return "register-user-form";
     }
 
     @PostMapping("/save")
-    public String saveClient(@Valid @ModelAttribute("userDTO") UserDTO userDTO, BindingResult result) throws MessagingException {
-        if (userDTO.getId() == null) {
+    public String saveClient(@Valid @ModelAttribute("registerUserDTO") RegisterUserDTO registerUserDTO, BindingResult result) throws MessagingException {
+        if (registerUserDTO.getId() == null) {
             if (result.hasErrors()) {
                 List<ObjectError> errors = result.getAllErrors();
                 for (ObjectError error : errors) {
@@ -46,23 +47,23 @@ public class UserController {
                 return "addUserForm";
             }
 
-            userFacade.registerNewUser(userDTO);
-            userFacade.sendCredentialsMail(userDTO);
+            userFacade.registerNewUser(registerUserDTO);
+            userFacade.sendCredentialsMail(registerUserDTO);
 
-            log.info("Zapisano nowego usera {} wysłano mail na adres {}", userDTO.getUsername(), userDTO.getEmail());
+            log.info("Zapisano nowego usera {} wysłano mail na adres {}", registerUserDTO.getUsername(), registerUserDTO.getEmail());
 
         } else {
-            userFacade.update(userDTO);
+            userFacade.update(registerUserDTO);
 
-            log.info("Udało sie zaktualizować dane usera o id {}", userDTO.getId());
+            log.info("Udało sie zaktualizować dane usera o id {}", registerUserDTO.getId());
         }
 
         return "result-page";
     }
 
     @GetMapping("/update")
-    public String update(@RequestParam("id") String id, Model model) {
-        UserDTO userDTO = userFacade.getUserById(Long.parseLong(id));
+    public String update(@RequestParam("id") Long id, Model model) {
+        UserDTO userDTO = userFacade.getUserById(id);
         model.addAttribute("userDTO", userDTO);
         return "addUserForm";
     }

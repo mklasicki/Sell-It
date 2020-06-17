@@ -44,8 +44,6 @@ public class UserConverterImpl implements Converter<UserDTO, User> {
         userDTO.setUsername(user.getUsername());
         userDTO.setPassword(user.getPassword());
 
-
-
         log.info("Konwersja z user {} na userDTO {}", user, userDTO);
 
         return userDTO;
