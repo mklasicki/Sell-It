@@ -5,8 +5,6 @@ import com.marcin.converters.Converter;
 import com.marcin.domain.Authorities;
 import com.marcin.domain.User;
 import com.marcin.dto.RegisterUserDTO;
-import com.marcin.dto.UpdateUserDTO;
-import com.marcin.dto.UserDTO;
 import com.marcin.facades.UserFacade;
 import com.marcin.service.AuthoritiesService;
 import com.marcin.service.MailService;
@@ -60,15 +58,14 @@ public class UserFacadeImpl implements UserFacade {
     }
 
     @Override
-    public UpdateUserDTO getUserById(Long id) {
-        User user = userService.findUserById(id);
-        UpdateUserDTO updateUserDTO = (UpdateUserDTO) converter.from(user);
-        return updateUserDTO;
+    public RegisterUserDTO findUserByName(String name) {
+        RegisterUserDTO registerUserDTO = (RegisterUserDTO) converter.from(userService.findUserByName(name));
+        return registerUserDTO;
     }
 
     @Override
-    public void update( UpdateUserDTO updateUserDTO) {
-        User user = (User) converter.to(updateUserDTO);
+    public void update(RegisterUserDTO registerUserDTO) {
+        User user = (User) converter.to(registerUserDTO);
         userService.updateUser(user);
     }
 }

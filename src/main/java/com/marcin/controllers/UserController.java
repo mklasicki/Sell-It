@@ -2,7 +2,6 @@ package com.marcin.controllers;
 
 
 import com.marcin.dto.RegisterUserDTO;
-import com.marcin.dto.UpdateUserDTO;
 import com.marcin.facades.UserFacade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 
 
@@ -39,7 +39,7 @@ public class UserController {
             List<ObjectError> errors = result.getAllErrors();
             for (ObjectError error : errors) {
 
-                log.info("Wystąpily błedy podczas wypełniania formularza {}", error);
+                log.info("Error during filling form {}", error);
 
             }
 
@@ -49,7 +49,7 @@ public class UserController {
         userFacade.registerNewUser(registerUserDTO);
         userFacade.sendCredentialsMail(registerUserDTO);
 
-        log.info("Zapisano nowego usera {} wysłano mail na adres {}", registerUserDTO.getUsername(), registerUserDTO.getEmail());
+        log.info("created new user {} send email on email address {}", registerUserDTO.getUsername(), registerUserDTO.getEmail());
 
         return "register-success-page";
 
@@ -57,26 +57,20 @@ public class UserController {
 
 
     @GetMapping("/update")
-    public String update(Model model) {
-        UpdateUserDTO updateUserDTO = new UpdateUserDTO();
-        updateUserDTO.setUsername("Marcin");
-        updateUserDTO.setSurname("Klasicki");
-        updateUserDTO.setEmail("jakiś@wp.pl");
-        model.addAttribute("updateUserDTO", updateUserDTO);
+    public String update(Model model, Principal principal) {
+        String name = principal.getName();
+        RegisterUserDTO registerUserDTO = userFacade.findUserByName(name);
+        model.addAttribute("updateUserDTO", registerUserDTO);
         return "update-user-form";
     }
 
     @PostMapping("/updateUser")
-    public String updateUser() {
-
+    public String updateUser(RegisterUserDTO registerUserDTO) {
+        userFacade.update(registerUserDTO);
+        log.info("User with id {} has been updated", registerUserDTO.getId());
         return "update-success-page";
     }
 }
 
-/*
- userFacade.update(registerUserDTO);
 
- log.info("Udało sie zaktualizować dane usera o id {}", registerUserDTO.getId());
-
- */
 

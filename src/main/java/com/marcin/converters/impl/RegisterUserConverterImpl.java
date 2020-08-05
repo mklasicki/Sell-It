@@ -3,6 +3,7 @@ package com.marcin.converters.impl;
 import com.marcin.converters.Converter;
 import com.marcin.domain.User;
 import com.marcin.dto.RegisterUserDTO;
+import com.marcin.dto.UpdateUserDTO;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,8 +39,10 @@ public class RegisterUserConverterImpl implements Converter<RegisterUserDTO, Use
     public RegisterUserDTO from(User user) {
 
         RegisterUserDTO registerUserDTO = new RegisterUserDTO();
-        registerUserDTO.setUsername("Marcin");
-        registerUserDTO.setSurname("Klasicki");
+        registerUserDTO.setUsername(user.getUsername());
+        registerUserDTO.setSurname(user.getSurname());
+        registerUserDTO.setEmail(user.getEmail());
+        registerUserDTO.setPassword(user.getPassword());
 
         return registerUserDTO;
     }

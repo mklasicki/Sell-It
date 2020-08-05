@@ -25,7 +25,12 @@
                 <form:errors path="surname" class="error" />
             </div>
             <div class="user-form-input">
-                <label for="password">Hasło: </label>
+                <label for="password">Stare hasło: </label>
+                <form:password path="password" placeholder="password" />
+                <form:errors path="password" class="error" />
+             </div>
+            <div class="user-form-input">
+                <label for="password">Nowe hasło: </label>
                 <form:password path="password" placeholder="password" />
                 <form:errors path="password" class="error" />
             </div>

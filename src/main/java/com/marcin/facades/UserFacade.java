@@ -12,8 +12,8 @@ public interface UserFacade {
 
      void sendCredentialsMail(RegisterUserDTO registerUserDTO) throws MessagingException;
 
-     UpdateUserDTO getUserById(Long id);
+     void update(RegisterUserDTO registerUserDTO);
 
-     void update(UpdateUserDTO updateUserDTO);
+     RegisterUserDTO findUserByName(String name);
 
 }

@@ -28,7 +28,7 @@ public class ProductController {
     private final ProductFacade productFacade;
     private final ProductService productService;
     private final CategoryFacade categoryFacade;
-    private final Logger log = LoggerFactory.getLogger(ProductController.class);
+    private final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
 
     public ProductController(ProductFacade productFacade, ProductService productService, CategoryFacade categoryFacade) {
@@ -59,7 +59,7 @@ public class ProductController {
             if (result.hasErrors()) {
                 List<ObjectError> errors = result.getAllErrors();
                 for (ObjectError error: errors ) {
-                    log.info("Wystąpiły błędy podczas wypełniania formularza {}", error);
+                    logger.info("Errors while filling form  {}", error);
                 }
 
                 return "product-form";
@@ -67,6 +67,8 @@ public class ProductController {
 
             productDTO.setPrincipal(principal);
             productFacade.registerNewProduct(productDTO);
+
+            logger.info("Created new product {}" + productDTO);
                 return "redirect:/myPage";
             }
 
@@ -89,7 +91,7 @@ public class ProductController {
                     model.addAttribute("products", products);
                     return "test";
                 } catch (NoResultException e) {
-                    System.out.println("Nie znaleziono takiego produktu");
+                    System.out.println("Product with name {} not found" + productName );
                     return "error";
                 }
             }
@@ -99,10 +101,10 @@ public class ProductController {
                 Product theProduct = productService.getProduct(id);
                 try {
                     model.addAttribute("product", theProduct);
-                    System.out.println("Produkt " + theProduct.getProductName() + " znajduje sie na liście");
+                    logger.info("Found product with id {}" + id);
                     return "test";
                 } catch (NullPointerException e) {
-                    System.out.println("Nie ma takiego przedmiotu w bazie!");
+                   logger.info("Product with id {} not found" + id);
                     return "error";
                 }
             }
