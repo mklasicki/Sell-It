@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @AllArgsConstructor
 public class RegisterUserConverterImpl implements Converter<RegisterUserDTO, User> {
@@ -45,5 +47,10 @@ public class RegisterUserConverterImpl implements Converter<RegisterUserDTO, Use
         registerUserDTO.setPassword(user.getPassword());
 
         return registerUserDTO;
+    }
+
+    @Override
+    public List<RegisterUserDTO> listConverter(List<User> users) {
+        return null;
     }
 }

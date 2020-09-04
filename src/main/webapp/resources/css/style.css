@@ -337,7 +337,7 @@ img {
 
 #addUserForm {
     width: 400px;
-    height: 500px;
+    height: 650px;
     margin-top: 60px;
     margin-left: auto;
     margin-right: auto;
@@ -367,4 +367,10 @@ img {
 .check {
     margin-top 20px;
     font-size: 18px;
+}
+
+#main-page-link-on-login-page {
+    margin-top: -20px;
+    text-align: center;
+
 }

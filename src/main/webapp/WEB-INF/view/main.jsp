@@ -9,7 +9,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Strona główna.</title>
-    <meta name="keywords" content="strona, www, ćwiczenia" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
     <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
@@ -43,10 +42,10 @@
                     <c:forEach var="temp" items="${products}">
                         <div class="product-tile">
                             <div id="photo-tile"><img class="product-photo" src= "images/${temp.image}" alt="product-photo"></div>
-                            <div id="name-tile">${temp.productName}</div>
-                            <div id="description-tile">${temp.productDescription}</div>
-                            <div id="price-tile">${temp.productPrice}</div>
-                            <div >${temp.categoryName}</div>
+                            <div id="name-tile">${temp.name}</div>
+                            <div id="description-tile">${temp.description}</div>
+                            <div id="price-tile">${temp.price}</div>
+                            <div >${temp.category}</div>
                         </div>
                     </c:forEach>
             </div>

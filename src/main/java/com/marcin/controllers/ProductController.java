@@ -39,7 +39,7 @@ public class ProductController {
 
         @GetMapping("/main")
         public String getProducts (Model model){
-            List<Product> theProducts = productService.getProducts();
+            List<ProductDTO> theProducts = productFacade.getAll();
             model.addAttribute("products", theProducts);
             return "main";
         }
@@ -76,7 +76,7 @@ public class ProductController {
             @GetMapping("/deleteProduct")
             public String showFormForDelete (@RequestParam("productId") Long id, Model model){
                 productService.deleteProduct(id);
-                List<Product> theProducts = productService.getProducts();
+                List<ProductDTO> theProducts = productFacade.getAll();
                 model.addAttribute("products", theProducts);
                 return "my-page";
             }

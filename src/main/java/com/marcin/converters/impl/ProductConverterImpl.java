@@ -10,6 +10,10 @@ import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 @AllArgsConstructor
@@ -19,7 +23,6 @@ public class ProductConverterImpl implements Converter<ProductDTO, Product> {
     private final CategoryService categoryService;
     private final StorageService storageService;
     private final Logger log = LoggerFactory.getLogger(ProductConverterImpl.class);
-
 
 
     @Override
@@ -46,9 +49,23 @@ public class ProductConverterImpl implements Converter<ProductDTO, Product> {
         productDTO.setName(product.getProductName());
         productDTO.setPrice(product.getProductPrice());
         productDTO.setCategory(product.getCategory().getName());
+        productDTO.setDescription(product.getProductDescription());
+        productDTO.setImage((MultipartFile) storageService.loadAsResource(product.getImage()));
 
         log.info("Conversion from product do productDTO");
 
         return productDTO;
     }
+
+    public List<ProductDTO> listConverter(List<Product> products) {
+        List<ProductDTO> productDTOS = new ArrayList<>();
+        for (int i = 0; i < products.size(); i++) {
+            productDTOS.add(from(products.get(i)));
+        }
+
+        log.info("Conversion of list with products to list with productsDTO");
+
+        return productDTOS;
+    }
+
 }
