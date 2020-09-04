@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -32,7 +33,7 @@ public class ProductFacadeImpl implements ProductFacade {
     }
 
     @Override
-    public List<ProductDTO> getAll() {
+    public List<ProductDTO> getAll() throws IOException {
         return converter.listConverter(productService.getProducts());
     }
 }

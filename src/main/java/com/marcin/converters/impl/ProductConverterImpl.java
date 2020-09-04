@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,21 +44,21 @@ public class ProductConverterImpl implements Converter<ProductDTO, Product> {
     }
 
     @Override
-    public ProductDTO from(Product product) {
+    public ProductDTO from(Product product) throws IOException {
 
         ProductDTO productDTO = new ProductDTO();
         productDTO.setName(product.getProductName());
         productDTO.setPrice(product.getProductPrice());
         productDTO.setCategory(product.getCategory().getName());
         productDTO.setDescription(product.getProductDescription());
-        productDTO.setImage((MultipartFile) storageService.loadAsResource(product.getImage()));
+        productDTO.setImage((MultipartFile) storageService.loadAsResource(product.getImage()).getFile());
 
         log.info("Conversion from product do productDTO");
 
         return productDTO;
     }
 
-    public List<ProductDTO> listConverter(List<Product> products) {
+    public List<ProductDTO> listConverter(List<Product> products) throws IOException {
         List<ProductDTO> productDTOS = new ArrayList<>();
         for (int i = 0; i < products.size(); i++) {
             productDTOS.add(from(products.get(i)));

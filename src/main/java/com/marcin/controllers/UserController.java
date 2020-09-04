@@ -59,7 +59,7 @@ public class UserController {
     @GetMapping("/update")
     public String update(Model model, Principal principal) {
         String name = principal.getName();
-        RegisterUserDTO registerUserDTO = userFacade.findUserByName(name);
+        RegisterUserDTO registerUserDTO = userFacade.findUseqrByName(name);
         model.addAttribute("updateUserDTO", registerUserDTO);
         return "update-user-form";
     }

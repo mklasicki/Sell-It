@@ -16,6 +16,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import javax.persistence.NoResultException;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.security.Principal;
 
 
@@ -38,7 +39,7 @@ public class ProductController {
         }
 
         @GetMapping("/main")
-        public String getProducts (Model model){
+        public String getProducts (Model model) throws IOException {
             List<ProductDTO> theProducts = productFacade.getAll();
             model.addAttribute("products", theProducts);
             return "main";
@@ -74,7 +75,7 @@ public class ProductController {
 
 
             @GetMapping("/deleteProduct")
-            public String showFormForDelete (@RequestParam("productId") Long id, Model model){
+            public String showFormForDelete (@RequestParam("productId") Long id, Model model) throws IOException {
                 productService.deleteProduct(id);
                 List<ProductDTO> theProducts = productFacade.getAll();
                 model.addAttribute("products", theProducts);

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
+import java.io.IOException;
 
 @Service
 public class UserFacadeImpl implements UserFacade {
@@ -58,7 +59,7 @@ public class UserFacadeImpl implements UserFacade {
     }
 
     @Override
-    public RegisterUserDTO findUserByName(String name) {
+    public RegisterUserDTO findUserByName(String name) throws IOException {
         RegisterUserDTO registerUserDTO = (RegisterUserDTO) converter.from(userService.findUserByName(name));
         return registerUserDTO;
     }
