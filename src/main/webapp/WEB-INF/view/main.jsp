@@ -46,6 +46,7 @@
                             <div id="name-tile">${temp.productName}</div>
                             <div id="description-tile">${temp.productDescription}</div>
                             <div id="price-tile">${temp.productPrice}</div>
+                            <div >${temp.categoryName}</div>
                         </div>
                     </c:forEach>
             </div>

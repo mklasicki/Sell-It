@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityExistsException;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,13 +33,18 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category getCategoryById(Long id) {
+
         Category category = categoryDAO.findById(id);
+
         if (category == null) {
-            log.error("Kategoria z {} nie istnieje w bazie", id);
-            throw new EntityExistsException("Kategoria z " + id + "nie istnieje w bazie");
+
+            log.error("Category with id {} do not exists ", id);
+
+            throw new EntityExistsException("Category with id" + id + "is not in database");
         }
         return category;
     }
+
 
     private List<Category> findAll() {
         List<Category> categories = categoryDAO.findAll();

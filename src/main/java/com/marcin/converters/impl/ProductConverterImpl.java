@@ -34,13 +34,21 @@ public class ProductConverterImpl implements Converter<ProductDTO, Product> {
         product.setImage(storageService.store(productDTO.getImage()));
         product.setCategory(categoryService.getCategoryById(Long.parseLong(productDTO.getCategory())));
 
-        log.info("Konwersja z productDTO {} na product {}", productDTO, product);
+        log.info("Conversion from productDTO {} to product {}");
 
         return product;
     }
 
     @Override
     public ProductDTO from(Product product) {
-        return null;
+
+        ProductDTO productDTO = new ProductDTO();
+        productDTO.setName(product.getProductName());
+        productDTO.setPrice(product.getProductPrice());
+        productDTO.setCategory(product.getCategory().getName());
+
+        log.info("Conversion from product do productDTO");
+
+        return productDTO;
     }
 }

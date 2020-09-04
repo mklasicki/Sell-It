@@ -7,6 +7,7 @@ import com.marcin.facades.SearchFacade;
 import com.marcin.service.ProductService;
 import com.marcin.service.UserService;
 import com.marcin.service.UserSessionService;
+import org.hibernate.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
