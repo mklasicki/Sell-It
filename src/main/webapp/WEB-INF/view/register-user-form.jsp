@@ -4,16 +4,16 @@
 
 <html>
 <head>
-    <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
+    <link href="<c:url value="/resources/css/registration.css" />" rel="stylesheet">
     <title>Dodaj/Edytuj klienta.</title>
 </head>
 <body>
-    <div id="addUserForm">
-        <div id="header">
-            <h2>Załóż nowe konto</h2>
-        </div>
+    <div class="registration-container">
+        <section class="registration">
+            <h2 class="registration-form_header">Załóż nowe konto</h2>
+        </section>
 
-        <form:form id="userFormTable" action="save" modelAttribute="registerUserDTO" method="post">
+        <form:form action="save" modelAttribute="registerUserDTO" method="post">
             <div class="user-form-input">
                 <label for="username">Imię: </label>
                 <form:input path="username" placeholder="imię" />
@@ -23,10 +23,6 @@
                 <label for="surname">Nazwisko: </label>
                 <form:input path="surname" placeholder="nazwisko" />
                 <form:errors path="password" class="error" />
-            </div>
-            <div>
-            <form:checkbox path="gender" value="Mężczyzna"/>Mężczyzna
-             <form:checkbox path="gender" value="Kobieta"/>Kobieta
             </div>
              <div class="user-form-input">
                 <label for="login">Login: </label>
@@ -44,18 +40,18 @@
                 <form:errors path="email" class="error" />
             </div>
             <div>
+            <label class="check">Akceptuje warunki regulaminu.</label>
+            <br><br>
             <form:checkbox path="enabled" class="check" />
             <form:errors path="enabled" class="error" />
-           <br>
-            <label class="check">Akceptuje warunki regulaminu.</label>
             </div>
             <div class="user-form-input">
-                <input id="submitButton" type="submit" value="Zatwierdź">
+                <input class="submit-button" type="submit" value="Zatwierdź">
             </div>
         </form:form>
     </div>
 
-    <div id="main-page-link">
+    <div class="main-page_link">
         <a href="/main">Powrót do strony głównej</a>
     </div>
 

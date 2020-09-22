@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 
@@ -57,9 +58,9 @@ public class UserController {
 
 
     @GetMapping("/update")
-    public String update(Model model, Principal principal) {
+    public String update(Model model, Principal principal) throws IOException {
         String name = principal.getName();
-        RegisterUserDTO registerUserDTO = userFacade.findUseqrByName(name);
+        RegisterUserDTO registerUserDTO = userFacade.findUserByName(name);
         model.addAttribute("updateUserDTO", registerUserDTO);
         return "update-user-form";
     }

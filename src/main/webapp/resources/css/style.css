@@ -365,9 +365,9 @@ img {
 }
 
 .check {
-    margin-top 20px;
-    font-size: 18px;
-}
+       margin-top: 20px;
+       font-size: 18px;
+   }
 
 #main-page-link-on-login-page {
     margin-top: -20px;

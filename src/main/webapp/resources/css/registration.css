@@ -1,0 +1,80 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url("/resources/images/tło.png");
+    font-family: 'Lato', sans-serif;
+    font-size: 22px;
+}
+
+input {
+    height: 31px;
+    width: 220px;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+    background-color: whitesmoke;
+    font-size: 18px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color:black;
+}
+
+
+.registration-container {
+    width: 30vw;
+    height: 75vh;
+    margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    box-shadow: 3px 3px 20px 2px #ccc;
+}
+
+.user-form-input {
+    padding: 20px;
+}
+
+.registration-form_header {
+    padding: 40px;
+}
+
+.main-page-link {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.submit-button {
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    padding: 5px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.login-form_checkbox {
+    height: 20px;
+
+}
+
+.check {
+    padding: 15px;
+}
+
+.main-page_link {
+    margin-top: 40px;
+    text-align: center;
+    text-decoration: none;
+}
