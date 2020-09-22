@@ -27,7 +27,6 @@ public class RegisterUserConverterImpl implements Converter<RegisterUserDTO, Use
         user.setUsername(registerUserDTO.getUsername());
         user.setSurname(registerUserDTO.getSurname());
         user.setLogin(registerUserDTO.getLogin());
-        user.setGender(registerUserDTO.getGender());
         user.setPassword(encoder.encode(registerUserDTO.getPassword()));
         user.setEmail(registerUserDTO.getEmail());
         user.setEnabled(registerUserDTO.isEnabled());

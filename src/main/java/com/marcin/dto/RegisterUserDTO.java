@@ -15,7 +15,6 @@ public class RegisterUserDTO {
     private String username;
     private String surname;
     private String login;
-    private String gender;
     private String password;
     private String email;
     private boolean enabled;
@@ -28,7 +27,6 @@ public class RegisterUserDTO {
                 ", username='" + username + '\'' +
                 ", surname='" + surname + '\'' +
                 ", login='" + login + '\'' +
-                ", gender='" + gender + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", enabled=" + enabled +

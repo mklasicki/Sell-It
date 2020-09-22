@@ -13,7 +13,6 @@ public class User {
     private String username;
     private String surname;
     private String login;
-    private String gender;
     private String password;
     private String email;
     private boolean enabled;
@@ -89,14 +88,6 @@ public class User {
         this.login = login;
     }
 
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
     public List<Product> getProducts() {
         return products;
     }
@@ -139,7 +130,6 @@ public class User {
                 ", username='" + username + '\'' +
                 ", surname='" + surname + '\'' +
                 ", login='" + login + '\'' +
-                ", gender='" + gender + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", enabled=" + enabled +
