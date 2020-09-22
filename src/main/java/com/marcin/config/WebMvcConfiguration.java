@@ -29,9 +29,4 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
                 .addResourceLocations(FILESYSTEM_ACCESS + path.toAbsolutePath().toString() + "/");
     }
 
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
     }

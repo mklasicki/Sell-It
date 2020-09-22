@@ -34,29 +34,27 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional
     public List<Product> getProducts() {
-
-        log.info("pobieram listę produktów");
-
+        log.info("Getting list of all the products");
         return productDAO.getProducts();
     }
 
     @Override
     @Transactional
     public void saveProduct(Product theProduct) {
-
-        log.info("Zapisuję produkt {}", theProduct);
-
+        log.info("Saving new product {}", theProduct);
         productDAO.saveProduct(theProduct);
     }
 
     @Override
     @Transactional
     public Product getProduct(Long id) {
+        log.info("Getting product with id {}", id);
         return productDAO.getProduct(id);
     }
 
     @Override
     public List<Product> findProductByName(String productName) {
+        log.info("Getting product with name {}" , productName);
         return productDAO.getProductByName(productName);
     }
 
@@ -74,9 +72,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional
     public void deleteProduct(Long id) {
-
-        log.info("Usinięto  z listy produkt o id {}", id);
-
+        log.info("Deleted product with id {}", id);
         productDAO.deleteProduct(id);
     }
 

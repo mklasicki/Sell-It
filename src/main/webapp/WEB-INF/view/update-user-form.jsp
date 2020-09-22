@@ -5,7 +5,7 @@
 <html>
 <head>
     <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
-    <title>Dodaj/Edytuj klienta.</title>
+    <title>Edytuj profil</title>
 </head>
 <body>
     <div id="addUserForm">
@@ -13,15 +13,24 @@
             <h2>Edytuj dane konta</h2>
         </div>
 
-        <form:form id="userFormTable" action="updateUser" modelAttribute="userDTO" method="post">
+        <form:form id="userFormTable" action="updateUser" modelAttribute="updateUserDTO" method="post">
             <div class="user-form-input">
-                <form:hidden path="id" />
-                <label for="username">Login: </label>
-                <form:input path="username" placeholder=" login" />
+                <label for="username">Imię: </label>
+                <form:input path="username" placeholder="Imię" />
                 <form:errors path="username" class="error" />
             </div>
             <div class="user-form-input">
-                <label for="password">Hasło: </label>
+                <label for="surname">Nazwisko: </label>
+                <form:input path="surname" placeholder="Nazwisko" />
+                <form:errors path="surname" class="error" />
+            </div>
+            <div class="user-form-input">
+                <label for="password">Stare hasło: </label>
+                <form:password path="password" placeholder="password" />
+                <form:errors path="password" class="error" />
+             </div>
+            <div class="user-form-input">
+                <label for="password">Nowe hasło: </label>
                 <form:password path="password" placeholder="password" />
                 <form:errors path="password" class="error" />
             </div>
@@ -33,13 +42,6 @@
              <div class="user-form-input">
                 <input id="submitButton" type="submit" value="Zatwierdź">
             </div>
-            <div>
-            <form:checkbox path="enabled" class="check" />
-            <form:errors path="enabled" class="error" />
-           <br>
-            <label class="check">Akceptuje warunki regulaminu.</label>
-            </div>
-
         </form:form>
     </div>
 

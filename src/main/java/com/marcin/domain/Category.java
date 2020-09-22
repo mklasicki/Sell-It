@@ -53,4 +53,14 @@ public class Category {
     public void setIconUrl(String iconUrl) {
         this.iconUrl = iconUrl;
     }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", active=" + active +
+                ", iconUrl='" + iconUrl + '\'' +
+                '}';
+    }
 }

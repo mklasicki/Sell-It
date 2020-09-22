@@ -1,7 +1,7 @@
 package com.marcin.controllers;
 
 
-import com.marcin.dto.UserDTO;
+import com.marcin.dto.RegisterUserDTO;
 import com.marcin.facades.UserFacade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 import javax.validation.Valid;
+import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
 
 
@@ -28,45 +30,47 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public String showFormForAddUser(@ModelAttribute("userDTO") UserDTO userDTO) {
-        return "addUserForm";
+    public String showFormForAddUser(@ModelAttribute("registerUserDTO") RegisterUserDTO registerUserDTO) {
+        return "register-user-form";
     }
 
     @PostMapping("/save")
-    public String saveClient(@Valid @ModelAttribute("userDTO") UserDTO userDTO, BindingResult result) throws MessagingException {
-        if (userDTO.getId() == null) {
-            if (result.hasErrors()) {
-                List<ObjectError> errors = result.getAllErrors();
-                for (ObjectError error : errors) {
+    public String saveClient(@Valid @ModelAttribute("registerUserDTO") RegisterUserDTO registerUserDTO, BindingResult result) throws MessagingException {
+        if (result.hasErrors()) {
+            List<ObjectError> errors = result.getAllErrors();
+            for (ObjectError error : errors) {
 
-                    log.info("Wystąpily błedy podczas wypełniania formularza {}", error);
+                log.info("Error during filling form {}", error);
 
-                }
-
-                return "addUserForm";
             }
 
-            userFacade.registerNewUser(userDTO);
-            userFacade.sendCredentialsMail(userDTO);
-
-            log.info("Zapisano nowego usera {} wysłano mail na adres {}", userDTO.getUsername(), userDTO.getEmail());
-
-        } else {
-            userFacade.update(userDTO);
-
-            log.info("Udało sie zaktualizować dane usera o id {}", userDTO.getId());
+            return "register-user-form";
         }
 
-        return "result-page";
+        userFacade.registerNewUser(registerUserDTO);
+        userFacade.sendCredentialsMail(registerUserDTO);
+
+        log.info("created new user {} send email on email address {}", registerUserDTO.getUsername(), registerUserDTO.getEmail());
+
+        return "register-success-page";
+
     }
+
 
     @GetMapping("/update")
-    public String update(@RequestParam("id") String id, Model model) {
-        UserDTO userDTO = userFacade.getUserById(Long.parseLong(id));
-        model.addAttribute("userDTO", userDTO);
-        return "addUserForm";
+    public String update(Model model, Principal principal) throws IOException {
+        String name = principal.getName();
+        RegisterUserDTO registerUserDTO = userFacade.findUserByName(name);
+        model.addAttribute("updateUserDTO", registerUserDTO);
+        return "update-user-form";
     }
 
+    @PostMapping("/updateUser")
+    public String updateUser(RegisterUserDTO registerUserDTO) {
+        userFacade.update(registerUserDTO);
+        log.info("User with id {} has been updated", registerUserDTO.getId());
+        return "update-success-page";
+    }
 }
 
 

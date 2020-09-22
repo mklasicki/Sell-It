@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @AllArgsConstructor
 public class UserConverterImpl implements Converter<UserDTO, User> {
@@ -44,10 +46,13 @@ public class UserConverterImpl implements Converter<UserDTO, User> {
         userDTO.setUsername(user.getUsername());
         userDTO.setPassword(user.getPassword());
 
-
-
         log.info("Konwersja z user {} na userDTO {}", user, userDTO);
 
         return userDTO;
+    }
+
+    @Override
+    public List<UserDTO> listConverter(List<User> users) {
+        return null;
     }
 }

@@ -33,5 +33,8 @@
                 <button class="login-button" name="submit" type="submit">Zatwierdź</button>
             </form:form>
         </div>
-    </div>
+    <br><br>
+        <div id="main-page-link-on-login-page">
+            <a href="/main">Wróć na stronę główną</a>
+        </div>
 </body>
