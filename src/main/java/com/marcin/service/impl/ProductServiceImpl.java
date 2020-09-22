@@ -1,10 +1,7 @@
 package com.marcin.service.impl;
 
 import com.marcin.daos.ProductDAO;
-import com.marcin.domain.Category;
 import com.marcin.domain.Product;
-import com.marcin.domain.User;
-import com.marcin.dto.RegisterProductDTO;
 import com.marcin.service.CategoryService;
 import com.marcin.service.ProductService;
 import com.marcin.service.StorageService;
@@ -32,36 +29,38 @@ public class ProductServiceImpl implements ProductService {
         this.categoryService = categoryService;
         this.userService = userService;
         this.storageService = storageService;
-            }
+    }
 
     @Override
     @Transactional
     public List<Product> getProducts() {
+        log.info("Getting list of all the products");
         return productDAO.getProducts();
     }
 
     @Override
     @Transactional
     public void saveProduct(Product theProduct) {
+        log.info("Saving new product {}", theProduct);
         productDAO.saveProduct(theProduct);
     }
 
     @Override
     @Transactional
     public Product getProduct(Long id) {
+        log.info("Getting product with id {}", id);
         return productDAO.getProduct(id);
     }
 
     @Override
-    public List<Product> findProductByName(String productName)
-    {
+    public List<Product> findProductByName(String productName) {
+        log.info("Getting product with name {}" , productName);
         return productDAO.getProductByName(productName);
     }
 
     @Override
     @Transactional
-    public void registerNewProduct(RegisterProductDTO registerProductDTO) {
-        Product product = createProductFrom(registerProductDTO);
+    public void registerNewProduct(Product product) {
         productDAO.saveProduct(product);
     }
 
@@ -73,24 +72,9 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional
     public void deleteProduct(Long id) {
+        log.info("Deleted product with id {}", id);
         productDAO.deleteProduct(id);
     }
 
-    private Product createProductFrom(RegisterProductDTO registerProductDTO) {
-        Category category = categoryService.getCategoryById(Long.parseLong(registerProductDTO.getCategory()));
-        User user = userService.findUserByName(registerProductDTO.getPrincipal().getName());
-        String imageUrl = storageService.store(registerProductDTO.getImage());
-        Product product = new Product();
-        product.setUser(user);
-        product.setCategory(category);
-        product.setProductDescription(registerProductDTO.getDescription());
-        product.setProductName(registerProductDTO.getName());
-        product.setProductPrice(registerProductDTO.getPrice());
-        product.setImage(imageUrl);
-
-        log.info("Przypisuję product {} do użytkownika {}", product, user);
-
-        return product;
-    }
 
 }

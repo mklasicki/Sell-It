@@ -1,11 +1,8 @@
 package com.marcin.service.impl;
 
 import com.marcin.daos.UserDao;
-import com.marcin.domain.Authorities;
 import com.marcin.domain.User;
-import com.marcin.dto.RegisterUserDTO;
 import com.marcin.service.UserService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,12 +12,11 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final UserDao userDao;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public UserServiceImpl(UserDao userDao, BCryptPasswordEncoder bCryptPasswordEncoder)
+    public UserServiceImpl(UserDao userDao)
     {
         this.userDao = userDao;
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+
     }
 
     @Override
@@ -30,10 +26,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void saveUser(User newUser) {
-        if (newUser.isNew()) {
-            userDao.saveUser(newUser);
-        }
+    public void saveUser(User user) {
+        userDao.saveUser(user);
     }
 
     @Override
@@ -48,26 +42,6 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public void registerNewUser(RegisterUserDTO registerUserDTO) {
-        Authorities authority = new Authorities();
-        User user = createUserFrom(registerUserDTO, authority);
-        userDao.saveUser(user);
-    }
-
-    private User createUserFrom(RegisterUserDTO registerUserDTO, Authorities authorities) {
-        User user = new User();
-        user.setUsername(registerUserDTO.getUsername());
-        user.setPassword(bCryptPasswordEncoder.encode(registerUserDTO.getPassword()));
-        user.setEmail(registerUserDTO.getEmail());
-        user.setEnabled(true);
-        authorities.setAuthority("ROLE_USER");
-        authorities.setUsername(user.getUsername());
-        authorities.setUser(user);
-        user.addAuthority(authorities);
-        return user;
-    }
-
-    @Override
     public boolean checkByUserName(String username) {
         return userDao.checkByUserName(username);
     }
@@ -75,5 +49,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean checkByEmail(String email) {
         return userDao.checkByEmail(email);
+    }
+
+    @Override
+    public void updateUser(User user) {
+        userDao.updateUser(user);
     }
 }

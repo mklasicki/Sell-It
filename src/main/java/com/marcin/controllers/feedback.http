@@ -1,9 +1,0 @@
-POST http://localhost:8080/sendMail
-Content-Type: application/json
-
-{
-  "name": "Marcin",
-  "email": " marcin@gmail.com",
-  "body": "Siema siema, test"
-}
-

@@ -10,10 +10,10 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 @EnableConfigurationProperties(StorageProperities.class)
-public class ClientDbApplication {
+public class SellItApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ClientDbApplication.class, args);
+		SpringApplication.run(SellItApplication.class, args);
 
 
 

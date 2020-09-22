@@ -9,8 +9,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Strona główna.</title>
-    <meta name="description" content="Stronka do ćwiczeń, mam nadzieje, że bedzie się szybko rozwijała.">
-    <meta name="keywords" content="strona, www, ćwiczenia" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
     <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
@@ -23,7 +21,7 @@
         <form:form action="searchProduct" modelAttribute="products"  method="get">
             <ol>
                 <li><a href="/login">Zaloguj się</a></li>
-                <li><a href="/showFormForAddUser">Załóż konto</a></li>
+                <li><a href="/user/register">Załóż konto</a></li>
                 <li>Kontakt</li>
                 <li><input type="text" placeholder=" Szukaj przedmiotu" name="productName"/></li>
                 <li><button id="search-button" type="submit" name="name">Szukaj</button></li>
@@ -32,22 +30,22 @@
         </div>
         <div id="content">
             <h3 id="category-header">Kategorie przedmiotów</h3>
-            <br/>
-            <ol class="category-list">
-                <c:forEach items="${categories}" var="category">
-                <div class="category-item">
-                <li data-category-id="${category.id}"><img class="category-icon" src=${category.iconUrl} alt="category icon">${category.name}</li>
-                </div>
-                </c:forEach>
+           <ol>
+               <li><i class="icon-laptop"></i> Elektronika</li>
+                <li><i class="icon-home"></i> Nieruchomości</li>
+                <li><i class="icon-cab"></i> Motoryzacja</li>
+                 <li><i class="icon-award"></i> Sport</li>
+                 <li><i class="icon-leaf"></i> Dom i Ogród</li>
             </ol>
             <div id="content-list">
                 <h3 id="content-list-header">Ostatnio dodane ogłoszenia</h3>
                     <c:forEach var="temp" items="${products}">
                         <div class="product-tile">
                             <div id="photo-tile"><img class="product-photo" src= "images/${temp.image}" alt="product-photo"></div>
-                            <div id="name-tile">${temp.productName}</div>
-                            <div id="description-tile">${temp.productDescription}</div>
-                            <div id="price-tile">${temp.productPrice}</div>
+                            <div id="name-tile">${temp.name}</div>
+                            <div id="description-tile">${temp.description}</div>
+                            <div id="price-tile">${temp.price}</div>
+                            <div >${temp.category}</div>
                         </div>
                     </c:forEach>
             </div>

@@ -7,7 +7,7 @@
 
 </head>
 <body>
-<h1>Nie działa, nie ma takiego produktu!</h1>
+<h1>Coś poszło nie tak!!</h1>
 
 
 </body>
