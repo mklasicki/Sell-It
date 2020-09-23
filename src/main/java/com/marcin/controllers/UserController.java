@@ -30,20 +30,15 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public String showFormForAddUser(@ModelAttribute("registerUserDTO") RegisterUserDTO registerUserDTO) {
+    public String registerForm(@ModelAttribute("registerUserDTO") RegisterUserDTO registerUserDTO) {
         return "register-user-form";
     }
 
     @PostMapping("/save")
     public String saveClient(@Valid @ModelAttribute("registerUserDTO") RegisterUserDTO registerUserDTO, BindingResult result) throws MessagingException {
+        // this will occur when there will be errors while filling register form
         if (result.hasErrors()) {
-            List<ObjectError> errors = result.getAllErrors();
-            for (ObjectError error : errors) {
-
-                log.info("Error during filling form {}", error);
-
-            }
-
+           showErrors(result);
             return "register-user-form";
         }
 
@@ -53,7 +48,6 @@ public class UserController {
         log.info("created new user {} sent email on address {}", registerUserDTO.getUsername(), registerUserDTO.getEmail());
 
         return "register-success-page";
-
     }
 
     @GetMapping("/update")
@@ -69,6 +63,13 @@ public class UserController {
         userFacade.update(registerUserDTO);
         log.info("User with id {} has been updated", registerUserDTO.getId());
         return "update-success-page";
+    }
+
+    private void showErrors(BindingResult result) {
+        List<ObjectError> errors = result.getAllErrors();
+        for (ObjectError error : errors) {
+            log.info("Error during filling form {}", error);
+        }
     }
 }
 
