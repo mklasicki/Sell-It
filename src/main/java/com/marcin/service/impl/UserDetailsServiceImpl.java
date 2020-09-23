@@ -22,7 +22,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         User user = userService.findByName(username);
 
         if (user == null) {
-            throw new UserNotFoundException(username);
+            throw new UserNotFoundException("Could not find user with username " + username);
         }
 
         return new UserDetailsDTO(user);

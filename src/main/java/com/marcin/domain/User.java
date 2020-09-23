@@ -21,7 +21,7 @@ public class User {
             CascadeType.DETACH, CascadeType.MERGE})
     private List<Product> products;
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REFRESH,
-            CascadeType.DETACH, CascadeType.MERGE})
+            CascadeType.DETACH, CascadeType.MERGE}, fetch = FetchType.EAGER)
     private List<Authorities> roles;
 
     public User() {
@@ -134,7 +134,6 @@ public class User {
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", enabled=" + enabled +
-                ", products=" + products +
                 ", roles=" + roles +
                 '}';
     }

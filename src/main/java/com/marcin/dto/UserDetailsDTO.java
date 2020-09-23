@@ -4,6 +4,7 @@ import com.marcin.domain.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,6 +16,10 @@ public class UserDetailsDTO implements UserDetails {
 
     public UserDetailsDTO(User user) {
         this.user = user;
+
+        if (user == null) {
+            throw new UsernameNotFoundException("User with name " + user.getUsername() + " doesn't exists");
+        }
     }
 
     @Override
