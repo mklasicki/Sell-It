@@ -1,14 +1,15 @@
 package com.marcin.facades;
 
-import com.marcin.dto.RegisterUserDTO;
+
+import com.marcin.dto.UserDTO;
 
 import javax.mail.MessagingException;
 
 public interface UserFacade {
 
-     void registerNewUser(RegisterUserDTO registerUserDTO);
+     void registerNewUser(UserDTO userDTO);
 
-     void sendCredentialsMail(RegisterUserDTO registerUserDTO) throws MessagingException;
+     void sendCredentialsMail(UserDTO userDTO) throws MessagingException;
 
 
 }

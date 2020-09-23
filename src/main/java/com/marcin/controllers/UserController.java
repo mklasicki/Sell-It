@@ -1,14 +1,12 @@
 package com.marcin.controllers;
 
 
-import com.marcin.domain.User;
-import com.marcin.dto.RegisterUserDTO;
+
+import com.marcin.dto.UserDTO;
 import com.marcin.facades.UserFacade;
-import com.marcin.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
@@ -23,31 +21,29 @@ import java.util.List;
 public class UserController {
 
     private final UserFacade userFacade;
-    UserService userService;
     private final Logger log = LoggerFactory.getLogger(UserController.class);
 
-    public UserController(UserFacade userFacade, UserService userService) {
+    public UserController(UserFacade userFacade) {
         this.userFacade = userFacade;
-        this.userService = userService;
     }
 
     @GetMapping("/register")
-    public String registerForm(@ModelAttribute("registerUserDTO") RegisterUserDTO registerUserDTO) {
+    public String registerForm(@ModelAttribute("UserDTO") UserDTO userDTO) {
         return "register-user-form";
     }
 
     @PostMapping("/save")
-    public String saveClient(@Valid @ModelAttribute("registerUserDTO") RegisterUserDTO registerUserDTO, BindingResult result) throws MessagingException {
+    public String saveClient(@Valid @ModelAttribute("UserDTO") UserDTO userDTO, BindingResult result) throws MessagingException {
         // this will occur when there will be errors while filling register form
         if (result.hasErrors()) {
            showErrors(result);
             return "register-user-form";
         }
 
-        userFacade.registerNewUser(registerUserDTO);
-        userFacade.sendCredentialsMail(registerUserDTO);
+        userFacade.registerNewUser(userDTO);
+        userFacade.sendCredentialsMail(userDTO);
 
-        log.info("created new user {} sent email on address {}", registerUserDTO.getUsername(), registerUserDTO.getEmail());
+        log.info("created new user {} sent email on address {}", userDTO.getUsername(), userDTO.getEmail());
 
         return "register-success-page";
     }

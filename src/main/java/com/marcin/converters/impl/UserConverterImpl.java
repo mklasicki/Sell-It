@@ -7,7 +7,6 @@ import com.marcin.dto.UserDTO;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -25,13 +24,14 @@ public class UserConverterImpl implements Converter<UserDTO, User> {
     public User to(UserDTO userDTO) {
 
         User user = new User();
-        user.setId(userDTO.getId());
         user.setUsername(userDTO.getUsername());
+        user.setSurname(userDTO.getLastName());
         user.setPassword(encoder.encode(userDTO.getPassword()));
+        user.setLogin(userDTO.getLogin());
         user.setEmail(userDTO.getEmail());
         user.setEnabled(userDTO.isEnabled());
 
-        log.info("Konwersja z userDTO {} na user {} ", userDTO, user);
+        log.info("Conversion from  userDTO {} to user {} ", userDTO, user);
 
         return user;
 
@@ -46,7 +46,7 @@ public class UserConverterImpl implements Converter<UserDTO, User> {
         userDTO.setUsername(user.getUsername());
         userDTO.setPassword(user.getPassword());
 
-        log.info("Konwersja z user {} na userDTO {}", user, userDTO);
+        log.info("Conversion {} from  userDTO {}", user, userDTO);
 
         return userDTO;
     }

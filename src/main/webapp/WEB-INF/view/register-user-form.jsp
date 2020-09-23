@@ -13,15 +13,15 @@
             <h2 class="registration-form_header">Załóż nowe konto</h2>
         </section>
 
-        <form:form action="save" modelAttribute="registerUserDTO" method="post">
+        <form:form action="save" modelAttribute="UserDTO" method="post">
             <div class="user-form-input">
                 <label for="username">Imię: </label>
                 <form:input path="username" placeholder="imię" />
                 <form:errors path="username" class="error" />
             </div>
             <div class="user-form-input">
-                <label for="surname">Nazwisko: </label>
-                <form:input path="surname" placeholder="nazwisko" />
+                <label for="lastName">Nazwisko: </label>
+                <form:input path="lastName" placeholder="nazwisko" />
                 <form:errors path="password" class="error" />
             </div>
              <div class="user-form-input">

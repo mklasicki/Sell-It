@@ -4,7 +4,7 @@ package com.marcin.facades.impl;
 import com.marcin.converters.Converter;
 import com.marcin.domain.Authorities;
 import com.marcin.domain.User;
-import com.marcin.dto.RegisterUserDTO;
+import com.marcin.dto.UserDTO;
 import com.marcin.facades.UserFacade;
 import com.marcin.service.AuthoritiesService;
 import com.marcin.service.MailService;
@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
-import java.io.IOException;
 
 @Service
 public class UserFacadeImpl implements UserFacade {
@@ -24,7 +23,7 @@ public class UserFacadeImpl implements UserFacade {
     private final MailService mailService;
 
     public UserFacadeImpl(UserService userService, AuthoritiesService authoritiesService
-            , @Qualifier("registerUserConverterImpl") Converter converter, MailService mailService) {
+            , @Qualifier("userConverterImpl") Converter converter, MailService mailService) {
         this.userService = userService;
         this.authoritiesService = authoritiesService;
         this.converter = converter;
@@ -32,16 +31,16 @@ public class UserFacadeImpl implements UserFacade {
     }
 
     @Override
-    public void registerNewUser(RegisterUserDTO registerUserDTO) {
+    public void registerNewUser(UserDTO userDTO) {
 
         Authorities authority = new Authorities();
-        User user = createUserForm(registerUserDTO, authority);
+        User user = createUserForm(userDTO, authority);
         userService.saveUser(user);
     }
 
-    User createUserForm(RegisterUserDTO registerUserDTO, Authorities authorities) {
+    User createUserForm(UserDTO userDTO, Authorities authorities) {
 
-        User user = (User) converter.to(registerUserDTO);
+        User user = (User) converter.to(userDTO);
         authorities.setAuthority("ROLE_USER");
         authorities.setUsername(user.getUsername());
         user.addAuthority(authorities);
@@ -49,13 +48,13 @@ public class UserFacadeImpl implements UserFacade {
     }
 
     @Override
-    public void sendCredentialsMail(RegisterUserDTO registerUserDTO) throws MessagingException {
-        mailService.SendMail(registerUserDTO.getEmail(), "Potwierdzenie stworzenia konta",
+    public void sendCredentialsMail(UserDTO userDTO) throws MessagingException {
+        mailService.SendMail(userDTO.getEmail(), "Potwierdzenie stworzenia konta",
                 "" + "<h2>Twoje dane do logowania to : </h2>"
                         + "<p>Login: </p>"
-                        + registerUserDTO.getUsername()
+                        + userDTO.getUsername()
                         + "<p>Hasło: </p>"
-                        + registerUserDTO.getPassword(), true);
+                        + userDTO.getPassword(), true);
     }
 
 }
