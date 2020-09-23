@@ -4,3 +4,5 @@ insert into category (id, name, active, iconurl) values (3, 'Motoryzacja', true,
 insert into category (id, name, active, iconurl) values (4, 'Dom i Ogród', true, '/resources/images/house.png');
 insert into category (id, name, active, iconurl) values (5, 'Sport', true, '/resources/images/electronics.png');
 
+
+

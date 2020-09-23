@@ -1,58 +1,44 @@
 package com.marcin.service.impl;
 
-import com.marcin.daos.UserDao;
+import com.marcin.daos.UserRepository;
 import com.marcin.domain.User;
 import com.marcin.service.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    private final UserDao userDao;
+    private final UserRepository userRepository;
 
-    public UserServiceImpl(UserDao userDao)
+    public UserServiceImpl(UserRepository userRepository)
     {
-        this.userDao = userDao;
-
+        this.userRepository = userRepository;
     }
 
     @Override
     public List<User> getAll() {
-        return userDao.getAll();
+        return userRepository.findAll();
     }
 
     @Override
     @Transactional
     public void saveUser(User user) {
-        userDao.saveUser(user);
+       userRepository.save(user);
     }
 
     @Override
-    public User findUserById(long id) {
-        return userDao.findUserById(id);
+    public Optional<User> findById(long id) {
+        return userRepository.findById(id);
     }
 
     @Override
-    public User findUserByName(String username) {
-        return userDao.findUserByName(username);
-    }
-
-
-    @Override
-    public boolean checkByUserName(String username) {
-        return userDao.checkByUserName(username);
-    }
-
-    @Override
-    public boolean checkByEmail(String email) {
-        return userDao.checkByEmail(email);
-    }
-
-    @Override
-    public void updateUser(User user) {
-        userDao.updateUser(user);
+    public User findByName(String name) {
+        System.out.println("Wywołano metodę findByName() z klasy userService");
+        return userRepository.findAll().stream()
+                .filter(u->u.getUsername().equals(name)).findFirst().orElse(null);
     }
 }

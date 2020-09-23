@@ -3,6 +3,7 @@ package com.marcin.service;
 import com.marcin.domain.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService  {
 
@@ -10,14 +11,8 @@ public interface UserService  {
 
     List<User> getAll();
 
-    User findUserByName(String username);
+    Optional<User> findById(long id);
 
-    User findUserById(long id);
-
-    boolean checkByUserName(String username);
-
-    boolean checkByEmail(String email);
-
-    void updateUser(User user);
+    User findByName(String name);
 
 }

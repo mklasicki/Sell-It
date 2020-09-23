@@ -33,7 +33,7 @@ public class ProductConverterImpl implements Converter<ProductDTO, Product> {
         product.setId(productDTO.getId());
         product.setProductName(productDTO.getName());
         product.setProductDescription(productDTO.getDescription());
-        product.setUser(userService.findUserByName(productDTO.getPrincipal().getName()));
+       // product.setUser(userService.findUserByName(productDTO.getPrincipal().getName()));
         product.setProductPrice(productDTO.getPrice());
         product.setImage(storageService.store(productDTO.getImage()));
         product.setCategory(categoryService.getCategoryById(Long.parseLong(productDTO.getCategory())));

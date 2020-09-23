@@ -58,15 +58,4 @@ public class UserFacadeImpl implements UserFacade {
                         + registerUserDTO.getPassword(), true);
     }
 
-    @Override
-    public RegisterUserDTO findUserByName(String name) throws IOException {
-        RegisterUserDTO registerUserDTO = (RegisterUserDTO) converter.from(userService.findUserByName(name));
-        return registerUserDTO;
-    }
-
-    @Override
-    public void update(RegisterUserDTO registerUserDTO) {
-        User user = (User) converter.to(registerUserDTO);
-        userService.updateUser(user);
-    }
 }

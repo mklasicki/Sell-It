@@ -19,7 +19,13 @@ public class UserDTO {
     private Long id;
     @NotBlank(message = "To pole nie może być puste")
     @Size(min=3, max = 15, message = "Liczba znaków musi się zawierać miedzy 3 a 15")
-    private String username;
+    private String userName;
+    @NotBlank(message = "To pole nie może być puste")
+    @Size(min=3, max = 15, message = "Liczba znaków musi się zawierać miedzy 3 a 15")
+    private String lastName;
+    @NotBlank(message = "To pole nie może być puste")
+    @Size(min=3, max = 15, message = "Liczba znaków musi się zawierać miedzy 3 a 15")
+    private String login;
     @NotBlank(message = "To pole nie może być puste")
     @Size(min=3, max = 15, message = "Liczba znaków musi się zawierać miedzy 3 a 15")
     private String password;
@@ -30,14 +36,5 @@ public class UserDTO {
     private boolean enabled;
     private String authority;
 
-    @Override
-    public String toString() {
-        return "UserDTO{" +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", enabled=" + enabled +
-                ", authority='" + authority + '\'' +
-                '}';
-    }
+
 }

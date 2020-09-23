@@ -26,7 +26,7 @@ public class SearchFacadeImpl implements SearchFacade {
 
     @Override
     public List<Product> showMyProducts(String username) {
-        User user = userService.findUserByName(username);
+        User user = userService.findByName(username);
         Long userId = user.getId();
         List<Product> userProducts = productService.getProductByUserId(userId);;
         return userProducts;

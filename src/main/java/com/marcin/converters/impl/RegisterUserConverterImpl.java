@@ -3,7 +3,6 @@ package com.marcin.converters.impl;
 import com.marcin.converters.Converter;
 import com.marcin.domain.User;
 import com.marcin.dto.RegisterUserDTO;
-import com.marcin.dto.UpdateUserDTO;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

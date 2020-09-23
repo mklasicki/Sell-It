@@ -37,22 +37,22 @@ public class ProfilePageController {
         this.userService = userService;
     }
 
-    @GetMapping("/myPage")
-    public String myPage(Model model, Principal principal) {
-         List <Product> products = productService.getProducts();
-         User user = userService.findUserByName(principal.getName());
-         UserSession userSession = new UserSession(user.getId(),LocalDate.now());
-         userSessionService.save(userSession);
-         model.addAttribute("products", products);
-        return "my-page";
-    }
+//    @GetMapping("/myPage")
+//    public String myPage(Model model, Principal principal) {
+//         List <Product> products = productService.getProducts();
+//         User user = userService.findUserByName(principal.getName());
+//         UserSession userSession = new UserSession(user.getId(),LocalDate.now());
+//         userSessionService.save(userSession);
+//         model.addAttribute("products", products);
+//        return "my-page";
+//    }
 
-    @GetMapping("/showMyProducts")
-    public String showUserProducts(Model model, Principal principal) {
-        List<Product> userProducts = searchFacade.showMyProducts(principal.getName());
-        model.addAttribute("userProducts",userProducts);
-        return "my-products-page";
-    }
+//    @GetMapping("/showMyProducts")
+//    public String showUserProducts(Model model, Principal principal) {
+//        List<Product> userProducts = searchFacade.showMyProducts(principal.getName());
+//        model.addAttribute("userProducts",userProducts);
+//        return "my-products-page";
+//    }
 
 
 }

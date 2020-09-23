@@ -1,8 +1,10 @@
 package com.marcin.controllers;
 
 
+import com.marcin.domain.User;
 import com.marcin.dto.RegisterUserDTO;
 import com.marcin.facades.UserFacade;
+import com.marcin.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -13,8 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 import javax.validation.Valid;
-import java.io.IOException;
-import java.security.Principal;
 import java.util.List;
 
 
@@ -23,10 +23,12 @@ import java.util.List;
 public class UserController {
 
     private final UserFacade userFacade;
+    UserService userService;
     private final Logger log = LoggerFactory.getLogger(UserController.class);
 
-    public UserController(UserFacade userFacade) {
+    public UserController(UserFacade userFacade, UserService userService) {
         this.userFacade = userFacade;
+        this.userService = userService;
     }
 
     @GetMapping("/register")
@@ -50,27 +52,13 @@ public class UserController {
         return "register-success-page";
     }
 
-    @GetMapping("/update")
-    public String update(Model model, Principal principal) throws IOException {
-        String name = principal.getName();
-        RegisterUserDTO registerUserDTO = userFacade.findUserByName(name);
-        model.addAttribute("updateUserDTO", registerUserDTO);
-        return "update-user-form";
-    }
-
-    @PostMapping("/updateUser")
-    public String updateUser(RegisterUserDTO registerUserDTO) {
-        userFacade.update(registerUserDTO);
-        log.info("User with id {} has been updated", registerUserDTO.getId());
-        return "update-success-page";
-    }
-
     private void showErrors(BindingResult result) {
         List<ObjectError> errors = result.getAllErrors();
         for (ObjectError error : errors) {
             log.info("Error during filling form {}", error);
         }
     }
+
 }
 
 
