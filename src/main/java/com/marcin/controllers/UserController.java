@@ -50,12 +50,11 @@ public class UserController {
         userFacade.registerNewUser(registerUserDTO);
         userFacade.sendCredentialsMail(registerUserDTO);
 
-        log.info("created new user {} send email on email address {}", registerUserDTO.getUsername(), registerUserDTO.getEmail());
+        log.info("created new user {} sent email on address {}", registerUserDTO.getUsername(), registerUserDTO.getEmail());
 
         return "register-success-page";
 
     }
-
 
     @GetMapping("/update")
     public String update(Model model, Principal principal) throws IOException {
