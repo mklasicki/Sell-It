@@ -1,7 +1,6 @@
 package com.marcin.controllers;
 
 
-
 import com.marcin.dto.UserDTO;
 import com.marcin.facades.UserFacade;
 import org.slf4j.Logger;
@@ -34,25 +33,29 @@ public class UserController {
 
     @PostMapping("/save")
     public String saveClient(@Valid @ModelAttribute("UserDTO") UserDTO userDTO, BindingResult result) throws MessagingException {
-        // this will occur when there will be errors while filling register form
+
         if (result.hasErrors()) {
-           showErrors(result);
+            showErrors(result);
             return "register-user-form";
         }
 
-        userFacade.registerNewUser(userDTO);
-        userFacade.sendCredentialsMail(userDTO);
-
-        log.info("created new user {} sent email on address {}", userDTO.getUsername(), userDTO.getEmail());
-
+        registerNewUser(userDTO);
         return "register-success-page";
     }
 
     private void showErrors(BindingResult result) {
         List<ObjectError> errors = result.getAllErrors();
         for (ObjectError error : errors) {
+
             log.info("Error during filling form {}", error);
         }
+    }
+
+    private void registerNewUser(UserDTO userDTO) throws MessagingException {
+        userFacade.registerNewUser(userDTO);
+        userFacade.sendCredentialsMail(userDTO);
+
+        log.info("created new user {} sent email on address {}", userDTO.getUsername(), userDTO.getEmail());
     }
 
 }
