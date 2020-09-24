@@ -25,7 +25,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
@@ -35,7 +34,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+    public void configure(AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(authenticationProvider());
     }
 
@@ -59,6 +58,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.headers().frameOptions().disable();
     }
-
 
 }

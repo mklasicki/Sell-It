@@ -9,4 +9,6 @@ public interface SearchFacade {
 
     List<Product> showMyProducts(String userName);
 
+    List<Product> searchProductsByName(String productName);
+
 }
