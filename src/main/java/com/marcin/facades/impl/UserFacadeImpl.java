@@ -42,7 +42,7 @@ public class UserFacadeImpl implements UserFacade {
 
         User user = (User) converter.to(userDTO);
         authorities.setAuthority("ROLE_USER");
-        authorities.setUsername(user.getUsername());
+        authorities.setUsername(user.getName());
         user.addAuthority(authorities);
         return user;
     }

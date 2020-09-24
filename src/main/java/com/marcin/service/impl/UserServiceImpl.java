@@ -39,6 +39,6 @@ public class UserServiceImpl implements UserService {
     public User findByName(String name) {
         System.out.println("Wywołano metodę findByName() z klasy userService");
         return userRepository.findAll().stream()
-                .filter(user->user.getUsername().equals(name)).findFirst().orElse(null);
+                .filter(user->user.getName().equals(name)).findFirst().orElse(null);
     }
 }

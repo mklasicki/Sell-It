@@ -47,12 +47,4 @@ public class ProfilePageController {
         return "my-page";
     }
 
-//    @GetMapping("/showMyProducts")
-//    public String showUserProducts(Model model, Principal principal) {
-//        List<Product> userProducts = searchFacade.showMyProducts(principal.getName());
-//        model.addAttribute("userProducts",userProducts);
-//        return "my-products-page";
-//    }
-
-
 }

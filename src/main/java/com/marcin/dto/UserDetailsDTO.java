@@ -18,7 +18,7 @@ public class UserDetailsDTO implements UserDetails {
         this.user = user;
 
         if (user == null) {
-            throw new UsernameNotFoundException("User with name " + user.getUsername() + " doesn't exists");
+            throw new UsernameNotFoundException("User with name " + user.getName() + " doesn't exists");
         }
     }
 
@@ -36,7 +36,7 @@ public class UserDetailsDTO implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return user.getName();
     }
 
     @Override
