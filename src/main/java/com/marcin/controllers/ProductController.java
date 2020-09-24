@@ -40,8 +40,8 @@ public class ProductController {
 
         @GetMapping("/main")
         public String getProducts (Model model) throws IOException {
-            List<ProductDTO> theProducts = productFacade.getAll();
-            model.addAttribute("products", theProducts);
+           List<Product> products = productService.getProducts();
+            model.addAttribute("products", products);
             return "main";
         }
 

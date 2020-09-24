@@ -51,7 +51,7 @@ public class ProductConverterImpl implements Converter<ProductDTO, Product> {
         productDTO.setPrice(product.getProductPrice());
         productDTO.setCategory(product.getCategory().getName());
         productDTO.setDescription(product.getProductDescription());
-        productDTO.setImage((MultipartFile) storageService.loadAsResource(product.getImage()).getFile());
+
 
         log.info("Conversion from product do productDTO");
 

@@ -47,4 +47,10 @@ public class ProfilePageController {
         return "my-page";
     }
 
+    @GetMapping("/myProducts")
+    public String myProducts() {
+
+        return "my-products-page";
+    }
+
 }

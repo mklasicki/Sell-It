@@ -42,10 +42,10 @@
                     <c:forEach var="temp" items="${products}">
                         <div class="product-tile">
                             <div id="photo-tile"><img class="product-photo" src= "images/${temp.image}" alt="product-photo"></div>
-                            <div id="name-tile">${temp.name}</div>
-                            <div id="description-tile">${temp.description}</div>
-                            <div id="price-tile">${temp.price}</div>
-                            <div >${temp.category}</div>
+                            <div id="name-tile">${temp.productName}</div>
+                            <div id="description-tile">${temp.productDescription}</div>
+                            <div id="price-tile">${temp.productPrice}</div>
+                            <div >Tu będzie się wyświetlała nazwa kategorii przedmiotu</div>
                         </div>
                     </c:forEach>
             </div>

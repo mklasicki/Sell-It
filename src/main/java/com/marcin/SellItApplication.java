@@ -15,10 +15,7 @@ public class SellItApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SellItApplication.class, args);
 
-
-
 	}
-
 
 	@Bean
 	CommandLineRunner init(StorageService storageService) {

@@ -28,7 +28,7 @@
                 <li><a href="/addProduct">Dodaj nowy</a></li>
                 <li><input type="text" placeholder=" Szukaj przedmiotu" name="productName"></li>
                 <li><button id="search-button" type="submit" name="name">Szukaj</button></li>
-                <li><a href="/showMyProducts">Twoje ogloszenia</a><li>
+                <li><a href="/myProducts">Twoje ogloszenia</a><li>
             </ol>
             </form:form>
         </div>
