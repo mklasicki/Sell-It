@@ -10,12 +10,7 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="main-header">Witaj ${registerUserDTO.username}!</h1>
-        <section class="login-credentials">
-            <p>Twoje dane to:</p>
-            <p>Login: ${registerUserDTO.username}</p>
-            <p>Adres mail: ${registerUserDTO.email}</p>
-        </section>
+        <h1 class="main-header">Witaj ${userDTO.username} w naszym serwisie!</h1>
         <section class="mail-info_message">
             <p>Na Twojego maila zostało wysłane potwierdzenie rejestracji oraz dane do logowania.</p>
         </section>
