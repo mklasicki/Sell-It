@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.security.Principal;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.TimeZone;
 import java.util.Timer;
@@ -41,7 +42,7 @@ public class ProfilePageController {
     public String myPage(Model model, Principal principal) {
          List <Product> products = productService.getProducts();
          User user = userService.findByName(principal.getName());
-         UserSession userSession = new UserSession(user.getId(),LocalDate.now());
+         UserSession userSession = new UserSession(user.getId(), LocalDate.now());
          userSessionService.save(userSession);
          model.addAttribute("products", products);
         return "my-page";

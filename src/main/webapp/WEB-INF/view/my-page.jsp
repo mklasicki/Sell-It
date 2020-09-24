@@ -9,7 +9,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Twoje ogłoszenia.</title>
+    <title>Twoja strona.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
     <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
@@ -33,7 +33,6 @@
             </form:form>
         </div>
         <div id="content">
-         <h5>Twoje Ogłoszenia</h5>
             <h3 id="category-header">Kategorie przedmiotów</h3>
                 <ol>
                     <li><i class="icon-laptop"></i> Elektronika</li>
@@ -53,10 +52,7 @@
                             <div id="name-tile">${temp.productName}</div>
                             <div id="description-tile">${temp.productDescription}</div>
                             <div id="price-tile">${temp.productPrice}</div>
-                            <div id="action-tile">Edytuj /
-                               <a href="${deleteLink}"
-                                onclick="if(!(confirm('Czy napewno usunąć ten produkt z listy??')))return false">Usuń</a></div>
-                        </div>
+                             <div >Tu będzie się wyświetlała nazwa kategorii przedmiotu</div>
                     </c:forEach>
             </div>
         </div>
