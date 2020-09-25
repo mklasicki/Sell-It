@@ -20,6 +20,7 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.TimeZone;
 import java.util.Timer;
+import java.util.stream.Collectors;
 
 @Controller
 public class ProfilePageController {
@@ -49,8 +50,11 @@ public class ProfilePageController {
     }
 
     @GetMapping("/myProducts")
-    public String myProducts() {
-
+    public String myProducts(Model model, Principal principal) {
+        User user = userService.findByName(principal.getName());
+        List<Product> products = productService.getProducts()
+                .stream().filter(product -> product.getUser().getId().equals(user.getId())).collect(Collectors.toList());
+        model.addAttribute("products", products);
         return "my-products-page";
     }
 
