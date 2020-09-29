@@ -21,7 +21,7 @@
     </div>
     <div id="login-container">
         <div id="login-form">
-            <form:form name="login" action="${pageContex.request.contextPath}/authenticateTheUser" method="POST">
+            <form:form name="login" action="${pageContext.request.contextPath}/authenticateTheUser" method="POST">
                 <label for="username-input">Nazwa uzytkowka</label>
                 <br /><br />
                 <input id="username-input" name="username" type="text">
