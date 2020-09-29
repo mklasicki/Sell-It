@@ -52,7 +52,7 @@
                             <div id="name-tile">${temp.productName}</div>
                             <div id="description-tile">${temp.productDescription}</div>
                             <div id="price-tile">${temp.productPrice}</div>
-                             <div >Tu będzie się wyświetlała nazwa kategorii przedmiotu</div>
+                             <div>${temp.category.name}</div>
                     </c:forEach>
             </div>
         </div>
