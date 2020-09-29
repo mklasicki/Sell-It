@@ -32,7 +32,7 @@ public class UserController {
     }
 
     @PostMapping("/save")
-    public String saveClient(@Valid @ModelAttribute("UserDTO") UserDTO userDTO, BindingResult result) throws MessagingException {
+    public String saveUser(@Valid @ModelAttribute("UserDTO") UserDTO userDTO, BindingResult result) throws MessagingException {
 
         if (result.hasErrors()) {
             showErrors(result);
@@ -57,6 +57,7 @@ public class UserController {
 
         log.info("created new user {} sent email on address {}", userDTO.getUsername(), userDTO.getEmail());
     }
+
 
 }
 

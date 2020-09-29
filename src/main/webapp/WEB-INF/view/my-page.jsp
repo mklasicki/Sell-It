@@ -52,7 +52,7 @@
                             <div id="name-tile">${temp.productName}</div>
                             <div id="description-tile">${temp.productDescription}</div>
                             <div id="price-tile">${temp.productPrice}</div>
-                             <div>${temp.category.name}</div>
+                             <div id='category-tile'>${temp.category.name}</div>
                     </c:forEach>
             </div>
         </div>

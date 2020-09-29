@@ -42,8 +42,8 @@ public class ProfilePageController {
     @GetMapping("/myPage")
     public String myPage(Model model, Principal principal) {
          List <Product> products = productService.getProducts();
-         User user = userService.findByName(principal.getName());
-         UserSession userSession = new UserSession(user.getId(), LocalDate.now());
+         getLoggedUser(principal);
+         UserSession userSession = new UserSession(getLoggedUser(principal).getId(), LocalDate.now());
          userSessionService.save(userSession);
          model.addAttribute("products", products);
         return "my-page";
@@ -51,11 +51,15 @@ public class ProfilePageController {
 
     @GetMapping("/myProducts")
     public String myProducts(Model model, Principal principal) {
-        User user = userService.findByName(principal.getName());
+        getLoggedUser(principal);
         List<Product> products = productService.getProducts()
-                .stream().filter(product -> product.getUser().getId().equals(user.getId())).collect(Collectors.toList());
+                .stream().filter(product -> product.getUser().getId().equals(getLoggedUser(principal).getId())).collect(Collectors.toList());
         model.addAttribute("products", products);
         return "my-products-page";
+    }
+
+    private User getLoggedUser(Principal principal) {
+        return userService.findByName(principal.getName());
     }
 
 }
