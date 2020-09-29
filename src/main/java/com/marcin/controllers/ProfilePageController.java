@@ -26,15 +26,12 @@ import java.util.stream.Collectors;
 public class ProfilePageController {
 
     private final ProductService productService;
-    private final SearchFacade searchFacade;
     private final UserSessionService userSessionService;
     private final UserService userService;
 
 
-    public ProfilePageController(ProductService productService, SearchFacade searchFacade, UserSessionService userSessionService
-                                , UserService userService) {
+    public ProfilePageController(ProductService productService, UserSessionService userSessionService, UserService userService) {
         this.productService = productService;
-        this.searchFacade = searchFacade;
         this.userSessionService = userSessionService;
         this.userService = userService;
     }
