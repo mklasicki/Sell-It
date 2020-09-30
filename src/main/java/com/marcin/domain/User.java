@@ -28,6 +28,15 @@ public class User {
 
     }
 
+    public User(Long id, String name, String lastName, String login, String password, String email) {
+        this.id = id;
+        this.name = name;
+        this.lastName = lastName;
+        this.login = login;
+        this.password = password;
+        this.email = email;
+    }
+
     public boolean isNew() {
         return id == 0;
     }
