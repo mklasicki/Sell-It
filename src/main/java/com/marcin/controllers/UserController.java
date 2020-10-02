@@ -27,38 +27,33 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public String registerForm(@ModelAttribute("UserDTO") UserDTO userDTO) {
+    public String registerUser(@ModelAttribute("UserDTO") UserDTO userDTO) {
         return "register-user-form";
     }
 
     @PostMapping("/save")
     public String saveUser(@Valid @ModelAttribute("UserDTO") UserDTO userDTO, BindingResult result) throws MessagingException {
+        return checkAndRegisterNewUser(userDTO, result);
+    }
 
+
+    private String checkAndRegisterNewUser(UserDTO userDTO, BindingResult result) throws MessagingException {
         if (result.hasErrors()) {
-            showErrors(result);
+            List<ObjectError> errors = result.getAllErrors();
+            for (ObjectError error : errors) {
+
+                log.info("Can't  register new user, errors occurred during filling form {}", error);
+            }
             return "register-user-form";
-        }
+        } else {
+            userFacade.registerNewUser(userDTO);
+            userFacade.sendCredentialsMail(userDTO);
 
-        registerNewUser(userDTO);
-        return "register-success-page";
-    }
+            log.info("created new user {} sent email on address {}", userDTO.getUsername(), userDTO.getEmail());
 
-    private void showErrors(BindingResult result) {
-        List<ObjectError> errors = result.getAllErrors();
-        for (ObjectError error : errors) {
-
-            log.info("Error during filling form {}", error);
+            return "register-success-page";
         }
     }
-
-    private void registerNewUser(UserDTO userDTO) throws MessagingException {
-        userFacade.registerNewUser(userDTO);
-        userFacade.sendCredentialsMail(userDTO);
-
-        log.info("created new user {} sent email on address {}", userDTO.getUsername(), userDTO.getEmail());
-    }
-
-
 }
 
 
