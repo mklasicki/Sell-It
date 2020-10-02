@@ -18,14 +18,13 @@ import javax.mail.MessagingException;
 public class UserFacadeImpl implements UserFacade {
 
     private final UserService userService;
-    private final AuthoritiesService authoritiesService;
     private final Converter converter;
     private final MailService mailService;
 
-    public UserFacadeImpl(UserService userService, AuthoritiesService authoritiesService
-            , @Qualifier("userConverterImpl") Converter converter, MailService mailService) {
+    public UserFacadeImpl(UserService userService,
+                          @Qualifier("userConverterImpl") Converter converter,
+                          MailService mailService) {
         this.userService = userService;
-        this.authoritiesService = authoritiesService;
         this.converter = converter;
         this.mailService = mailService;
     }
