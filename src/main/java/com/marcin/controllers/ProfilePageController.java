@@ -1,6 +1,6 @@
 package com.marcin.controllers;
 
-import com.marcin.domain.Product;
+
 import com.marcin.domain.User;
 import com.marcin.service.ProductService;
 import com.marcin.service.UserService;
@@ -9,11 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
-
 import java.security.Principal;
-import java.time.LocalDate;
-import java.util.List;
-import java.util.stream.Collectors;
+
 
 @Controller
 public class ProfilePageController {
