@@ -6,7 +6,6 @@ import com.marcin.domain.Authorities;
 import com.marcin.domain.User;
 import com.marcin.dto.UserDTO;
 import com.marcin.facades.UserFacade;
-import com.marcin.service.AuthoritiesService;
 import com.marcin.service.MailService;
 import com.marcin.service.UserService;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -18,11 +17,11 @@ import javax.mail.MessagingException;
 public class UserFacadeImpl implements UserFacade {
 
     private final UserService userService;
-    private final Converter converter;
+    private final Converter<UserDTO, User> converter;
     private final MailService mailService;
 
     public UserFacadeImpl(UserService userService,
-                          @Qualifier("userConverterImpl") Converter converter,
+                          @Qualifier("userConverterImpl") Converter<UserDTO, User> converter,
                           MailService mailService) {
         this.userService = userService;
         this.converter = converter;
@@ -39,7 +38,7 @@ public class UserFacadeImpl implements UserFacade {
 
     User createUserForm(UserDTO userDTO, Authorities authorities) {
 
-        User user = (User) converter.to(userDTO);
+        User user = converter.to(userDTO);
         authorities.setAuthority("ROLE_USER");
         authorities.setUsername(user.getName());
         user.addAuthority(authorities);
