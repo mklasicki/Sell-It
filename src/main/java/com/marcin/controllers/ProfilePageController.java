@@ -35,10 +35,7 @@ public class ProfilePageController {
 
     @GetMapping("/myProducts")
     public String myProducts(Model model, Principal principal) {
-        getLoggedUser(principal);
-        List<Product> products = productService.getProducts()
-                .stream().filter(product -> product.getUser().getId().equals(getLoggedUser(principal).getId())).collect(Collectors.toList());
-        model.addAttribute("products", products);
+        model.addAttribute("products", productService.getProductByUserId(getLoggedUser(principal).getId()));
         return "my-products-page";
     }
 
@@ -47,3 +44,4 @@ public class ProfilePageController {
     }
 
 }
+
