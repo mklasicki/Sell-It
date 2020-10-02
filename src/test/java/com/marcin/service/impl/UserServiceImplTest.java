@@ -8,7 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +22,7 @@ import static org.mockito.Mockito.*;
 class UserServiceImplTest {
 
     private final long USER_ID = 1L;
+    private final String NAME = "Marcin";
 
     @Mock
     UserRepository userRepository;
@@ -42,13 +43,13 @@ class UserServiceImplTest {
         //then
         assertThat(users, hasSize(3));
         assertNotNull(userResultList);
+        verify(userRepository, times(1)).findAll();
     }
 
     @Test
     void should_add_new_user() {
 
         //given
-        List<User> users = new ArrayList<>();
         User user1 = new User(1L, "Marcin", "Klasicki","mar", "pass123", "marcin@klasicki.pl");
         when(userRepository.save(user1)).thenReturn(user1);
 
@@ -76,7 +77,8 @@ class UserServiceImplTest {
 
     @Test
     void findByName() {
-    }
+
+}
 
     private List<User> generateTestData() {
 
