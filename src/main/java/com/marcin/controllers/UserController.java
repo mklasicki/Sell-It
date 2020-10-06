@@ -55,8 +55,8 @@ public class UserController {
     }
 
     @PostMapping("/update")
-    public String update() {
-
+    public String update(Long id, UserDTO userDTO) {
+        userService.updateUser(id,userDTO);
         return "my-page";
     }
 
