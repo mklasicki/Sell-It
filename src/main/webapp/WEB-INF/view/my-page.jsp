@@ -24,7 +24,7 @@
          <form:form action="searchProduct" modelAttribute="products"  method="get">
             <ol>
                 <li><a href="/logout">Wyloguj się</a></li>
-                <li><a href = "/user/update">Edytuj Profil</a></li>
+                <li><a href = "/user/updateUserForm?userId">Edytuj Profil</a></li>
                 <li><a href="/addProduct">Dodaj nowy</a></li>
                 <li><input type="text" placeholder=" Szukaj przedmiotu" name="productName"></li>
                 <li><button id="search-button" type="submit" name="name">Szukaj</button></li>
