@@ -13,7 +13,7 @@
             <h2>Edytuj dane konta</h2>
         </div>
 
-        <form:form id="userFormTable" action="save" modelAttribute="UserDTO" method="post">
+        <form:form id="userFormTable" action="update" modelAttribute="UserDTO" method="post">
             <div class="user-form-input">
                 <label for="username">Imię: </label>
                 <form:input path="username" placeholder="Imię" />

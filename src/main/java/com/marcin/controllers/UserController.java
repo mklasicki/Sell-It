@@ -55,6 +55,13 @@ public class UserController {
         return "update-user-form";
     }
 
+    @PostMapping("/update")
+    public String update(@ModelAttribute("UserDTO") UserDTO userDTO, Principal principal) {
+        userService.updateUser(userService.findByName(principal.getName()).getId(), converter.to(userDTO));
+        return "my-page";
+
+    }
+
     private String checkAndRegisterNewUser(UserDTO userDTO, BindingResult result) throws MessagingException {
         if (result.hasErrors()) {
             List<ObjectError> errors = result.getAllErrors();
