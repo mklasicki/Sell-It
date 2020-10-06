@@ -25,7 +25,8 @@ public class ProfilePageController {
     }
 
     @GetMapping("/myPage")
-    public String myPage(Model model) {
+    public String myPage(Model model, Principal principal) {
+        model.addAttribute("user", getLoggedUser(principal));
         model.addAttribute("products", productService.getProducts());
         return "my-page";
     }

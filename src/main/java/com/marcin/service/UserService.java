@@ -1,6 +1,7 @@
 package com.marcin.service;
 
 import com.marcin.domain.User;
+import com.marcin.dto.UserDTO;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,6 +16,6 @@ public interface UserService  {
 
     User findByName(String name);
 
-    void updateUser(Long id, User user);
+    void updateUser(Long id, UserDTO userDTO);
 
 }

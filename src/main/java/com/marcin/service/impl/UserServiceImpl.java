@@ -2,6 +2,7 @@ package com.marcin.service.impl;
 
 import com.marcin.daos.UserRepository;
 import com.marcin.domain.User;
+import com.marcin.dto.UserDTO;
 import com.marcin.service.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,12 +44,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(Long id, User user) {
-
+    public void updateUser(Long id, UserDTO userDTO) {
         User userToUpdate = userRepository.findById(id).orElse(null);
-        userToUpdate.setLogin(user.getLogin());
-        userToUpdate.setName(user.getName());
+        userToUpdate.setName(userDTO.getUsername());
+        userToUpdate.setLastName(userDTO.getUsername());
+        userToUpdate.setPassword(userDTO.getPassword());
+        userToUpdate.setEmail(userDTO.getEmail());
         userRepository.save(userToUpdate);
 
     }
+
+
 }

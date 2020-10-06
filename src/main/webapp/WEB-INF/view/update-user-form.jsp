@@ -13,19 +13,20 @@
             <h2>Edytuj dane konta</h2>
         </div>
 
-        <form:form id="userFormTable" action="update" modelAttribute="UserDTO" method="post">
+        <form:form id="userFormTable" action="update" modelAttribute="userDTO" method="post">
+                <form:hidden path="id" />
             <div class="user-form-input">
                 <label for="username">Imię: </label>
                 <form:input path="username" placeholder="Imię" />
                 <form:errors path="username" class="error" />
             </div>
             <div class="user-form-input">
-                <label for="surname">Nazwisko: </label>
+                <label for="lastName">Nazwisko: </label>
                 <form:input path="lastName" placeholder="Nazwisko" />
                 <form:errors path="lastName" class="error" />
             </div>
             <div class="user-form-input">
-                <label for="password">Nowe hasło: </label>
+                <label for="password">Hasło: </label>
                 <form:password path="password" placeholder="password" />
                 <form:errors path="password" class="error" />
             </div>

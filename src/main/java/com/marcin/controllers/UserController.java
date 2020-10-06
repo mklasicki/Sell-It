@@ -48,18 +48,16 @@ public class UserController {
     }
 
     @GetMapping("/updateUserForm")
-    public String showUpdateForm(@RequestParam("userId") Long id, Principal principal, Model model) throws IOException {
-        User user = userService.findByName(principal.getName());
-        UserDTO userDTO = converter.from(user);
-        model.addAttribute("UserDTO", userDTO);
+    public String showUpdateForm(@RequestParam("userId") Long id, Model model) throws IOException {
+        UserDTO userDTO = converter.from(userService.findById(id).orElse(null));
+        model.addAttribute("userDTO", userDTO);
         return "update-user-form";
     }
 
     @PostMapping("/update")
-    public String update(@ModelAttribute("UserDTO") UserDTO userDTO, Principal principal) {
-        userService.updateUser(userService.findByName(principal.getName()).getId(), converter.to(userDTO));
-        return "my-page";
+    public String update() {
 
+        return "my-page";
     }
 
     private String checkAndRegisterNewUser(UserDTO userDTO, BindingResult result) throws MessagingException {
