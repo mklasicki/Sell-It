@@ -1,17 +1,24 @@
 package com.marcin.controllers;
 
 
+import com.marcin.converters.Converter;
+import com.marcin.domain.User;
 import com.marcin.dto.UserDTO;
 import com.marcin.facades.UserFacade;
+import com.marcin.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 import javax.validation.Valid;
+import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
 
 
@@ -20,10 +27,14 @@ import java.util.List;
 public class UserController {
 
     private final UserFacade userFacade;
+    private final UserService userService;
+    private final Converter<UserDTO, User> converter;
     private final Logger log = LoggerFactory.getLogger(UserController.class);
 
-    public UserController(UserFacade userFacade) {
+    public UserController(UserFacade userFacade, UserService userService, @Qualifier("userConverterImpl") Converter<UserDTO, User> converter) {
         this.userFacade = userFacade;
+        this.userService = userService;
+        this.converter = converter;
     }
 
     @GetMapping("/register")
@@ -34,6 +45,14 @@ public class UserController {
     @PostMapping("/save")
     public String saveUser(@Valid @ModelAttribute("UserDTO") UserDTO userDTO, BindingResult result) throws MessagingException {
         return checkAndRegisterNewUser(userDTO, result);
+    }
+
+    @GetMapping("/updateUserForm")
+    public String showUpdateForm(@RequestParam("userId") Long id, Principal principal, Model model) throws IOException {
+        User user = userService.findByName(principal.getName());
+        UserDTO userDTO = converter.from(user);
+        model.addAttribute("UserDTO", userDTO);
+        return "register-user-form";
     }
 
 

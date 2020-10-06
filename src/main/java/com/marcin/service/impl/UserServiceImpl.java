@@ -41,4 +41,14 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll().stream()
                 .filter(user->user.getName().equals(name)).findFirst().orElse(null);
     }
+
+    @Override
+    public void updateUser(Long id, User user) {
+
+        User userToUpdate = userRepository.findById(id).orElse(null);
+        userToUpdate.setLogin(user.getLogin());
+        userToUpdate.setName(user.getName());
+        userRepository.save(userToUpdate);
+
+    }
 }
