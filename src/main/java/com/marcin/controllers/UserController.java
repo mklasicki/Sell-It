@@ -52,9 +52,8 @@ public class UserController {
         User user = userService.findByName(principal.getName());
         UserDTO userDTO = converter.from(user);
         model.addAttribute("UserDTO", userDTO);
-        return "register-user-form";
+        return "update-user-form";
     }
-
 
     private String checkAndRegisterNewUser(UserDTO userDTO, BindingResult result) throws MessagingException {
         if (result.hasErrors()) {
