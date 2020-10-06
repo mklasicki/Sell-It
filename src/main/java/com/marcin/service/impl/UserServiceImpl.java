@@ -4,6 +4,7 @@ import com.marcin.daos.UserRepository;
 import com.marcin.domain.User;
 import com.marcin.dto.UserDTO;
 import com.marcin.service.UserService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,10 +15,12 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository)
+    public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder)
     {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -48,7 +51,7 @@ public class UserServiceImpl implements UserService {
         User userToUpdate = userRepository.findById(id).orElse(null);
         userToUpdate.setName(userDTO.getUsername());
         userToUpdate.setLastName(userDTO.getUsername());
-        userToUpdate.setPassword(userDTO.getPassword());
+        userToUpdate.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         userToUpdate.setEmail(userDTO.getEmail());
         userRepository.save(userToUpdate);
 
