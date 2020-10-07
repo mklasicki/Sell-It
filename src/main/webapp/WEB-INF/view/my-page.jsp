@@ -25,14 +25,14 @@
             <ol>
                 <li><a href="/logout">Wyloguj się</a></li>
                 <li>
-                <c:url var="updateLink" value="/user/updateUserForm">
+                <c:url var="updateLink" value="/user/update-form">
                     <c:param name="userId" value="${user.id}"/>
                    </c:url>
                 <a href = "${updateLink}">Edytuj Profil</a></li>
-                <li><a href="/addProduct">Dodaj nowy</a></li>
+                <li><a href="/product/add-form">Dodaj nowy</a></li>
                 <li><input type="text" placeholder=" Szukaj przedmiotu" name="productName"></li>
                 <li><button id="search-button" type="submit" name="name">Szukaj</button></li>
-                <li><a href="/myProducts">Twoje ogloszenia</a><li>
+                <li><a href="/my-products">Twoje ogloszenia</a><li>
             </ol>
             </form:form>
         </div>
@@ -48,7 +48,7 @@
             <div id="content-list">
                 <h3 id="content-list-header">Ostatnio dodane ogłoszenia</h3>
                     <c:forEach var="temp" items="${products}">
-                        <c:url var="deleteLink" value="/deleteProduct">
+                        <c:url var="deleteLink" value="/delete">
                             <c:param name="productId" value="${temp.id}"/>
                         </c:url>
                         <div class="product-tile">

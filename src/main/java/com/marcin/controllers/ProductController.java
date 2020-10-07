@@ -24,6 +24,7 @@ import java.util.List;
 
 
 @Controller
+@RequestMapping("/product")
 public class ProductController {
 
     private final ProductFacade productFacade;
@@ -38,23 +39,16 @@ public class ProductController {
             this.categoryFacade = categoryFacade;
         }
 
-        @GetMapping("/main")
-        public String getProducts (Model model) throws IOException {
-           List<Product> products = productService.getProducts();
-            model.addAttribute("products", products);
-            return "main";
-        }
-
-        @GetMapping("/addProduct")
+        @GetMapping("/add-form")
         public String showProduct (Model model){
-           ProductDTO productDTO = new ProductDTO();
+            ProductDTO productDTO = new ProductDTO();
             List<Category> categories = categoryFacade.getAllCategories();
             model.addAttribute("categories", categories);
             model.addAttribute("product", productDTO);
             return "product-form";
         }
 
-        @PostMapping("/saveProduct")
+        @PostMapping("/save")
         public String saveProduct (@Valid @ModelAttribute("product")ProductDTO productDTO, BindingResult result, Principal principal){
 
             if (result.hasErrors()) {
@@ -70,11 +64,11 @@ public class ProductController {
             productFacade.registerNewProduct(productDTO);
 
             logger.info("Created new product {}", productDTO);
-                return "redirect:/myPage";
+                return "redirect:/my-page";
             }
 
 
-            @GetMapping("/deleteProduct")
+            @GetMapping("/delete")
             public String showFormForDelete (@RequestParam("productId") Long id, Model model) throws IOException {
                 productService.deleteProduct(id);
                 List<ProductDTO> theProducts = productFacade.getAll();
@@ -82,7 +76,7 @@ public class ProductController {
                 return "my-page";
             }
 
-            @GetMapping("/searchProduct")
+            @GetMapping("/search")
             public String searchProductByName (@RequestParam("productName") String productName, Model model) throws NoResultException {
                 List<Product> products = productService.findProductByName(productName);
                 if (products.isEmpty()) {

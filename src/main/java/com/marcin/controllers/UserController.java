@@ -46,7 +46,7 @@ public class UserController {
         return checkAndRegisterNewUser(userDTO, result);
     }
 
-    @GetMapping("/updateUserForm")
+    @GetMapping("/update-form")
     public String showUpdateForm(@RequestParam("userId") Long id, Model model) throws IOException {
         UserDTO userDTO = converter.from(userService.findById(id).orElse(null));
         model.addAttribute("userDTO", userDTO);
