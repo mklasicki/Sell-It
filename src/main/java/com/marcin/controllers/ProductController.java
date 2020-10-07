@@ -69,7 +69,7 @@ public class ProductController {
             productDTO.setPrincipal(principal);
             productFacade.registerNewProduct(productDTO);
 
-            logger.info("Created new product {}" + productDTO);
+            logger.info("Created new product {}", productDTO);
                 return "redirect:/myPage";
             }
 
@@ -102,10 +102,10 @@ public class ProductController {
                 Product theProduct = productService.getProduct(id);
                 try {
                     model.addAttribute("product", theProduct);
-                    logger.info("Found product with id {}" + id);
+                    logger.info("Found product with id {}", id);
                     return "test";
                 } catch (NullPointerException e) {
-                   logger.info("Product with id {} not found" + id);
+                   logger.info("Product with id {} not found", id);
                     return "error";
                 }
             }
