@@ -17,6 +17,7 @@ import org.springframework.validation.ObjectError;
 
 
 import javax.mail.MessagingException;
+import java.io.IOException;
 import java.util.List;
 
 
@@ -55,7 +56,6 @@ public class UserFacadeImpl implements UserFacade {
 
             return "register-success-page";
         }
-
     }
 
     User createUserForm(UserDTO userDTO, Authorities authorities) {
@@ -66,6 +66,13 @@ public class UserFacadeImpl implements UserFacade {
         user.addAuthority(authorities);
         user.setEnabled(true);
         return user;
+    }
+
+    @Override
+    public UserDTO fillUserUpdateForm(Long id) throws IOException {
+        User user = userService.findById(id).orElse(null);
+        UserDTO userDTO = converter.from(user);
+        return userDTO;
     }
 
     @Override
