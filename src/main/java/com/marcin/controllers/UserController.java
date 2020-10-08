@@ -26,13 +26,12 @@ public class UserController {
 
     private final UserFacade userFacade;
     private final UserService userService;
-    private final Converter<UserDTO, User> converter;
     private final Logger log = LoggerFactory.getLogger(UserController.class);
 
-    public UserController(UserFacade userFacade, UserService userService, @Qualifier("userConverterImpl") Converter<UserDTO, User> converter) {
+    public UserController(UserFacade userFacade, UserService userService) {
         this.userFacade = userFacade;
         this.userService = userService;
-        this.converter = converter;
+
     }
 
     @GetMapping("/register")
