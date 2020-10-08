@@ -29,18 +29,16 @@ public class ProductConverterImpl implements Converter<ProductDTO, Product> {
     @Override
     public Product to(ProductDTO productDTO) {
 
-        Product product = new Product();
-        product.setId(productDTO.getId());
-        product.setProductName(productDTO.getName());
-        product.setProductDescription(productDTO.getDescription());
-        product.setUser(userService.findByName(productDTO.getPrincipal().getName()));
-        product.setProductPrice(productDTO.getPrice());
-        product.setImage(storageService.store(productDTO.getImage()));
-        product.setCategory(categoryService.getCategoryById(Long.parseLong(productDTO.getCategory())));
-
         log.info("Conversion from productDTO to product");
 
-        return new Product() ;
+        return new Product(
+                productDTO.getId(),
+                productDTO.getName(),
+                productDTO.getPrice(),
+                productDTO.getDescription(),
+                storageService.store(productDTO.getImage()),
+                categoryService.getCategoryById(Long.parseLong(productDTO.getCategory())),
+                userService.findByName(productDTO.getPrincipal().getName()));
     }
 
     @Override
