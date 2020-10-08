@@ -40,7 +40,7 @@ public class ProductConverterImpl implements Converter<ProductDTO, Product> {
 
         log.info("Conversion from productDTO to product");
 
-        return product;
+        return new Product() ;
     }
 
     @Override

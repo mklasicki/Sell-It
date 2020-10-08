@@ -24,6 +24,16 @@ public class Product {
     public Product() {
     }
 
+    public Product(Long id, String productName, float productPrice, String productDescription, String image, Category category, User user) {
+        this.id = id;
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.productDescription = productDescription;
+        this.image = image;
+        this.category = category;
+        this.user = user;
+    }
+
     public boolean isNew() {
         return id == 0;
     }

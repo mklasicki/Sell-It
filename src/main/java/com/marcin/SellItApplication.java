@@ -12,17 +12,20 @@ import org.springframework.context.annotation.Bean;
 @EnableConfigurationProperties(StorageProperities.class)
 public class SellItApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SellItApplication.class, args);
+    public static void main(String[] args) {
+        SpringApplication.run(SellItApplication.class, args);
 
-	}
 
-	@Bean
-	CommandLineRunner init(StorageService storageService) {
-		return (args) -> {
-			storageService.deleteAll();
-			storageService.init();
-		};
+    }
 
-	}
+    @Bean
+    CommandLineRunner init(StorageService storageService) {
+        return (args) -> {
+            storageService.deleteAll();
+            storageService.init();
+        };
+
+    }
+
+
 }
