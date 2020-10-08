@@ -12,13 +12,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 import javax.validation.Valid;
 import java.io.IOException;
-import java.util.List;
+
 
 
 @Controller
@@ -43,7 +42,7 @@ public class UserController {
 
     @PostMapping("/save")
     public String saveUser(@Valid @ModelAttribute("UserDTO") UserDTO userDTO, BindingResult result) throws MessagingException {
-        return checkAndRegisterNewUser(userDTO, result);
+        return userFacade.validateAndRegisterNewUser(userDTO, result);
     }
 
     @GetMapping("/update-form")
@@ -59,23 +58,6 @@ public class UserController {
         return "my-page";
     }
 
-    private String checkAndRegisterNewUser(UserDTO userDTO, BindingResult result) throws MessagingException {
-        if (result.hasErrors()) {
-            List<ObjectError> errors = result.getAllErrors();
-            for (ObjectError error : errors) {
-
-                log.info("Can't  register new user, errors occurred during filling form {}", error);
-            }
-            return "register-user-form";
-        } else {
-            userFacade.registerNewUser(userDTO);
-            userFacade.sendCredentialsMail(userDTO);
-
-            log.info("created new user {} sent email on address {}", userDTO.getUsername(), userDTO.getEmail());
-
-            return "register-success-page";
-        }
-    }
 }
 
 
