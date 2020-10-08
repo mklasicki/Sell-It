@@ -76,6 +76,11 @@ public class UserFacadeImpl implements UserFacade {
     }
 
     @Override
+    public void updateUser(Long id, UserDTO userDTO) {
+        userService.updateUser(id, userDTO);
+    }
+
+    @Override
     public void sendCredentialsMail(UserDTO userDTO) throws MessagingException {
 
         mailService.SendMail(userDTO.getEmail(), "Potwierdzenie utworzenia konta",

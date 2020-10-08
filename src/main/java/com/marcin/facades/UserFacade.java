@@ -15,5 +15,6 @@ public interface UserFacade {
 
      UserDTO fillUserUpdateForm(Long id) throws IOException;
 
+     void updateUser(Long id, UserDTO userDTO);
 
 }

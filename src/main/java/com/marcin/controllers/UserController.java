@@ -25,13 +25,11 @@ import java.io.IOException;
 public class UserController {
 
     private final UserFacade userFacade;
-    private final UserService userService;
+
     private final Logger log = LoggerFactory.getLogger(UserController.class);
 
-    public UserController(UserFacade userFacade, UserService userService) {
+    public UserController(UserFacade userFacade) {
         this.userFacade = userFacade;
-        this.userService = userService;
-
     }
 
     @GetMapping("/register")
@@ -52,7 +50,7 @@ public class UserController {
 
     @PostMapping("/update")
     public String update(Long id, UserDTO userDTO) {
-        userService.updateUser(id,userDTO);
+       userFacade.updateUser(id, userDTO);
         return "my-page";
     }
 
