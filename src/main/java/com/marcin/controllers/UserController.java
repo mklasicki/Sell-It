@@ -1,14 +1,11 @@
 package com.marcin.controllers;
 
 
-import com.marcin.converters.Converter;
-import com.marcin.domain.User;
+
 import com.marcin.dto.UserDTO;
 import com.marcin.facades.UserFacade;
-import com.marcin.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
