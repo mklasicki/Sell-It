@@ -68,11 +68,8 @@ public class UserFacadeImpl implements UserFacade {
         return user;
     }
 
-
     @Override
     public void sendCredentialsMail(UserDTO userDTO) throws MessagingException {
-
-
 
         mailService.SendMail(userDTO.getEmail(), "Potwierdzenie stworzenia konta",
                 "" + "<h2>Twoje dane do logowania to : </h2>"
