@@ -1,5 +1,6 @@
 package com.marcin.service.impl;
 
+
 import com.marcin.daos.UserRepository;
 import com.marcin.domain.User;
 import org.junit.jupiter.api.Test;
@@ -50,7 +51,7 @@ class UserServiceImplTest {
     void should_add_new_user() {
 
         //given
-        User user1 = new User(1L, "Marcin", "Klasicki","mar", "pass123", "marcin@klasicki.pl");
+        User user1 = new User(USER_ID, "Marcin", "Klasicki","mar", "pass123", "marcin@klasicki.pl");
         when(userRepository.save(user1)).thenReturn(user1);
 
         //when
@@ -58,17 +59,21 @@ class UserServiceImplTest {
 
         //then
         verify(userRepository, times(1)).save(user1);
+
+
+
     }
 
     @Test
     void should_return_user_when_given_id() {
 
         //given
-        Optional<User> user = Optional.of(new User(1L, "Marcin", "Klasicki","mar", "pass123", "marcin@klasicki.pl"));
+        Optional<User> user = Optional.of(new User(USER_ID, "Marcin", "Klasicki","mar", "pass123", "marcin@klasicki.pl"));
         when(userRepository.findById(USER_ID)).thenReturn(user);
 
         //when
         Optional<User> userResult = userService.findById(USER_ID);
+
 
         //than
         assertThat(userResult, equalTo(user));

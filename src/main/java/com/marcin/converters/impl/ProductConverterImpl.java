@@ -38,7 +38,7 @@ public class ProductConverterImpl implements Converter<ProductDTO, Product> {
         product.setImage(storageService.store(productDTO.getImage()));
         product.setCategory(categoryService.getCategoryById(Long.parseLong(productDTO.getCategory())));
 
-        log.info("Conversion from productDTO {} to product {}");
+        log.info("Conversion from productDTO to product");
 
         return product;
     }
