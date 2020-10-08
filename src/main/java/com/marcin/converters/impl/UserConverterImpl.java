@@ -23,33 +23,27 @@ public class UserConverterImpl implements Converter<UserDTO, User> {
     @Override
     public User to(UserDTO userDTO) {
 
-        User user = new User();
-        user.setName(userDTO.getUsername());
-        user.setLastName(userDTO.getLastName());
-        user.setPassword(encoder.encode(userDTO.getPassword()));
-        user.setLogin(userDTO.getLogin());
-        user.setEmail(userDTO.getEmail());
-        user.setEnabled(userDTO.isEnabled());
+        log.info("Converting UserDTO to User");
 
-        log.info("Conversion from  userDTO {} to user {} ", userDTO, user);
-
-        return user;
-
+        return new User(
+                userDTO.getId(),
+                userDTO.getUsername(),
+                userDTO.getLastName(),
+                userDTO.getLogin(),
+                encoder.encode(userDTO.getPassword()),
+                userDTO.getEmail());
     }
 
     @Override
     public UserDTO from(User user) {
 
-        UserDTO userDTO = new UserDTO();
-        userDTO.setId(user.getId());
-        userDTO.setEmail(user.getEmail());
-        userDTO.setUsername(user.getName());
-        userDTO.setLastName(user.getLastName());
-        userDTO.setPassword(user.getPassword());
+        log.info("Converting User to UserDTO");
 
-        log.info("Conversion {} from  userDTO {}", user, userDTO);
-
-        return userDTO;
+        return new UserDTO(user.getId(),
+                user.getName(),
+                user.getLastName(),
+                user.getPassword(),
+                user.getEmail());
     }
 
     @Override

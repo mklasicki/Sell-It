@@ -36,6 +36,14 @@ public class UserDTO {
     private boolean enabled;
     private String authority;
 
+    public UserDTO(Long id, String username, String lastName, String password, String email) {
+        this.id = id;
+        this.username = username;
+        this.lastName = lastName;
+        this.password = password;
+        this.email = email;
+    }
+
     public Long getId() {
         return id;
     }

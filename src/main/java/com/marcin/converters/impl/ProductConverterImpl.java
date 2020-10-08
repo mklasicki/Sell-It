@@ -29,8 +29,6 @@ public class ProductConverterImpl implements Converter<ProductDTO, Product> {
     @Override
     public Product to(ProductDTO productDTO) {
 
-        log.info("Conversion from productDTO to product");
-
         return new Product(
                 productDTO.getId(),
                 productDTO.getName(),

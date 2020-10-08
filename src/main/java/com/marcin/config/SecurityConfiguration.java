@@ -43,7 +43,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/my-page").authenticated()
                 .antMatchers("/products/**").authenticated()
                 .antMatchers("/user/register").permitAll()
-                .antMatchers("/user/**").authenticated()
+                //.antMatchers("/user/**").authenticated()
                 .antMatchers("/h2-console").permitAll()
                 .and()
                 .formLogin()
