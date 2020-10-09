@@ -41,10 +41,8 @@ public class ProductController {
 
         @GetMapping("/add-form")
         public String showProduct (Model model){
-            ProductDTO productDTO = new ProductDTO();
-            List<Category> categories = categoryFacade.getAllCategories();
-            model.addAttribute("categories", categories);
-            model.addAttribute("product", productDTO);
+            model.addAttribute("categories",categoryFacade.getAllCategories());
+            model.addAttribute("product", new ProductDTO());
             return "product-form";
         }
 
