@@ -1,7 +1,6 @@
 package com.marcin.controllers;
 
 
-import com.marcin.domain.Category;
 import com.marcin.domain.Product;
 import com.marcin.dto.ProductDTO;
 import com.marcin.facades.CategoryFacade;
