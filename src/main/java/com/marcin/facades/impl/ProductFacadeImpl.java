@@ -18,9 +18,9 @@ import java.util.List;
 public class ProductFacadeImpl implements ProductFacade {
 
     private final ProductService productService;
-    private final Converter converter;
+    private final Converter<ProductDTO, Product> converter;
 
-    public ProductFacadeImpl(ProductService productService, @Qualifier("productConverterImpl") Converter converter) {
+    public ProductFacadeImpl(ProductService productService, @Qualifier("productConverterImpl") Converter<ProductDTO, Product> converter) {
         this.productService = productService;
         this.converter = converter;
     }
@@ -28,12 +28,14 @@ public class ProductFacadeImpl implements ProductFacade {
 
     @Override
     public void registerNewProduct(ProductDTO productDTO) {
-        Product product = (Product) converter.to(productDTO);
-        productService.registerNewProduct(product);
+        productService.registerNewProduct(converter.to(productDTO));
     }
 
     @Override
     public List<ProductDTO> getAll() throws IOException {
         return converter.listConverter(productService.getProducts());
     }
+
+
+
 }

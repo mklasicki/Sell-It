@@ -41,7 +41,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findByName(String name) {
-
         return userRepository.findAll().stream()
                 .filter(user->user.getName().equals(name)).findFirst().orElse(null);
     }
