@@ -13,7 +13,8 @@ public class Product {
     private float productPrice;
     private String productDescription;
     private String image;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH,
+            CascadeType.DETACH, CascadeType.MERGE})
     @JoinColumn(name = "category_id")
     private Category category;
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH,
