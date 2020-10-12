@@ -1,6 +1,5 @@
 package com.marcin.config;
 
-import com.marcin.StorageProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;

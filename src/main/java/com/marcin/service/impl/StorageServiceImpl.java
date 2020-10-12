@@ -1,6 +1,6 @@
 package com.marcin.service.impl;
 
-import com.marcin.StorageProperties;
+import com.marcin.config.StorageProperties;
 import com.marcin.exceptions.StorageException;
 import com.marcin.exceptions.StorageFileNotFoundException;
 import com.marcin.service.StorageService;

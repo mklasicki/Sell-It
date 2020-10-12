@@ -1,4 +1,4 @@
-package com.marcin;
+package com.marcin.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

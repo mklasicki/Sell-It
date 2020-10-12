@@ -1,5 +1,6 @@
 package com.marcin;
 
+import com.marcin.config.StorageProperties;
 import com.marcin.service.StorageService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
