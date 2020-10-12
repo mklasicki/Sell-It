@@ -25,6 +25,7 @@
         <div id="product-name">
             <div>Nazwa</div>
                 <form:input path="name" id="add-product-input" name="add-product" type="text"/>
+                <form:errors path="name" class = "error" />
         </div>
         <div id="product-category">
             Wybierz kategorię
@@ -41,14 +42,17 @@
                 </div>
                 <div id="text-area">
                     <form:textarea path="description" id="textarea-product-description"/>
+                    <form:errors path="description" class="error"/>
                 </div>
                 <div id="product-price">
                     <label>Podaj cenę </label>
                         <form:input path="price" type="text"/>
+                        <form:errors path="price" class="error"/>
                 </div>
                 <div id="product-photo-add">
                      Dodaj zdjęcie
                         <input name="image" type="file"/>
+                        <form:errors path="image" class="error"/>
                 </div>
                 <div id="add-product-button">
                       <button type="submit" class="login-button">Prześlij</button>
