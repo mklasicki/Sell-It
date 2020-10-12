@@ -54,6 +54,7 @@ public class ProductController {
             public String showFormForDelete (@RequestParam("productId") Long id, Model model) throws IOException {
                 productService.deleteProduct(id);
                 List<ProductDTO> theProducts = productFacade.getAll();
+                model.addAttribute("categories", categoryFacade.getAllCategories());
                 model.addAttribute("products", theProducts);
                 return "my-page";
             }

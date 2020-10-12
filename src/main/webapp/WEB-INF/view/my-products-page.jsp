@@ -43,7 +43,7 @@
             <div id="content-list">
                 <h3 id="content-list-header">Twoje ogłoszenia</h3>
                     <c:forEach var="temp" items="${products}">
-                        <c:url var="deleteLink" value="/deleteProduct">
+                        <c:url var="deleteLink" value="/product/delete">
                             <c:param name="productId" value="${temp.id}"/>
                         </c:url>
                         <div class="product-tile">

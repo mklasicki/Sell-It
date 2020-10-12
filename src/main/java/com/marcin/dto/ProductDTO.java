@@ -27,7 +27,6 @@ public class ProductDTO {
     private String description;
     @NotNull(message = "To pole nie może być puste")
     private Float price;
-    @Transient
     private MultipartFile image;
     private Principal principal;
 
