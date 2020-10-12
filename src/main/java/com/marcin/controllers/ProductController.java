@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import javax.persistence.NoResultException;
 import javax.validation.Valid;
@@ -47,22 +46,8 @@ public class ProductController {
 
         @PostMapping("/save")
         public String saveProduct (@Valid @ModelAttribute("product")ProductDTO productDTO, BindingResult result, Principal principal){
-
-            if (result.hasErrors()) {
-                List<ObjectError> errors = result.getAllErrors();
-                for (ObjectError error: errors ) {
-                    logger.info("Errors while filling form  {}", error);
-                }
-
-                return "product-form";
-            }
-
-            productDTO.setPrincipal(principal);
-            productFacade.registerNewProduct(productDTO);
-
-            logger.info("Created new product {}", productDTO);
-                return "redirect:/my-page";
-            }
+            return productFacade.validateAndRegisterNewProduct(productDTO, result, principal);
+        }
 
 
             @GetMapping("/delete")
