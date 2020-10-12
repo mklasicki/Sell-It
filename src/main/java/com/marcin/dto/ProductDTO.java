@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -25,6 +27,7 @@ public class ProductDTO {
     private String description;
     @NotNull(message = "To pole nie może być puste")
     private Float price;
+    @Transient
     private MultipartFile image;
     private Principal principal;
 
