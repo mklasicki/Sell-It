@@ -9,8 +9,6 @@ import java.util.List;
 
 public interface ProductFacade {
 
-    //void registerNewProduct(ProductDTO productDTO);
-
     String validateAndRegisterNewProduct(ProductDTO productDTO, BindingResult result, Principal principal);
 
     List<ProductDTO> getAll() throws IOException;
