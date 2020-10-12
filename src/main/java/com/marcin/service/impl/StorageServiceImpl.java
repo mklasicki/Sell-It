@@ -1,6 +1,6 @@
 package com.marcin.service.impl;
 
-import com.marcin.StorageProperities;
+import com.marcin.StorageProperties;
 import com.marcin.exceptions.StorageException;
 import com.marcin.exceptions.StorageFileNotFoundException;
 import com.marcin.service.StorageService;
@@ -27,8 +27,8 @@ public class StorageServiceImpl implements StorageService {
     private final Path rootLocation;
 
     @Autowired
-    public StorageServiceImpl(StorageProperities storageProperities) {
-        this.rootLocation = Paths.get(storageProperities.getLocation());
+    public StorageServiceImpl(StorageProperties storageProperties) {
+        this.rootLocation = Paths.get(storageProperties.getLocation());
     }
 
 
@@ -48,7 +48,9 @@ public class StorageServiceImpl implements StorageService {
         if (file == null || file.getOriginalFilename() == null) {
             throw new StorageException("Origin filename must exist");
         }
+
         String filename = StringUtils.cleanPath(file.getOriginalFilename());
+
         try {
             if (file.isEmpty()) {
                 throw new StorageException("Cannot store file" +

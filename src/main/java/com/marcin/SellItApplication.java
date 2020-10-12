@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 
 
 @SpringBootApplication
-@EnableConfigurationProperties(StorageProperities.class)
+@EnableConfigurationProperties(StorageProperties.class)
 public class SellItApplication {
 
     public static void main(String[] args) {
