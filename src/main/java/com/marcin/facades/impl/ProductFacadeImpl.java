@@ -55,4 +55,8 @@ public class ProductFacadeImpl implements ProductFacade {
         return "redirect:/my-page";
     }
 
+    @Override
+    public void deleteById(Long id) {
+        productService.deleteProduct(id);
+    }
 }

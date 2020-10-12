@@ -10,7 +10,6 @@ import com.marcin.service.UserService;
 import org.springframework.stereotype.Service;
 
 
-
 import java.util.List;
 
 @Service
@@ -28,7 +27,8 @@ public class SearchFacadeImpl implements SearchFacade {
     public List<Product> showMyProducts(String username) {
         User user = userService.findByName(username);
         Long userId = user.getId();
-        List<Product> userProducts = productService.getProductByUserId(userId);;
+        List<Product> userProducts = productService.getProductByUserId(userId);
+        ;
 
         return userProducts;
     }

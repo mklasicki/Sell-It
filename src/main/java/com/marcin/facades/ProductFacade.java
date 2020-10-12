@@ -13,4 +13,6 @@ public interface ProductFacade {
 
     List<ProductDTO> getAll() throws IOException;
 
+    void deleteById(Long id);
+
 }
