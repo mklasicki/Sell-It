@@ -24,8 +24,8 @@
         <form:form action="save" modelAttribute="product"  method="post" enctype="multipart/form-data">
         <div id="product-name">
             <div>Nazwa</div>
-                <form:input path="name" id="add-product-input" name="add-product" type="text"/>
-                <form:errors path="name" class = "error" />
+                <form:input path="productName" id="add-product-input" name="add-product" type="text"/>
+                <form:errors path="productName" class = "error" />
         </div>
         <div id="product-category">
             Wybierz kategorię
@@ -41,13 +41,13 @@
                     Opis przedmiotu
                 </div>
                 <div id="text-area">
-                    <form:textarea path="description" id="textarea-product-description"/>
-                    <form:errors path="description" class="error"/>
+                    <form:textarea path="productDescription" id="textarea-product-description"/>
+                    <form:errors path="productDescription" class="error"/>
                 </div>
                 <div id="product-price">
                     <label>Podaj cenę </label>
-                        <form:input path="price" type="text"/>
-                        <form:errors path="price" class="error"/>
+                        <form:input path="productPrice" type="text"/>
+                        <form:errors path="productPrice" class="error"/>
                 </div>
                 <div id="product-photo-add">
                      Dodaj zdjęcie

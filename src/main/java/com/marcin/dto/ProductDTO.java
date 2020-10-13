@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -20,13 +19,13 @@ public class ProductDTO {
 
     private Long id;
     @NotBlank(message = "To pole nie może byc puste")
-    private String name;
+    private String productName;
     private String category;
     @NotBlank(message = "To pole nie może być puste")
     @Size(max=300,message = "Liczba znaków nie może być wieksza niż 250")
-    private String description;
+    private String productDescription;
     @NotNull(message = "To pole nie może być puste")
-    private Float price;
+    private Float productPrice;
     private MultipartFile image;
     private Principal principal;
 
@@ -40,11 +39,11 @@ public class ProductDTO {
     }
 
     public String getName() {
-        return name;
+        return productName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.productName = name;
     }
 
     public String getCategory() {
@@ -55,20 +54,20 @@ public class ProductDTO {
         this.category = category;
     }
 
-    public String getDescription() {
-        return description;
+    public String getProductDescription() {
+        return productDescription;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setProductDescription(String productDescription) {
+        this.productDescription = productDescription;
     }
 
-    public Float getPrice() {
-        return price;
+    public Float getProductPrice() {
+        return productPrice;
     }
 
-    public void setPrice(Float price) {
-        this.price = price;
+    public void setProductPrice(Float productPrice) {
+        this.productPrice = productPrice;
     }
 
     public MultipartFile getImage() {
@@ -90,10 +89,10 @@ public class ProductDTO {
     @Override
     public String toString() {
         return "ProductDTO{" +
-                ", name='" + name + '\'' +
+                ", name='" + productName + '\'' +
                 ", category='" + category + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
+                ", description='" + productDescription + '\'' +
+                ", price=" + productPrice +
                 ", image=" + image +
                 ", principal=" + principal +
                 '}';

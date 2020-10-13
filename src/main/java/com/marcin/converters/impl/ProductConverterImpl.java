@@ -12,9 +12,10 @@ import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor
@@ -32,8 +33,8 @@ public class ProductConverterImpl implements Converter<ProductDTO, Product> {
         return new Product(
                 productDTO.getId(),
                 productDTO.getName(),
-                productDTO.getPrice(),
-                productDTO.getDescription(),
+                productDTO.getProductPrice(),
+                productDTO.getProductDescription(),
                 setImage(productDTO),
                 setCategory(productDTO),
                 setUser(productDTO));
@@ -44,9 +45,10 @@ public class ProductConverterImpl implements Converter<ProductDTO, Product> {
 
         ProductDTO productDTO = new ProductDTO();
         productDTO.setName(product.getProductName());
-        productDTO.setPrice(product.getProductPrice());
+        productDTO.setProductPrice(product.getProductPrice());
         productDTO.setCategory(product.getCategory().getName());
-        productDTO.setDescription(product.getProductDescription());
+        productDTO.setProductDescription(product.getProductDescription());
+
 
 
         log.info("Conversion from product do productDTO");
@@ -55,10 +57,13 @@ public class ProductConverterImpl implements Converter<ProductDTO, Product> {
     }
 
     public List<ProductDTO> listConverter(List<Product> products) {
-        List<ProductDTO> productDTOS = new ArrayList<>();
-        for (int i = 0; i < products.size(); i++) {
-            productDTOS.add(from(products.get(i)));
-        }
+//        List<ProductDTO> productDTOS = new ArrayList<>();
+////        for (int i = 0; i < products.size(); i++) {
+////            productDTOS.add(from(products.get(i)));
+////        }
+
+        List<ProductDTO> productDTOS =
+                products.stream().map(this::from).collect(Collectors.toList());
 
         log.info("Conversion of list with products to list with productsDTO");
 
