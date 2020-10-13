@@ -12,7 +12,7 @@ import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import org.springframework.web.multipart.MultipartFile;
+
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -50,24 +50,16 @@ public class ProductConverterImpl implements Converter<ProductDTO, Product> {
         productDTO.setProductDescription(product.getProductDescription());
 
 
-
         log.info("Conversion from product do productDTO");
 
         return productDTO;
     }
 
     public List<ProductDTO> listConverter(List<Product> products) {
-//        List<ProductDTO> productDTOS = new ArrayList<>();
-////        for (int i = 0; i < products.size(); i++) {
-////            productDTOS.add(from(products.get(i)));
-////        }
-
-        List<ProductDTO> productDTOS =
-                products.stream().map(this::from).collect(Collectors.toList());
 
         log.info("Conversion of list with products to list with productsDTO");
 
-        return productDTOS;
+        return products.stream().map(this::from).collect(Collectors.toList());
     }
 
     private String setImage(ProductDTO productDTO) {
@@ -82,4 +74,7 @@ public class ProductConverterImpl implements Converter<ProductDTO, Product> {
         return userService.findByName(productDTO.getPrincipal().getName());
     }
 
+
 }
+
+
