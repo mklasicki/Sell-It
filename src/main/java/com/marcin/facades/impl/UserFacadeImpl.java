@@ -10,7 +10,6 @@ import com.marcin.service.MailService;
 import com.marcin.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -29,8 +28,7 @@ public class UserFacadeImpl implements UserFacade {
     private final MailService mailService;
     private final Logger log = LoggerFactory.getLogger(UserFacadeImpl.class);
 
-    public UserFacadeImpl(UserService userService,
-                          @Qualifier("userConverterImpl") Converter<UserDTO, User> converter,
+    public UserFacadeImpl(UserService userService, Converter<UserDTO, User> converter,
                           MailService mailService) {
         this.userService = userService;
         this.converter = converter;
@@ -47,9 +45,8 @@ public class UserFacadeImpl implements UserFacade {
             }
             return "register-user-form";
         } else {
-            Authorities authority = new Authorities();
-            User user = createUserForm(userDTO, authority);
-            userService.saveUser(user);
+
+            userService.saveUser(createUserForm(userDTO, new Authorities()));
             sendCredentialsMail(userDTO);
 
             log.info("created new user {} sent email on address {}", userDTO.getUsername(), userDTO.getEmail());
@@ -70,8 +67,7 @@ public class UserFacadeImpl implements UserFacade {
 
     @Override
     public UserDTO fillUserUpdateForm(Long id) throws IOException {
-        User user = userService.findById(id).orElse(null);
-        return  converter.from(user);
+        return  converter.from(userService.findById(id).orElse(null));
     }
 
     @Override
