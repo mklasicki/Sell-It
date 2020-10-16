@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 
 import java.util.List;
@@ -48,7 +49,6 @@ public class ProductConverterImpl implements Converter<ProductDTO, Product> {
         productDTO.setProductPrice(product.getProductPrice());
         productDTO.setCategory(product.getCategory().getName());
         productDTO.setProductDescription(product.getProductDescription());
-
 
         log.info("Conversion from product do productDTO");
 
