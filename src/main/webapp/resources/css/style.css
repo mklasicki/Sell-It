@@ -1,6 +1,7 @@
 
 * {
     box-sizing: border-box;
+    margin: 0px;
 }
 
 body {
@@ -13,29 +14,25 @@ body {
 
 #category-header {
     display: inline-block;
-    margin-top: 45px;
+    margin-top: 30px;
     letter-spacing: 3px;
-    margin-bottom: 0px;
-}
-
-#container {
-    width: 1160px;
-    margin-left: auto;
-    margin-right: auto;
-    box-shadow: 3px 3px 20px 2px #ccc;
-    border-radius: 10px 10px 0 0;
+    margin-bottom: 30px;
 }
 
 #menu {
-    height: 125px;
+    width: 100%;
     background-color: #fce45dd3;
-    margin-top: 30px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
-    border-radius: 10px 10px 0 0;
+    padding:15px;
+    height: 60px;
+    text-align:center;
+    text-transform: uppercase;
+    margin-bottom: 50px;
+    border-top : 1px solid #ccc;
+    border-bottom : 1px solid #ccc;
+    position:sticky;
+    top:0;
 }
+
 
 #search-button {
     background-color: #008CBA;
@@ -48,7 +45,11 @@ body {
     font-size: 18px;
     border-radius: 10px;
     cursor: pointer;
+
 }
+
+/* style for drop down list in menu */
+
 
 input {
     height: 31px;
@@ -60,17 +61,52 @@ input {
 }
 
 #content {
+ width: 1160px;
     background-color: whitesmoke;
     text-align: center;
-    margin-top: -30px;
+    margin-left: auto;
+    margin-right: auto;
     height: fit-content;
     resize: vertical;
     overflow: hidden;
+    box-shadow: 3px 3px 20px 2px #ccc;
+
 }
 
-li {
-    display: inline;
+ol {
+     list-style-type: none;
+     padding:0;
+     margin:0;
+     display: inline-block;
+}
+
+.search-product-form {
+    float:left;
+    margin-left:400px;
+}
+
+ol > li > ul {
+    display: none;
+}
+
+ol > li > ul > li  {
+    list-style-type: none;
+    background-color:  #fce45dd3;
+    position: relative;
+    border-top: 1px dotted black;
+    height: 100px;
+    width: 200px;
     padding: 20px;
+
+   }
+
+ol > li {
+    float:left;
+    width:200px;
+}
+
+ol > li:hover > ul {
+    display: block;
 }
 
 #content-list-header {
@@ -90,9 +126,6 @@ li {
     overflow: hidden;
 }
 
-.list-items {
-    display: block;
-}
 
 /*CSS for login page. */
 
@@ -199,7 +232,10 @@ li {
     width: 140px;
     height: 200px;
     margin-right:10px;
+}
 
+#category-tile {
+    margin-top:10px;
 }
 
 a:link {

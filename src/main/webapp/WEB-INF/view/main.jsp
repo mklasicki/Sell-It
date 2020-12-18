@@ -13,17 +13,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
     <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
     <link href="<c:url value="/resources/css/fontello.css" />" rel="stylesheet">
-
 </head>
 <body>
-    <div id="container">
         <div id="menu">
         <form:form action="searchProduct" modelAttribute="products"  method="get">
             <ol>
                 <li><a href="/login">Zaloguj się</a></li>
                 <li><a href="/user/register">Załóż konto</a></li>
                 <li>Kontakt</li>
-                <li><input type="text" placeholder=" Szukaj przedmiotu" name="productName"/></li>
+                <li><input type="text" placeholder=" Szukaj" name="productName"/></li>
                 <li><button id="search-button" type="submit" name="name">Szukaj</button></li>
             </ol>
             </form:form>
@@ -49,7 +47,8 @@
                         </div>
                     </c:forEach>
             </div>
-        </div>
+
+            <script src="src/main/webapp/resources/jquery-3.5.1.min.js" ></script>
 </body>
 
 </html>

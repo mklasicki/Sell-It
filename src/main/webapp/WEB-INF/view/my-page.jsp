@@ -16,26 +16,37 @@
     <link href="<c:url value="/resources/css/fontello.css" />" rel="stylesheet">
 </head>
 <body>
-    <div id="container">
-        <div id="menu">
-         <security:authorize access="isAuthenticated()">
-                    Zalogowany jako: <security:authentication property="principal.username" />
-                </security:authorize>
-         <form:form action="searchProduct" modelAttribute="products"  method="get">
+
+     <div id="menu">
+         <div class="search-product-form">
+                     <form:form action="searchProduct" modelAttribute="products"  method="get">
+                     <input type="text" placeholder=" Szukaj przedmiotu" name="productName">
+                     <button id="search-button" type="submit" name="name">Szukaj</button>
+                     </form:form>
+          </div>
+           <div>
             <ol>
-                <li><a href="/logout">Wyloguj się</a></li>
                 <li>
-                <c:url var="updateLink" value="/user/update-form">
-                    <c:param name="userId" value="${user.id}"/>
-                   </c:url>
-                <a href = "${updateLink}">Edytuj Profil</a></li>
-                <li><a href="/product/add-form">Dodaj nowy</a></li>
-                <li><input type="text" placeholder=" Szukaj przedmiotu" name="productName"></li>
-                <li><button id="search-button" type="submit" name="name">Szukaj</button></li>
-                <li><a href="/my-products">Twoje ogloszenia</a><li>
+                    <a href="#"><security:authorize access="isAuthenticated()">
+                        Witaj <security:authentication property="principal.username" /> !
+                        </security:authorize>
+                    </a>
+                         <ul>
+                            <li><a href="/product/add-form">Dodaj ogłoszenie</a></li>
+                             <li><a href="/my-products">Twoje ogłoszenia</a></li>
+                             <li>
+                                 <c:url var="updateLink" value="/user/update-form">
+                                 <c:param name="userId" value="${user.id}"/>
+                                 </c:url>
+                                 <a href ="${updateLink}">Edytuj profil</a>
+                             </li>
+                             <li><a href="/logout">Wyloguj</a></li>
+                         </ul>
+                </li>
             </ol>
-            </form:form>
         </div>
+     </div>
+     <div style="clear:both;"></div>
         <div id="content">
             <h3 id="category-header">Kategorie przedmiotów</h3>
                 <ol>
@@ -45,21 +56,20 @@
                     <li><i class="icon-award"></i> Sport</li>
                     <li><i class="icon-leaf"></i> Dom i Ogród</li>
                 </ol>
+                 <div style="clear:both;"></div>
             <div id="content-list">
                 <h3 id="content-list-header">Ostatnio dodane ogłoszenia</h3>
                     <c:forEach var="temp" items="${products}">
-                        <c:url var="deleteLink" value="/product/delete">
-                            <c:param name="productId" value="${temp.id}"/>
-                        </c:url>
                         <div class="product-tile">
                             <div id="photo-tile"><img class="product-photo" src="images/${temp.image}" alt="${productName}"></div>
                             <div id="name-tile">${temp.productName}</div>
                             <div id="description-tile">${temp.productDescription}</div>
                             <div id="price-tile">${temp.productPrice}</div>
                             <div id='category-tile'>${temp.category.name}</div>
+                         </div>
                     </c:forEach>
             </div>
-        </div>
+
 </body>
 
 </html>
