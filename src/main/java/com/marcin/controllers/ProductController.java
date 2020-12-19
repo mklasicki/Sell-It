@@ -1,6 +1,7 @@
 package com.marcin.controllers;
 
 
+import com.marcin.converters.impl.ProductConverterImpl;
 import com.marcin.domain.Product;
 import com.marcin.dto.ProductDTO;
 import com.marcin.facades.CategoryFacade;
@@ -29,13 +30,15 @@ public class ProductController {
     private final ProductFacade productFacade;
     private final ProductService productService;
     private final CategoryFacade categoryFacade;
+    private final ProductConverterImpl productConverter;
     private final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
 
-    public ProductController(ProductFacade productFacade, ProductService productService, CategoryFacade categoryFacade) {
+    public ProductController(ProductFacade productFacade, ProductService productService, CategoryFacade categoryFacade, ProductConverterImpl productConverter) {
         this.productFacade = productFacade;
         this.productService = productService;
         this.categoryFacade = categoryFacade;
+        this.productConverter = productConverter;
     }
 
     @GetMapping("/add-form")
@@ -60,7 +63,7 @@ public class ProductController {
 
     @GetMapping("/{category}")
     public String showProductsByCategory(@PathVariable String category, Model model) {
-        model.addAttribute("products",  productService.getProductsByCategory(category));
+        model.addAttribute("products", productConverter.listConverter(productService.getProductsByCategory(category)));
         logger.info("Searching for item in category {}", category);
         return "category-product";
     }
