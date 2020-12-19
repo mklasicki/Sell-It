@@ -21,7 +21,7 @@ body {
 
 #menu {
     width: 100%;
-    background-color: #fce45dd3;
+    background-color: #fce45d;
     padding:15px;
     height: 60px;
     text-align:center;
@@ -91,7 +91,7 @@ ol > li > ul {
 
 ol > li > ul > li  {
     list-style-type: none;
-    background-color:  #fce45dd3;
+    background-color: #fce45d;
     position: relative;
     border-top: 1px dotted black;
     height: 100px;
@@ -99,6 +99,11 @@ ol > li > ul > li  {
     padding: 20px;
 
    }
+
+ol > li > ul > li:hover {
+    background-color: #E3CE59;
+    cursor: pointer;
+}
 
 ol > li {
     float:left;
