@@ -21,4 +21,6 @@ public interface ProductService {
 
     List<Product> getProductByUserId(Long userId);
 
+    List<Product> getProductsByCategory(String category);
+
  }

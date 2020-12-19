@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -67,6 +68,13 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> getProductByUserId(Long userId) {
         return productDAO.getProductByUserId(userId);
+    }
+
+    @Override
+    public List<Product> getProductsByCategory(String category) {
+        List<Product> products = productDAO.getProducts()
+                .stream().filter(p -> p.getCategory().getName().equals(category)).collect(Collectors.toList());
+        return products;
     }
 
     @Override
