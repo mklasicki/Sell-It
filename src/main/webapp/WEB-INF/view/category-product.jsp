@@ -36,7 +36,7 @@
                  <li><i class="icon-leaf"></i> Dom i Ogród</li>
             </ol>
             <div id="content-list">
-                <h3 id="content-list-header">Ostatnio dodane ogłoszenia</h3>
+                <h3 id="content-list-header">Kategoria : ${category}</h3>
                     <c:forEach var="temp" items="${products}">
                         <div class="product-tile">
                             <div id="photo-tile"><img class="product-photo" src= "images/${temp.image}" alt="product-photo"></div>
