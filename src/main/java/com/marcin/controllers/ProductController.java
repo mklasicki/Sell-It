@@ -58,6 +58,13 @@ public class ProductController {
         return "my-page";
     }
 
+    @GetMapping("/{category}")
+    public String showProductsByCategory(@PathVariable String category, Model model) {
+        model.addAttribute("products",  productService.getProductsByCategory(category));
+        logger.info("Searching for item in category {}", category);
+        return "category-product";
+    }
+
     @GetMapping("/search")
     public String searchProductByName(@RequestParam("productName") String productName, Model model) throws NoResultException {
         List<Product> products = productService.findProductByName(productName);
