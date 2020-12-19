@@ -42,7 +42,7 @@
                             <div id="photo-tile"><img class="product-photo" src= "images/${temp.imageName}" alt="product-photo"></div>
                             <div id="name-tile">${temp.productName}</div>
                             <div id="description-tile">${temp.productDescription}</div>
-                            <div id="price-tile">${temp.productPrice}</div>
+                            <div id="price-tile">${temp.productPrice} PLN</div>
                              <div id='category-tile'>${temp.category}</div>
                         </div>
                     </c:forEach>

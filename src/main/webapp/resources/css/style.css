@@ -189,7 +189,12 @@ ol > li:hover > ul {
     margin: 20px;
     height: 220px;
     border: 1px solid #ccc;
-    box-shadow: 1px 1px 6px 3px #ccc;
+
+}
+
+.product-tile:hover {
+     box-shadow: 1px 1px 6px 3px #ccc;
+     cursor: pointer;
 }
 
 #photo-tile {
