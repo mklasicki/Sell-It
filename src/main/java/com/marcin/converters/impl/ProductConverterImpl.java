@@ -44,6 +44,7 @@ public class ProductConverterImpl implements Converter<ProductDTO, Product> {
     public ProductDTO from(Product product) {
 
         ProductDTO productDTO = new ProductDTO();
+        productDTO.setId(product.getId());
         productDTO.setName(product.getProductName());
         productDTO.setProductPrice(product.getProductPrice());
         productDTO.setCategory(product.getCategory().getName());

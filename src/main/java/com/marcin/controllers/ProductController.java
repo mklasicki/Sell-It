@@ -58,7 +58,7 @@ public class ProductController {
     public String showFormForDelete(@RequestParam("productId") Long id, Model model) throws IOException {
         productFacade.deleteById(id);
         model.addAttribute("products", productFacade.getAll());
-        return "my-page";
+        return "my-products-page";
     }
 
     @GetMapping("/{category}")

@@ -37,6 +37,9 @@
             </ol>
             <div id="content-list">
                 <h3 id="content-list-header">Kategoria : ${category}</h3>
+                <div>
+                    <a href="/main">Wszystkie kategorie</a>
+                </div>
                     <c:forEach var="temp" items="${products}">
                         <div class="product-tile">
                             <div id="photo-tile"><img class="product-photo" src= "images/${temp.image}" alt="product-photo"></div>
