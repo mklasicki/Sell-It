@@ -2,10 +2,7 @@ package com.marcin.service.impl;
 
 import com.marcin.daos.ProductDAO;
 import com.marcin.domain.Product;
-import com.marcin.service.CategoryService;
 import com.marcin.service.ProductService;
-import com.marcin.service.StorageService;
-import com.marcin.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -17,19 +14,12 @@ import java.util.stream.Collectors;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-
     private final Logger log = LoggerFactory.getLogger(ProductServiceImpl.class);
-
     private final ProductDAO productDAO;
-    private final CategoryService categoryService;
-    private final UserService userService;
-    private final StorageService storageService;
 
-    public ProductServiceImpl(ProductDAO productDAO, CategoryService categoryService, UserService userService, StorageService storageService) {
+    public ProductServiceImpl(ProductDAO productDAO) {
         this.productDAO = productDAO;
-        this.categoryService = categoryService;
-        this.userService = userService;
-        this.storageService = storageService;
+
     }
 
     @Override
@@ -72,9 +62,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getProductsByCategory(String category) {
-        List<Product> products = productDAO.getProducts()
+        return productDAO.getProducts()
                 .stream().filter(p -> p.getCategory().getName().equals(category)).collect(Collectors.toList());
-        return products;
     }
 
     @Override
