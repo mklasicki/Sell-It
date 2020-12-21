@@ -53,11 +53,12 @@ public class StorageServiceImpl implements StorageService {
 
         try {
             if (file.isEmpty()) {
-                throw new StorageException("Cannot store file" +
-                        "with relative path outside current directory" + filename);
-            }
+              // throw new StorageException("Cannot store file" +
+                     //  "with relative path outside current directory" + filename);
+                return "no-image.png";
+          }
+
             if (filename.contains("..")) {
-                // This is a security check
                 throw new StorageException(
                         "Cannot store file with relative path outside current directory "
                                 + filename);
@@ -71,7 +72,6 @@ public class StorageServiceImpl implements StorageService {
         }
 
         return filename;
-
     }
 
     @Override

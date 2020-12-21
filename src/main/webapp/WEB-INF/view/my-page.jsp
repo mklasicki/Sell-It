@@ -50,11 +50,11 @@
         <div id="content">
             <h3 id="category-header">Kategorie przedmiotów</h3>
                 <ol>
-                    <li><i class="icon-laptop"></i> Elektronika</li>
-                    <li><i class="icon-home"></i> Nieruchomości</li>
-                    <li><i class="icon-cab"></i> Motoryzacja</li>
-                    <li><i class="icon-award"></i> Sport</li>
-                    <li><i class="icon-leaf"></i> Dom i Ogród</li>
+                    <li><a href="/product/Elektronika"><i class="icon-laptop"></i> Elektronika</a></li>
+                    <li><a href="/product/Nieruchomosci"><i class="icon-home"></i> Nieruchomości</a></li>
+                    <li><a href="/product/Motoryzacja"><i class="icon-cab"></i> Motoryzacja</a></li>
+                    <li><a href="/product/Sport"><i class="icon-award"></i> Sport</a></li>
+                    <li><a href="/product/Dom i Ogród"><i class="icon-leaf"></i> Dom i Ogród</a></li>
                 </ol>
                  <div style="clear:both;"></div>
             <div id="content-list">

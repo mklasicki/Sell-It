@@ -30,7 +30,7 @@
             <h3 id="category-header">Kategorie przedmiotów</h3>
            <ol>
                <li><a href="/product/Elektronika"><i class="icon-laptop"></i> Elektronika</a></li>
-               <li><a href="/product/Nieruchomości"><i class="icon-home"></i> Nieruchomości</a></li>
+               <li><a href="/product/Nieruchomosci"><i class="icon-home"></i> Nieruchomości</a></li>
                <li><a href="/product/Motoryzacja"><i class="icon-cab"></i> Motoryzacja</a></li>
                <li><a href="/product/Sport"><i class="icon-award"></i> Sport</a></li>
                <li><a href="/product/Dom i Ogród"><i class="icon-leaf"></i> Dom i Ogród</a></li>

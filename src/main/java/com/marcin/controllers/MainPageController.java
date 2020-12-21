@@ -17,7 +17,7 @@ public class MainPageController {
         this.productFacade = productFacade;
     }
 
-    @GetMapping("/main")
+    @GetMapping({"/","/main"})
     public String getProducts(Model model) throws IOException {
         model.addAttribute("products", productFacade.getAll());
         return "main";
