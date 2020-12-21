@@ -50,7 +50,7 @@ public class ProductServiceImpl implements ProductService {
        }
         log.info("Getting product with name {}" , productName);
         return productDAO.getProducts().stream()
-                .filter(p->p.getProductName().equals(productName)).collect(Collectors.toList());
+                .filter(p->p.getProductName().equalsIgnoreCase(productName)).collect(Collectors.toList());
     }
 
     @Override
