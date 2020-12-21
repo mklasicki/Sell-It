@@ -2,7 +2,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html lang="pl">
 
@@ -16,13 +16,13 @@
 </head>
 <body>
         <div id="menu">
-        <form:form action="searchProduct" modelAttribute="products"  method="get">
+        <form:form action="product/search" modelAttribute="products"  method="get">
             <ol>
                 <li><a href="/login">Zaloguj się</a></li>
                 <li><a href="/user/register">Załóż konto</a></li>
                 <li>Kontakt</li>
-                <li><input type="text" placeholder=" Szukaj" name="productName"/></li>
-                <li><button id="search-button" type="submit" name="name">Szukaj</button></li>
+                <li><input type="text" placeholder="Szukaj" name="productName"/></li>
+                <li><button id="search-button" type="submit">Szukaj</button></li>
             </ol>
             </form:form>
         </div>

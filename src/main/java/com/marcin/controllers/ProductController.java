@@ -70,31 +70,11 @@ public class ProductController {
     }
 
     @GetMapping("/search")
-    public String searchProductByName(@RequestParam("productName") String productName, Model model) throws NoResultException {
-        List<Product> products = productService.findProductByName(productName);
-        if (products.isEmpty()) {
-            return "error";
-        }
-        try {
-            model.addAttribute("products", products);
-            return "test";
-        } catch (NoResultException e) {
-            System.out.println("Product with name {} not found" + productName);
-            return "error";
-        }
+    public String search(@RequestParam("productName") String productName, Model model) {
+        model.addAttribute("products", productConverter.listConverter(productService.findProductByName(productName)));
+        logger.info("Wywołano metode wyszukiwania  przedmiotu o nazwie {}", productName);
+        return "search-result";
     }
 
-    @GetMapping("/getProduct")
-    public String getProduct(@RequestParam("id") Long id, Model model) {
-        Product theProduct = productService.getProduct(id);
-        try {
-            model.addAttribute("product", theProduct);
-            logger.info("Found product with id {}", id);
-            return "test";
-        } catch (NullPointerException e) {
-            logger.info("Product with id {} not found", id);
-            return "error";
-        }
-    }
 
 }
