@@ -45,10 +45,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> findProductByName(String productName) {
-        List<Product> products = productDAO.getProducts().stream()
-                .filter(p->p.getProductName().equals(productName)).collect(Collectors.toList());
+       if (productName == null || productName.trim().isEmpty()) {
+           throw new  NullPointerException("Search field cannot be empty");
+       }
         log.info("Getting product with name {}" , productName);
-        return products ;
+        return productDAO.getProducts().stream()
+                .filter(p->p.getProductName().equals(productName)).collect(Collectors.toList());
     }
 
     @Override
