@@ -16,35 +16,35 @@
     <link href="<c:url value="/resources/css/fontello.css" />" rel="stylesheet">
 </head>
 <body>
-
      <div id="menu">
          <div class="search-product-form">
-                     <form:form action="searchProduct" modelAttribute="products"  method="get">
-                     <input type="text" placeholder=" Szukaj przedmiotu" name="productName">
-                     <button id="search-button" type="submit" name="name">Szukaj</button>
-                     </form:form>
-          </div>
-           <div>
+            <form:form action="searchProduct" modelAttribute="products"  method="get">
+                <input type="text" placeholder=" Szukaj przedmiotu" name="productName">
+                <button id="search-button" type="submit" name="name">Szukaj</button>
+            </form:form>
+         </div>
+         <div>
             <ol>
                 <li>
-                    <a href="#"><security:authorize access="isAuthenticated()">
+                      <a href="#">
+                        <security:authorize access="isAuthenticated()">
                         Witaj <security:authentication property="principal.username" /> !
                         </security:authorize>
-                    </a>
-                         <ul>
+                      </a>
+                        <ul>
                             <li><a href="/product/add-form">Dodaj ogłoszenie</a></li>
-                             <li><a href="/my-products">Twoje ogłoszenia</a></li>
-                             <li>
-                                 <c:url var="updateLink" value="/user/update-form">
-                                 <c:param name="userId" value="${user.id}"/>
-                                 </c:url>
-                                 <a href ="${updateLink}">Edytuj profil</a>
-                             </li>
-                             <li><a href="/logout">Wyloguj</a></li>
-                         </ul>
-                </li>
+                            <li><a href="/my-products">Twoje ogłoszenia</a></li>
+                            <li>
+                                <c:url var="updateLink" value="/user/update-form">
+                                <c:param name="userId" value="${user.id}"/>
+                                </c:url>
+                                <a href ="${updateLink}">Edytuj profil</a>
+                            </li>
+                            <li><a href="/logout">Wyloguj</a></li>
+                        </ul>
+                 </li>
             </ol>
-        </div>
+         </div>
      </div>
      <div style="clear:both;"></div>
         <div id="content">

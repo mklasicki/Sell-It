@@ -16,32 +16,39 @@
     <link href="<c:url value="/resources/css/fontello.css" />" rel="stylesheet">
 </head>
 <body>
-    <div id="container">
-        <div id="menu">
-         <security:authorize access="isAuthenticated()">
-                    Zalogowany jako: <security:authentication property="principal.username" />
-                </security:authorize>
-         <form:form action="searchProduct" modelAttribute="products"  method="get">
-            <ol>
-                <li><a href="/logout">Wyloguj się</a></li>
-                <li><a href = "/user/update">Edytuj Profil</a></li>
-                <li><a href="/product/add-form">Dodaj nowy</a></li>
-                <li><input type="text" placeholder=" Szukaj przedmiotu" name="productName"></li>
-                <li><button id="search-button" type="submit" name="name">Szukaj</button></li>
-            </ol>
-            </form:form>
-        </div>
-        <div id="content">
-            <h3 id="category-header">Kategorie przedmiotów</h3>
-                <ol>
-                    <li><i class="icon-laptop"></i> Elektronika</li>
-                    <li><i class="icon-home"></i> Nieruchomości</li>
-                    <li><i class="icon-cab"></i> Motoryzacja</li>
-                    <li><i class="icon-award"></i> Sport</li>
-                    <li><i class="icon-leaf"></i> Dom i Ogród</li>
-                </ol>
-            <div id="content-list">
-                <h3 id="content-list-header">Twoje ogłoszenia</h3>
+    <div id="menu">
+            <div class="search-product-form">
+                <form:form action="searchProduct" modelAttribute="products"  method="get">
+                    <input type="text" placeholder=" Szukaj przedmiotu" name="productName">
+                     <button id="search-button" type="submit" name="name">Szukaj</button>
+                </form:form>
+             </div>
+             <div>
+               <ol>
+                   <li>
+                       <a href="#"><security:authorize access="isAuthenticated()">
+                           Witaj <security:authentication property="principal.username" /> !
+                           </security:authorize>
+                       </a>
+                            <ul>
+                               <li><a href="/product/add-form">Dodaj ogłoszenie</a></li>
+                                <li><a href="/my-products">Twoje ogłoszenia</a></li>
+                                <li>
+                                    <c:url var="updateLink" value="/user/update-form">
+                                    <c:param name="userId" value="${user.id}"/>
+                                    </c:url>
+                                    <a href ="${updateLink}">Edytuj profil</a>
+                                </li>
+                                <li><a href="/logout">Wyloguj</a></li>
+                            </ul>
+                   </li>
+               </ol>
+           </div>
+     </div>
+              <div style="clear:both;"></div>
+            <div id="content">
+                <h3 id="category-header">Twoje ogłoszenia</h3>
+                    <p><a href="/my-page">Wszystkie ogłoszenia</a></p>
                     <c:forEach var="temp" items="${products}">
                         <c:url var="deleteLink" value="/product/delete">
                             <c:param name="productId" value="${temp.id}"/>
@@ -51,13 +58,14 @@
                             <div id="name-tile">${temp.productName}</div>
                             <div id="description-tile">${temp.productDescription}</div>
                             <div id="price-tile">${temp.productPrice}</div>
-                            <div id="action-tile">Edytuj /
-                                                           <a href="${deleteLink}"
-                                                            onclick="if(!(confirm('Czy napewno usunąć ten produkt z listy??')))return false">Usuń</a></div>
+                            <div id="action-tile">
+                                Edytuj /
+                                <a href="${deleteLink}"
+                                onclick="if(!(confirm('Czy napewno usunąć ten produkt z listy??')))return false">Usuń</a></div>
                             </div>
                     </c:forEach>
             </div>
-        </div>
+   </div>
 </body>
 
 </html>
