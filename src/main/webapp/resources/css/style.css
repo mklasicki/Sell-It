@@ -48,8 +48,8 @@ body {
 }
 
 input {
-    height: 31px;
-    width: 220px;
+    height: 30px;
+    width: 280px;
     border-radius: 10px;
     border: 2px solid #ccc;
     background-color: whitesmoke;
@@ -301,7 +301,7 @@ a:hover {
 
 
 #product-category {
-    height: 150px;
+    height: 90px;
     padding: 10px;
     font-size: 22px;
     background-color: white;
@@ -339,7 +339,7 @@ a:hover {
 }
 
 #product-photo-add {
-    height: 80px;
+    height: 135px;
     padding: 20px;
     background-color: whitesmoke;
     border-bottom: 2px solid #ccc;

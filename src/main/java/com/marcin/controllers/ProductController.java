@@ -49,7 +49,8 @@ public class ProductController {
     }
 
     @PostMapping("/save")
-    public String saveProduct(@Valid @ModelAttribute("product") ProductDTO productDTO, BindingResult result, Principal principal) {
+    public String saveProduct(@Valid @ModelAttribute("product") ProductDTO productDTO, BindingResult result, Principal principal, Model model) {
+        model.addAttribute("categories", categoryFacade.getAllCategories());
         return productFacade.validateAndRegisterNewProduct(productDTO, result, principal);
     }
 
