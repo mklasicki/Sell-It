@@ -33,6 +33,7 @@ public class ProfilePageController {
 
     @GetMapping("/my-products")
     public String myProducts(Model model, Principal principal) {
+        model.addAttribute("user", getLoggedUser(principal));
         model.addAttribute("products", productService.getProductByUserId(getLoggedUser(principal).getId()));
         return "my-products-page";
     }
