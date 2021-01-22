@@ -72,7 +72,7 @@ public class ProductController {
     @GetMapping("/search")
     public String search(@RequestParam("productName") String productName, Model model) {
         model.addAttribute("products", productConverter.listConverter(productService.findProductByName(productName)));
-        logger.info("Wywołano metode wyszukiwania  przedmiotu o nazwie {}", productName);
+        model.addAttribute("listSize", productService.findProductByName(productName).size());
         return "search-result";
     }
 
