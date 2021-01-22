@@ -45,6 +45,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findUserByLogin(String login) {
+        return userRepository.findAll().stream()
+            .filter(user -> user.getLogin().equals(login)).findFirst().orElse(null);
+    }
+
+    @Override
     public void updateUser(Long id, UserDTO userDTO) {
         if (userDTO != null) {
 
