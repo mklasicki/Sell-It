@@ -10,28 +10,27 @@
 <body>
     <div id="addUserForm">
         <div id="header">
-            <h2>Edytuj dane konta</h2>
+            <h2 class="update-user-header">Edytuj dane konta</h2>
         </div>
-
         <form:form id="userFormTable" action="update" modelAttribute="userDTO" method="post">
                 <form:hidden path="id" />
             <div class="user-form-input">
-                <label for="username">Imię: </label>
+                <span class="user_form_input-label"><label for="username">Imię</label></span><br/>
                 <form:input path="username" placeholder="Imię" />
                 <form:errors path="username" class="error" />
             </div>
             <div class="user-form-input">
-                <label for="lastName">Nazwisko: </label>
+                <span class="user_form_input-label"><label for="lastName">Nazwisko</label></span><br/>
                 <form:input path="lastName" placeholder="Nazwisko" />
                 <form:errors path="lastName" class="error" />
             </div>
             <div class="user-form-input">
-                <label for="password">Hasło: </label>
+                <span class="user_form_input-label"><label for="password">Hasło</label></span><br/>
                 <form:password path="password" placeholder="password" />
                 <form:errors path="password" class="error" />
             </div>
             <div class="user-form-input">
-                <label for="email">E-mail: </label>
+                <span class="user_form_input-label"><label for="email">E-mail</label></span><br/>
                 <form:input path="email" placeholder=" e-mail" />
                 <form:errors path="email" class="error" />
             </div>
