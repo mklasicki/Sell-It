@@ -46,7 +46,7 @@ public class UserController {
     @PostMapping("/update")
     public String update(Long id, UserDTO userDTO) {
        userFacade.updateUser(id, userDTO);
-        return "my-page";
+        return "redirect:/my-page";
     }
 
 }

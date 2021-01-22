@@ -30,24 +30,24 @@ Project is created with:
 
 Application includes main page where all items for sale are shown.You can  search item by name.
 
-![Main page](./images/main-page.jpg)
+![Main page](readme_images/main-page.jpg)
 
 User can create a profile by short registration form.
 
-![Registration form](./images/registration-form.jpg)
+![Registration form](readme_images/registration-form.jpg)
 
 After logging in
 
-![Login form](./images/login-form.jpg)
+![Login form](readme_images/login-form.jpg)
 
 user can create new advert of items for sale, update and delete exsisting ones. 
 While creating new one you can add picture, name, description, category  and price. 
 
-![Add item form](./images/add-item-form.jpg)
+![Add item form](readme_images/add-item-form.jpg)
 
 ## Database structure
 
-![Database structure](./images/database.jpg)
+![Database structure](readme_images/database.jpg)
 
 ## To do
 

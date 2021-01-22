@@ -17,8 +17,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder)
-    {
+    public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
@@ -31,7 +30,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void saveUser(User user) {
-       userRepository.save(user);
+        userRepository.save(user);
     }
 
     @Override
@@ -42,19 +41,41 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByName(String name) {
         return userRepository.findAll().stream()
-                .filter(user->user.getName().equals(name)).findFirst().orElse(null);
+            .filter(user -> user.getName().equals(name)).findFirst().orElse(null);
+    }
+
+    @Override
+    public User findUserByLogin(String login) {
+        return userRepository.findAll().stream()
+            .filter(user -> user.getLogin().equals(login)).findFirst().orElse(null);
     }
 
     @Override
     public void updateUser(Long id, UserDTO userDTO) {
-        User userToUpdate = userRepository.findById(id).orElse(null);
-        userToUpdate.setName(userDTO.getUsername());
-        userToUpdate.setLastName(userDTO.getUsername());
-        userToUpdate.setPassword(passwordEncoder.encode(userDTO.getPassword()));
-        userToUpdate.setEmail(userDTO.getEmail());
-        userRepository.save(userToUpdate);
+        if (userDTO != null) {
 
+            User userToUpdate = userRepository.findById(id).get();
+
+            if (valueCheck(userDTO.getUsername())) {
+                userToUpdate.setName(userDTO.getUsername());
+            }
+            if (valueCheck(userDTO.getLastName())) {
+                userToUpdate.setLastName(userDTO.getLastName());
+            }
+            if (valueCheck(userDTO.getPassword())) {
+                userToUpdate.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+            }
+            if (valueCheck(userDTO.getEmail())) {
+                userToUpdate.setEmail(userDTO.getEmail());
+            }
+
+            userRepository.save(userToUpdate);
+        } else {
+            throw new NullPointerException("User not found");
+        }
     }
 
-
+    private boolean valueCheck(String value) {
+        return !value.trim().isEmpty();
+    }
 }

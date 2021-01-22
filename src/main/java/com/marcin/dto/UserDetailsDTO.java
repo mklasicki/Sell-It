@@ -18,7 +18,7 @@ public class UserDetailsDTO implements UserDetails {
         this.user = user;
 
         if (user == null) {
-            throw new UsernameNotFoundException("User with name " + user.getName() + " doesn't exists");
+            throw new UsernameNotFoundException("User with name " + user.getLogin() + " doesn't exists");
         }
     }
 
