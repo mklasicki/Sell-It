@@ -60,7 +60,7 @@ public class ProductServiceImpl implements ProductService {
            }
        }
 
-       log.info("Wszystkie produkty {} Ilość znalezionych produktów  {}",allProducts.size(), resultProducts.size());
+       log.info("All products: {}, found products: {}",allProducts.size(), resultProducts.size());
 
        return resultProducts;
     }
