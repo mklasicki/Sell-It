@@ -7,7 +7,7 @@
     <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
 </head>
 <body>
-<p>Ilość znalezionych prodóktów : ${listSize}</p>
+<p>Ilość znalezionych produktów : ${listSize}</p>
  <c:forEach var="temp" items="${products}">
     <div class="product-tile">
     <div id="photo-tile"><img class="product-photo" src= "images/${temp.imageName}" alt="product-photo"></div>
