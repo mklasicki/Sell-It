@@ -2,7 +2,6 @@ package com.marcin.controllers;
 
 
 import com.marcin.converters.impl.ProductConverterImpl;
-import com.marcin.domain.Product;
 import com.marcin.dto.ProductDTO;
 import com.marcin.facades.CategoryFacade;
 import com.marcin.facades.ProductFacade;
@@ -14,13 +13,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.NoResultException;
+
 import javax.validation.Valid;
 import java.io.IOException;
 import java.security.Principal;
-
-
-import java.util.List;
 
 
 @Controller
