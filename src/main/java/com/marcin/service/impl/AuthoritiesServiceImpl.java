@@ -1,6 +1,6 @@
 package com.marcin.service.impl;
 
-import com.marcin.daos.AuthoritiesDAO;
+import com.marcin.repositories.AuthoritiesDAO;
 import com.marcin.domain.Authorities;
 import com.marcin.dto.RegisterAuthoritiesDTO;
 import com.marcin.service.AuthoritiesService;

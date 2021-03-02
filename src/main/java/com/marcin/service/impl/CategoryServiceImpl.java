@@ -1,16 +1,15 @@
 package com.marcin.service.impl;
 
-import com.marcin.daos.CategoryDAO;
+import com.marcin.exceptions.CategoryNotFountException;
+import com.marcin.repositories.CategoryRepository;
 import com.marcin.domain.Category;
 import com.marcin.service.CategoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityExistsException;
-import java.util.Collections;
+
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -18,38 +17,24 @@ public class CategoryServiceImpl implements CategoryService {
 
     private final Logger log = LoggerFactory.getLogger(CategoryServiceImpl.class);
 
-    private final CategoryDAO categoryDAO;
+    private final CategoryRepository categoryRepository;
 
-    public CategoryServiceImpl(CategoryDAO categoryDAO) {
-        this.categoryDAO = categoryDAO;
+    public CategoryServiceImpl(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
     }
 
     @Override
     public List<Category> getAllActiveCategories() {
-        List<Category> categories = findAll();
-        log.info("Getting list of all active categories");
+        List<Category> categories = categoryRepository.findAll();
+        log.info("[CategoryServiceImpl]: Getting list of all active categories");
         return categories.stream().filter(Category::isActive).collect(Collectors.toList());
     }
 
     @Override
     public Category getCategoryById(Long id) {
-
-        Category category = categoryDAO.findById(id);
-
-        if (category == null) {
-
-            log.error("Category with id {} do not exists ", id);
-
-            throw new EntityExistsException("Category with id" + id + "is not in database");
-        }
-        return category;
+        log.info("[CategoryServiceImpl]: Getting category with it {}", id);
+        return categoryRepository.findById(id)
+            .orElseThrow(() -> new CategoryNotFountException("Category with id " + id + " not found"));
     }
 
-
-    private List<Category> findAll() {
-        List<Category> categories = categoryDAO.findAll();
-        if (categories == null || categories.isEmpty())
-            return Collections.emptyList();
-        return categories;
-    }
 }

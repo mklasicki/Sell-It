@@ -34,7 +34,7 @@ public class ProductFacadeImpl implements ProductFacade {
 
     @Override
     public List<ProductDTO> getAll() throws IOException {
-        return converter.listConverter(productService.getProducts());
+        return converter.listConverter(productService.getAll());
     }
 
     public String validateAndRegisterNewProduct(ProductDTO productDTO, BindingResult result, Principal principal) {
@@ -42,7 +42,7 @@ public class ProductFacadeImpl implements ProductFacade {
         if (result.hasErrors()) {
             List<ObjectError> errors = result.getAllErrors();
             for (ObjectError error : errors) {
-                logger.info("Error in product form {}", error);
+                logger.info("[ProductFacadeImpl]: Error in product form {}", error);
             }
             return "product-form";
         }
@@ -50,7 +50,7 @@ public class ProductFacadeImpl implements ProductFacade {
         productDTO.setPrincipal(principal);
         productService.registerNewProduct(converter.to(productDTO));
 
-        logger.info("Created new product");
+        logger.info("[ProductFacadeImpl]: Created new product");
 
         return "redirect:/my-page";
     }
@@ -59,4 +59,19 @@ public class ProductFacadeImpl implements ProductFacade {
     public void deleteById(Long id) {
         productService.deleteProduct(id);
     }
+
+    public List<ProductDTO> searchProductsByName(String productName) throws IOException {
+        return converter.listConverter(productService.findProductByName(productName));
+    }
+
+    public List<ProductDTO> getProductsByCategory(String category) throws IOException {
+        return converter.listConverter(productService.getProductsByCategory(category));
+    }
+
+    @Override
+    public List<ProductDTO> getProductsByUserId(Long id) throws IOException {
+        return converter.listConverter(productService.getProductsByUserId(id));
+    }
+
+
 }
