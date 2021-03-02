@@ -11,10 +11,9 @@ public interface UserFacade {
 
      String validateAndRegisterNewUser(UserDTO userDTO, BindingResult result) throws MessagingException;
 
-     void sendCredentialsMail(UserDTO userDTO) throws MessagingException;
-
      UserDTO fillUserUpdateForm(Long id) throws IOException;
 
      void updateUser(Long id, UserDTO userDTO);
 
+     void sendCredentialsMail(UserDTO userDTO) throws MessagingException;
 }

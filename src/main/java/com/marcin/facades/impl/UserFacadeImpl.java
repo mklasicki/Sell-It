@@ -41,8 +41,9 @@ public class UserFacadeImpl implements UserFacade {
         if (result.hasErrors()) {
             List<ObjectError> errors = result.getAllErrors();
             for (ObjectError error : errors) {
-                log.info("Can't  register new user, errors occurred during filling form {}", error);
+                log.info("Can't register new user, errors occurred during filling form {}", error);
             }
+
             return "register-user-form";
         } else {
 
@@ -55,19 +56,9 @@ public class UserFacadeImpl implements UserFacade {
         }
     }
 
-    User createUserForm(UserDTO userDTO, Authorities authorities) {
-
-        User user = converter.to(userDTO);
-        authorities.setAuthority("ROLE_USER");
-        authorities.setUsername(user.getName());
-        user.addAuthority(authorities);
-        user.setEnabled(true);
-        return user;
-    }
-
     @Override
     public UserDTO fillUserUpdateForm(Long id) throws IOException {
-        return  converter.from(userService.findById(id).orElse(null));
+        return converter.from(userService.findById(id).orElse(null));
     }
 
     @Override
@@ -79,12 +70,20 @@ public class UserFacadeImpl implements UserFacade {
     public void sendCredentialsMail(UserDTO userDTO) throws MessagingException {
 
         mailService.SendMail(userDTO.getEmail(), "Potwierdzenie utworzenia konta",
-                "" + "<h2>Twoje dane do logowania to : </h2>"
-                        + "<p>Login: </p>"
-                        + userDTO.getUsername()
-                        + "<p>Hasło: </p>"
-                        + userDTO.getPassword(), true);
+            "" + "<h2>Twoje dane do logowania to : </h2>"
+                + "<p>Login: </p>"
+                + userDTO.getUsername()
+                + "<p>Hasło: </p>"
+                + userDTO.getPassword(), true);
     }
 
+    private User createUserForm(UserDTO userDTO, Authorities authorities) {
 
+        User user = converter.to(userDTO);
+        authorities.setAuthority("ROLE_USER");
+        authorities.setUsername(user.getName());
+        user.addAuthority(authorities);
+        user.setEnabled(true);
+        return user;
+    }
 }
