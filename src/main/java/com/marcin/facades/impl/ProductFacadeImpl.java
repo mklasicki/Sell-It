@@ -59,4 +59,19 @@ public class ProductFacadeImpl implements ProductFacade {
     public void deleteById(Long id) {
         productService.deleteProduct(id);
     }
+
+    public List<ProductDTO> searchProductsByName(String productName) throws IOException {
+        return converter.listConverter(productService.findProductByName(productName));
+    }
+
+    public List<ProductDTO> getProductsByCategory(String category) throws IOException {
+        return converter.listConverter(productService.getProductsByCategory(category));
+    }
+
+    @Override
+    public List<ProductDTO> getProductsByUserId(Long id) throws IOException {
+        return converter.listConverter(productService.getProductsByUserId(id));
+    }
+
+
 }

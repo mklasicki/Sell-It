@@ -1,6 +1,7 @@
 package com.marcin.facades;
 
 
+import com.marcin.domain.User;
 import com.marcin.dto.UserDTO;
 import org.springframework.validation.BindingResult;
 
@@ -16,4 +17,6 @@ public interface UserFacade {
      void updateUser(Long id, UserDTO userDTO);
 
      void sendCredentialsMail(UserDTO userDTO) throws MessagingException;
+
+     User findUserByName(String username);
 }

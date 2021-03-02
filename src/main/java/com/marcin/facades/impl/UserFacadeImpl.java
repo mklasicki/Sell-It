@@ -77,6 +77,11 @@ public class UserFacadeImpl implements UserFacade {
                 + userDTO.getPassword(), true);
     }
 
+    @Override
+    public User findUserByName(String username) {
+        return userService.findByName(username);
+    }
+
     private User createUserForm(UserDTO userDTO, Authorities authorities) {
 
         User user = converter.to(userDTO);

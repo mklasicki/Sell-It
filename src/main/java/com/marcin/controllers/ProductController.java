@@ -1,11 +1,9 @@
 package com.marcin.controllers;
 
 
-import com.marcin.converters.impl.ProductConverterImpl;
 import com.marcin.dto.ProductDTO;
 import com.marcin.facades.CategoryFacade;
 import com.marcin.facades.ProductFacade;
-import com.marcin.service.ProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -24,17 +22,13 @@ import java.security.Principal;
 public class ProductController {
 
     private final ProductFacade productFacade;
-    private final ProductService productService;
     private final CategoryFacade categoryFacade;
-    private final ProductConverterImpl productConverter;
     private final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
 
-    public ProductController(ProductFacade productFacade, ProductService productService, CategoryFacade categoryFacade, ProductConverterImpl productConverter) {
+    public ProductController(ProductFacade productFacade, CategoryFacade categoryFacade) {
         this.productFacade = productFacade;
-        this.productService = productService;
         this.categoryFacade = categoryFacade;
-        this.productConverter = productConverter;
     }
 
     @GetMapping("/add-form")
@@ -59,16 +53,16 @@ public class ProductController {
     }
 
     @GetMapping("/{category}")
-    public String showProductsByCategory(@PathVariable String category, Model model) {
-        model.addAttribute("products", productConverter.listConverter(productService.getProductsByCategory(category)));
+    public String showProductsByCategory(@PathVariable String category, Model model) throws IOException {
+        model.addAttribute("products", productFacade.getProductsByCategory(category));
         logger.info("Searching for item in category {}", category);
         return "category-product";
     }
 
     @GetMapping("/search")
-    public String search(@RequestParam("productName") String productName, Model model) {
-        model.addAttribute("products", productConverter.listConverter(productService.findProductByName(productName)));
-        model.addAttribute("listSize", productService.findProductByName(productName).size());
+    public String search(@RequestParam("productName") String productName, Model model) throws IOException {
+        model.addAttribute("products", productFacade.searchProductsByName(productName));
+        model.addAttribute("listSize", productFacade.searchProductsByName(productName).size());
         return "search-result";
     }
 

@@ -15,4 +15,10 @@ public interface ProductFacade {
 
     void deleteById(Long id);
 
+     List<ProductDTO> searchProductsByName(String productName) throws IOException;
+
+     List<ProductDTO> getProductsByCategory(String category) throws IOException;
+
+     List<ProductDTO> getProductsByUserId(Long id) throws IOException;
+
 }
