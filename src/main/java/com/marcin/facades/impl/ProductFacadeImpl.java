@@ -34,7 +34,7 @@ public class ProductFacadeImpl implements ProductFacade {
 
     @Override
     public List<ProductDTO> getAll() throws IOException {
-        return converter.listConverter(productService.getProducts());
+        return converter.listConverter(productService.getAll());
     }
 
     public String validateAndRegisterNewProduct(ProductDTO productDTO, BindingResult result, Principal principal) {

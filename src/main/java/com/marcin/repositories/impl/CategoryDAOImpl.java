@@ -1,6 +1,6 @@
-package com.marcin.daos.impl;
+package com.marcin.repositories.impl;
 
-import com.marcin.daos.CategoryDAO;
+import com.marcin.repositories.CategoryDAO;
 import com.marcin.domain.Category;
 import org.springframework.stereotype.Component;
 

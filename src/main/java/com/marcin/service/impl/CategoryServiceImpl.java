@@ -1,6 +1,6 @@
 package com.marcin.service.impl;
 
-import com.marcin.daos.CategoryDAO;
+import com.marcin.repositories.CategoryDAO;
 import com.marcin.domain.Category;
 import com.marcin.service.CategoryService;
 import org.slf4j.Logger;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityExistsException;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service

@@ -1,7 +1,7 @@
 package com.marcin.service.impl;
 
 
-import com.marcin.daos.UserRepository;
+import com.marcin.repositories.UserRepository;
 import com.marcin.domain.User;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

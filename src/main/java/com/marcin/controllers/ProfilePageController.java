@@ -27,14 +27,14 @@ public class ProfilePageController {
     @GetMapping("/my-page")
     public String myPage(Model model, Principal principal) {
         model.addAttribute("user", getLoggedUser(principal));
-        model.addAttribute("products", productService.getProducts());
+        model.addAttribute("products", productService.getAll());
         return "my-page";
     }
 
     @GetMapping("/my-products")
     public String myProducts(Model model, Principal principal) {
         model.addAttribute("user", getLoggedUser(principal));
-        model.addAttribute("products", productService.getProductByUserId(getLoggedUser(principal).getId()));
+        model.addAttribute("products", productService.getProductsByUserId(getLoggedUser(principal).getId()));
         return "my-products-page";
     }
 

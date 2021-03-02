@@ -1,6 +1,6 @@
-package com.marcin.daos.impl;
+package com.marcin.repositories.impl;
 
-import com.marcin.daos.AuthoritiesDAO;
+import com.marcin.repositories.AuthoritiesDAO;
 import com.marcin.domain.Authorities;
 import org.springframework.stereotype.Repository;
 

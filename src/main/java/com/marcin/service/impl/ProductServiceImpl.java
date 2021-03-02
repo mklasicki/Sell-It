@@ -1,6 +1,6 @@
 package com.marcin.service.impl;
 
-import com.marcin.daos.ProductDAO;
+import com.marcin.repositories.ProductRepository;
 import com.marcin.domain.Product;
 import com.marcin.service.ProductService;
 import org.apache.commons.lang3.StringUtils;
@@ -17,18 +17,17 @@ import java.util.stream.Collectors;
 public class ProductServiceImpl implements ProductService {
 
     private final Logger log = LoggerFactory.getLogger(ProductServiceImpl.class);
-    private final ProductDAO productDAO;
+    private final ProductRepository productRepository;
 
-    public ProductServiceImpl(ProductDAO productDAO) {
-        this.productDAO = productDAO;
+    public ProductServiceImpl(ProductRepository productRepository) {
+        this.productRepository = productRepository;
 
     }
 
     @Override
-    @Transactional
-    public List<Product> getProducts() {
-        log.info("Getting list of all the products");
-        return productDAO.getProducts();
+    public List<Product> getAll() {
+        log.info("[ProductServiceImpl]: Getting list of all the products");
+        return productRepository.findAll();
     }
 
     @Override
@@ -37,7 +36,7 @@ public class ProductServiceImpl implements ProductService {
             throw new NullPointerException("Search field cannot be empty");
         }
 
-        List<Product> allProducts = productDAO.getProducts();
+        List<Product> allProducts = productRepository.findAll();
         List<Product> resultProducts = new ArrayList<>();
 
         for (Product allProduct : allProducts) {
@@ -46,33 +45,35 @@ public class ProductServiceImpl implements ProductService {
             }
         }
 
-        log.info("All products: {}, found products: {}", allProducts.size(), resultProducts.size());
+        log.info("[ProductServiceImpl]: All products: {}, found products: {}", allProducts.size(), resultProducts.size());
 
         return resultProducts;
     }
 
     @Override
-    @Transactional
     public void registerNewProduct(Product product) {
-        productDAO.saveProduct(product);
+        productRepository.save(product);
     }
 
     @Override
-    public List<Product> getProductByUserId(Long userId) {
-        return productDAO.getProductByUserId(userId);
+    public List<Product> getProductsByUserId(Long userId) {
+        log.info("[ProductServiceImpl]: Getting all products for user with id {}", userId);
+        return productRepository.findAll()
+            .stream().filter(p -> p.getUser().getId().equals(userId)).collect(Collectors.toList());
     }
 
     @Override
     public List<Product> getProductsByCategory(String category) {
-        return productDAO.getProducts()
+        log.info("[ProductServiceImpl]: Getting all products from category {}", category);
+        return productRepository.findAll()
             .stream().filter(p -> p.getCategory().getName().equals(category)).collect(Collectors.toList());
     }
 
     @Override
     @Transactional
     public void deleteProduct(Long id) {
-        productDAO.deleteProduct(id);
-        log.info("Deleted product with id {}", id);
+        productRepository.deleteById(id);
+        log.info("[ProductServiceImpl]: Deleted product with id {}", id);
     }
 
 }

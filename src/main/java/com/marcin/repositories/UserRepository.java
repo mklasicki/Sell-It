@@ -1,4 +1,4 @@
-package com.marcin.daos;
+package com.marcin.repositories;
 
 import java.util.Optional;
 
