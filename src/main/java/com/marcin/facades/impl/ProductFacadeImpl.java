@@ -42,7 +42,7 @@ public class ProductFacadeImpl implements ProductFacade {
         if (result.hasErrors()) {
             List<ObjectError> errors = result.getAllErrors();
             for (ObjectError error : errors) {
-                logger.info("Error in product form {}", error);
+                logger.info("[ProductFacadeImpl]: Error in product form {}", error);
             }
             return "product-form";
         }
@@ -50,7 +50,7 @@ public class ProductFacadeImpl implements ProductFacade {
         productDTO.setPrincipal(principal);
         productService.registerNewProduct(converter.to(productDTO));
 
-        logger.info("Created new product");
+        logger.info("[ProductFacadeImpl]: Created new product");
 
         return "redirect:/my-page";
     }
