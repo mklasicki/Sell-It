@@ -3,6 +3,7 @@ package com.marcin.service.impl;
 import com.marcin.daos.UserRepository;
 import com.marcin.domain.User;
 import com.marcin.dto.UserDTO;
+import com.marcin.exceptions.DuplicatedDataException;
 import com.marcin.service.UserService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,10 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void saveUser(User user) {
+        if (userRepository.findOneByNameAndLastName(user.getName(), user.getLastName()).isPresent()) {
+            throw new DuplicatedDataException("User with name " + user.getName()
+                                                +  " and last name " + user.getLastName() + "already exists");
+        }
         userRepository.save(user);
     }
 

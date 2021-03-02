@@ -28,7 +28,6 @@ public class SearchFacadeImpl implements SearchFacade {
         User user = userService.findByName(username);
         Long userId = user.getId();
         List<Product> userProducts = productService.getProductByUserId(userId);
-        ;
 
         return userProducts;
     }
