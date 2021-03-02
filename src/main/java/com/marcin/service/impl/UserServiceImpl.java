@@ -1,5 +1,6 @@
 package com.marcin.service.impl;
 
+import com.marcin.exceptions.DataNotFoundException;
 import com.marcin.repositories.UserRepository;
 import com.marcin.domain.User;
 import com.marcin.dto.UserDTO;
@@ -25,7 +26,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAll() {
-        return userRepository.findAll();
+        List<User> allUsers = userRepository.findAll();
+
+        if (allUsers.isEmpty()) {
+            throw new DataNotFoundException("List of users is empty");
+        }
+
+        return allUsers;
     }
 
     @Override
