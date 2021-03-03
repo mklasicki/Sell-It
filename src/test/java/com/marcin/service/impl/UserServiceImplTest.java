@@ -2,8 +2,10 @@ package com.marcin.service.impl;
 
 
 import com.marcin.exceptions.DataNotFoundException;
+import com.marcin.exceptions.UserNotFoundException;
 import com.marcin.repositories.UserRepository;
 import com.marcin.domain.User;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -12,8 +14,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,12 +29,25 @@ import static org.mockito.Mockito.*;
 class UserServiceImplTest {
 
     private final long USER_ID = 1L;
+    private User user;
 
     @Mock
     UserRepository userRepository;
 
     @InjectMocks
     UserServiceImpl userService;
+
+
+    @BeforeEach
+    void setup() {
+        user = User.builder()
+            .id(USER_ID)
+            .name("Marcin")
+            .lastName("Klasicki")
+            .login("mar")
+            .email("marcin@klasicki.pl")
+            .build();
+    }
 
     @Test
     void should_return_list_of_all_the_users() {
@@ -55,32 +70,28 @@ class UserServiceImplTest {
 
         //given
         //when
-        List<User> users = new ArrayList<>();
+        List<User> users = Collections.emptyList();
         when(userRepository.findAll()).thenReturn(users);
 
         //then
         assertThat(users, is(empty()));
         assertThrows(DataNotFoundException.class, () -> userService.getAll());
-
     }
 
     @Test
     void should_add_new_user() {
 
         //given
-        User user1 = new User(USER_ID, "Marcin", "Klasicki","mar", "pass123", "marcin@klasicki.pl");
-        when(userRepository.save(user1)).thenReturn(user1);
-
+        when(userRepository.save(user)).thenReturn(user);
         ArgumentCaptor<User> argumentCaptor = ArgumentCaptor.forClass(User.class);
 
         //when
-        userService.saveUser(user1);
+        userService.saveUser(user);
 
         //then
-        verify(userRepository, times(1)).save(user1);
-        verify(userRepository, times(1)).save(argumentCaptor.capture());
+        verify(userRepository).save(argumentCaptor.capture());
         User addedUser = argumentCaptor.getValue();
-        assertThat(addedUser, is(user1));
+        assertThat(addedUser, is(user));
 
     }
 
@@ -93,20 +104,43 @@ class UserServiceImplTest {
     void should_return_user_when_given_id() {
 
         //given
-        Optional<User> user = Optional.of(new User(USER_ID, "Marcin", "Klasicki","mar", "pass123", "marcin@klasicki.pl"));
-        when(userRepository.findById(USER_ID)).thenReturn(user);
+        when(userRepository.findById(USER_ID)).thenReturn(Optional.of(user));
 
         //when
-        Optional<User> userResult = userService.findById(USER_ID);
-
+        User userResult = userService.findById(USER_ID);
 
         //than
-        assertThat(userResult, equalTo(user));
-        verify(userRepository, times(1)).findById(any());
+        verify(userRepository, times(1)).findById(USER_ID);
+        assertThat(userResult.getName(), is(user.getName()));
+
+    }
+
+    @Test
+    void should_throw_UserNotFoundException_when_user_not_fount_by_id() {
+
+        //given
+        //when
+        when(userRepository.findById(USER_ID)).thenThrow(new UserNotFoundException("User not found"));
+
+        //then
+        assertThrows(UserNotFoundException.class, () -> userService.findById(USER_ID));
+        verify(userRepository,times(1)).findById(any());
     }
 
     @Test
     void findByName() {
+
+        //given
+        when(userRepository.findAll()).thenReturn(generateTestData());
+
+        //when
+        User searchResult = userService.findByName(user.getName());
+
+        //then
+        assertThat(searchResult.getName(), is(user.getName()));
+        verify(userRepository, times(1)).findAll();
+
+
 
 }
 

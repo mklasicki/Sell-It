@@ -2,7 +2,18 @@ package com.marcin.domain;
 
 import javax.persistence.*;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Category {
 
     @Id
@@ -14,13 +25,6 @@ public class Category {
     private Boolean active;
     @Column(name = "iconurl")
     private String iconUrl;
-
-    public Category() {
-    }
-
-    public Category(String name) {
-        this.name = name;
-    }
 
     public Long getId() {
         return id;

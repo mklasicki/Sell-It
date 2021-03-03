@@ -3,7 +3,14 @@ package com.marcin.domain;
 
 import javax.persistence.*;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Authorities {
 
     @Id
@@ -15,9 +22,6 @@ public class Authorities {
             CascadeType.DETACH, CascadeType.MERGE})
     @JoinColumn(name = "user_id")
     private User user;
-
-    public Authorities() {
-    }
 
     public String getAuthority() {
         return authority;

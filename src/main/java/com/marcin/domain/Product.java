@@ -2,8 +2,15 @@ package com.marcin.domain;
 
 import javax.persistence.*;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
 
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product {
 
     @Id
@@ -21,19 +28,6 @@ public class Product {
             CascadeType.DETACH, CascadeType.MERGE})
     @JoinColumn(name = "user_id")
     private User user;
-
-    public Product() {
-    }
-
-    public Product(Long id, String productName, float productPrice, String productDescription, String image, Category category, User user) {
-        this.id = id;
-        this.productName = productName;
-        this.productPrice = productPrice;
-        this.productDescription = productDescription;
-        this.image = image;
-        this.category = category;
-        this.user = user;
-    }
 
     public boolean isNew() {
         return id == 0;

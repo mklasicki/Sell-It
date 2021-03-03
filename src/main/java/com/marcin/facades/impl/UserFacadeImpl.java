@@ -58,7 +58,7 @@ public class UserFacadeImpl implements UserFacade {
 
     @Override
     public UserDTO fillUserUpdateForm(Long id) throws IOException {
-        return converter.from(userService.findById(id).orElse(null));
+        return converter.from(userService.findById(id));
     }
 
     @Override

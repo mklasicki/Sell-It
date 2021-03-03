@@ -4,8 +4,15 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class User {
 
     @Id
@@ -21,12 +28,8 @@ public class User {
             CascadeType.DETACH, CascadeType.MERGE})
     private List<Product> products;
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REFRESH,
-            CascadeType.DETACH, CascadeType.MERGE}, fetch = FetchType.EAGER)
+            CascadeType.DETACH, CascadeType.MERGE})
     private List<Authorities> roles;
-
-    public User() {
-
-    }
 
     public User(Long id, String name, String lastName, String login, String password, String email) {
         this.id = id;

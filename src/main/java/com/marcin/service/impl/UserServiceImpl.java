@@ -1,6 +1,7 @@
 package com.marcin.service.impl;
 
 import com.marcin.exceptions.DataNotFoundException;
+import com.marcin.exceptions.UserNotFoundException;
 import com.marcin.repositories.UserRepository;
 import com.marcin.domain.User;
 import com.marcin.dto.UserDTO;
@@ -11,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -45,8 +45,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> findById(long id) {
-        return userRepository.findById(id);
+    public User findById(long id) {
+        return userRepository.findById(id)
+            .orElseThrow(() -> new UserNotFoundException("User with id " + id + " not found"));
     }
 
     @Override

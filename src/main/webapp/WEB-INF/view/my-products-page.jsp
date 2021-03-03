@@ -54,7 +54,7 @@
                             <c:param name="productId" value="${temp.id}"/>
                         </c:url>
                         <div class="product-tile">
-                            <div id="photo-tile"><img class="product-photo" src="images/${temp.image}" alt="${name}"></div>
+                            <div id="photo-tile"><img class="product-photo" src="images/${temp.imageName}" alt="${name}"></div>
                             <div id="name-tile">${temp.productName}</div>
                             <div id="description-tile">${temp.productDescription}</div>
                             <div id="price-tile">${temp.productPrice}</div>
