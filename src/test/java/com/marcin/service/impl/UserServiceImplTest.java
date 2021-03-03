@@ -96,7 +96,7 @@ class UserServiceImplTest {
     }
 
     @Test
-    void should_throw_DuplicatedDataException_when_user_With_same_name_and_lastName_will_be_added(){
+    void should_throw_DuplicatedDataException_when_user_With_same_name_and_lastName_will_be_added() {
 
     }
 
@@ -124,11 +124,11 @@ class UserServiceImplTest {
 
         //then
         assertThrows(UserNotFoundException.class, () -> userService.findById(USER_ID));
-        verify(userRepository,times(1)).findById(any());
+        verify(userRepository, times(1)).findById(any());
     }
 
     @Test
-    void findByName() {
+    void should_return_user_when_given_name() {
 
         //given
         when(userRepository.findAll()).thenReturn(generateTestData());
@@ -141,14 +141,13 @@ class UserServiceImplTest {
         verify(userRepository, times(1)).findAll();
 
 
-
-}
+    }
 
     private List<User> generateTestData() {
 
-        User user1 = new User(1L, "Marcin", "Klasicki","mar", "pass123", "marcin@klasicki.pl");
-        User user2 = new User(2L, "Seba", "Kowalski","seb", "seba123", "typowy@seba.pl");
-        User user3 = new User(3L, "Stefan", "Stefański","stef", "stef123", "stefan@stefanski.pl");
+        User user1 = new User(1L, "Marcin", "Klasicki", "mar", "pass123", "marcin@klasicki.pl");
+        User user2 = new User(2L, "Seba", "Kowalski", "seb", "seba123", "typowy@seba.pl");
+        User user3 = new User(3L, "Stefan", "Stefański", "stef", "stef123", "stefan@stefanski.pl");
 
         return Arrays.asList(user1, user2, user3);
     }
