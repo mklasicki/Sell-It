@@ -4,6 +4,7 @@ import com.marcin.domain.User;
 import com.marcin.dto.UserDetailsDTO;
 import com.marcin.exceptions.UserNotFoundException;
 import com.marcin.service.UserService;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     private UserService userService;
 
-    public UserDetailsServiceImpl(UserService userService) {
+    public UserDetailsServiceImpl(@Lazy UserService userService) {
         this.userService = userService;
     }
 
