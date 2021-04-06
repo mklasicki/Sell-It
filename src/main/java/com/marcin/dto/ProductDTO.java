@@ -28,7 +28,7 @@ public class ProductDTO {
     private Float productPrice;
     private MultipartFile image;
     private Principal principal;
-    private String ImageName;
+    private String imageName;
 
 
     public Long getId() {
@@ -72,11 +72,11 @@ public class ProductDTO {
     }
 
     public String getImageName() {
-        return ImageName;
+        return imageName;
     }
 
     public void setImageName(String imageName) {
-        ImageName = imageName;
+        this.imageName = imageName;
     }
 
     public Float getProductPrice() {
