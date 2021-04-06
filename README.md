@@ -11,6 +11,7 @@
 This project is a simple web application that allows the user to manage content of items for sale.
 The main purpose of creating this application is to learn the technologies listed below.
 I plan to expand with additional functionalities and continuous improvement of code quality.
+This app is deployed on heroku and can be found at https://sell-it-marcin.herokuapp.com/. 
 
 ## Technologies:
 
