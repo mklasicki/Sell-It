@@ -14,14 +14,14 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(DuplicatedDataException.class)
     public String handleDoubleDataException(HttpServletRequest request, Exception e) {
-        log.info(request.getRequestURL() + " caused DuplicatedDataException");
+        log.info(request.getRequestURL() + " caused " + e);
 
         return "redirect:/user/register";
     }
 
     @ExceptionHandler(EmptySearchFormFieldException.class)
     public String handleEmptySearchFormException(HttpServletRequest request, Exception e) {
-        log.info(request.getRequestURL() + " caused EmptySearchFormFieldException");
+        log.info(request.getRequestURL() + " caused " + e);
 
         return "redirect:/main";
     }
