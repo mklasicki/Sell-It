@@ -4,7 +4,7 @@
 
 <head>
     <title>Potwierdzenie założenia konta</title>
-    <META http-equiv="refresh" content="5;URL=http://localhost:8080/main">
+    <META http-equiv="refresh" content="5;URL=https://sell-it-marcin.herokuapp.com/ ">
      <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
     <link href="/resources/css/registrationSuccess.css" rel="stylesheet">
 </head>
