@@ -1,5 +1,6 @@
 package com.marcin.service.impl;
 
+import com.marcin.exceptions.EmptySearchFormFieldException;
 import com.marcin.repositories.ProductRepository;
 import com.marcin.domain.Product;
 import com.marcin.service.ProductService;
@@ -33,7 +34,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> findProductByName(String productName) {
         if (productName == null || productName.trim().isEmpty()) {
-            throw new NullPointerException("Search field cannot be empty");
+            throw new EmptySearchFormFieldException("Search field cannot be empty");
         }
 
         List<Product> allProducts = productRepository.findAll();
