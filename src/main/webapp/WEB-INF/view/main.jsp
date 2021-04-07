@@ -17,7 +17,7 @@
 <body>
         <div id="menu">
             <ol>
-                <li><a href="/product/add-form">Nowe Ogłoszenie</li>
+                <li><a href="/product/add-form">Nowe Ogłoszenie</a></li>
                 <li><a href="/login">Zaloguj się</a></li>
                 <li><a href="/user/register">Załóż konto</a></li>
             </ol>
