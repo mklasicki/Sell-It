@@ -41,10 +41,8 @@
     </div>
 
     <div id="main-page-link">
-        <a href="${pageContext.request.contextPath}/">Powrót do strony głównej</a>
+        <a href="/my-page">Wróc do swojej strony.</a>
     </div>
-
-
 
 </body>
        </html>
