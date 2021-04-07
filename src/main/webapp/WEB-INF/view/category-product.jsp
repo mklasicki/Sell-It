@@ -50,8 +50,6 @@
                         </div>
                     </c:forEach>
             </div>
-
-            <script src="src/main/webapp/resources/jquery-3.5.1.min.js" ></script>
 </body>
 
 </html>
