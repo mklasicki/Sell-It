@@ -7,6 +7,7 @@ import com.marcin.facades.UserFacade;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 import java.io.IOException;
@@ -37,6 +38,13 @@ public class ProfilePageController {
         model.addAttribute("user", getLoggedUser(principal));
         model.addAttribute("products", productFacade.getProductsByUserId(getLoggedUser(principal).getId()));
         return "my-products-page";
+    }
+
+    @GetMapping("/my-page/search")
+    public String search(@RequestParam("productName") String productName, Model model) throws IOException {
+        model.addAttribute("products", productFacade.searchProductsByName(productName));
+        model.addAttribute("listSize", productFacade.searchProductsByName(productName).size());
+        return "search-result";
     }
 
     private User getLoggedUser(Principal principal) {

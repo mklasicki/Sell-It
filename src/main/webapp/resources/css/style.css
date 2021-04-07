@@ -26,13 +26,18 @@ body {
     height: 60px;
     text-align:center;
     text-transform: uppercase;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     border-top : 1px solid #ccc;
     border-bottom : 1px solid #ccc;
     position:sticky;
     top:0;
 }
 
+#main-page-search-item-form {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+ }
 
 #search-button {
     background-color: #008CBA;
@@ -103,7 +108,7 @@ ol > li > ul > li:hover {
 
 ol > li {
     float:left;
-    width:200px;
+    width:220px;
 }
 
 ol > li:hover > ul {

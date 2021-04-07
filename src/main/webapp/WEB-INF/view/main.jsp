@@ -16,14 +16,16 @@
 </head>
 <body>
         <div id="menu">
-        <form:form action="product/search" modelAttribute="products"  method="get">
             <ol>
+                <li><a href="/product/add-form">Nowe Ogłoszenie</li>
                 <li><a href="/login">Zaloguj się</a></li>
                 <li><a href="/user/register">Załóż konto</a></li>
-                <li>Kontakt</li>
-                <li><input type="text" placeholder="Szukaj" name="productName"/></li>
-                <li><button id="search-button" type="submit">Szukaj</button></li>
             </ol>
+        </div>
+        <div id="main-page-search-item-form">
+            <form:form action="product/search" modelAttribute="products"  method="get">
+                <input type="text" placeholder="Szukaj" name="productName"/>
+                <button id="search-button" type="submit">Szukaj</button>
             </form:form>
         </div>
         <div id="content">

@@ -18,7 +18,7 @@
 <body>
     <div id="menu">
             <div class="search-product-form">
-                <form:form action="searchProduct" modelAttribute="products"  method="get">
+                <form:form action="product/search" modelAttribute="products"  method="get">
                     <input type="text" placeholder=" Szukaj przedmiotu" name="productName">
                      <button id="search-button" type="submit" name="name">Szukaj</button>
                 </form:form>
