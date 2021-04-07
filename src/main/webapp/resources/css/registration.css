@@ -28,7 +28,7 @@ a:visited {
 
 .registration-container {
     width: 30vw;
-    height: 75vh;
+    min-height: 75vh;
     margin-top: 60px;
     margin-left: auto;
     margin-right: auto;
@@ -36,6 +36,9 @@ a:visited {
     background-color: whitesmoke;
     border-radius: 10px;
     box-shadow: 3px 3px 20px 2px #ccc;
+    resize: vertical;
+    overflow: auto;
+
 }
 
 .user-form-input {
@@ -43,7 +46,9 @@ a:visited {
 }
 
 .registration-form_header {
-    padding: 40px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    display:inline-block;
 }
 
 .main-page-link {
@@ -77,4 +82,9 @@ a:visited {
     margin-top: 40px;
     text-align: center;
     text-decoration: none;
+}
+
+.error {
+    color: red;
+    font-size: 18px;
 }

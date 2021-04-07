@@ -414,13 +414,6 @@ img {
     margin-bottom: 10px;
 }
 
-.error {
-    color: red;
-    font-size: 18px;
-    position: fixed;
-    margin-left: 15px;
-}
-
 .check {
        margin-top: 20px;
        font-size: 18px;

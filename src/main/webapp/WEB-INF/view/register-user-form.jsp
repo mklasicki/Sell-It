@@ -15,35 +15,38 @@
 
         <form:form action="save" modelAttribute="UserDTO" method="post">
             <div class="user-form-input">
+                <p class="error"><form:errors path="username"/></p>
                 <label for="username">Imię: </label>
-                <form:input path="username" placeholder="imię" />
-                <form:errors path="username" class="error" />
+                <form:input path="username" placeholder="imię"/>
+
             </div>
             <div class="user-form-input">
+                <p class="error">  <form:errors path="password" class="error" /></p>
                 <label for="lastName">Nazwisko: </label>
                 <form:input path="lastName" placeholder="nazwisko" />
-                <form:errors path="password" class="error" />
+
             </div>
              <div class="user-form-input">
+                <p class="error"><form:errors path="login" class="error" /></p>
                 <label for="login">Login: </label>
                 <form:input path="login" placeholder="login" />
-                <form:errors path="login" class="error" />
+
              </div>
              <div class="user-form-input">
+                <p class="error"><form:errors path="password" class="error" /></p>
                 <label for="password">Hasło: </label>
                 <form:password path="password" placeholder="password" />
-                <form:errors path="password" class="error" />
             </div>
             <div class="user-form-input">
+                <p class="error"><form:errors path="email" class="error" /></p>
                 <label for="email">E-mail: </label>
                 <form:input path="email" placeholder=" e-mail" />
-                <form:errors path="email" class="error" />
             </div>
             <div>
+            <p class="error"> <form:errors path="enabled" class="error" /></p>
             <label class="check">Akceptuje warunki regulaminu.</label>
-            <br><br>
             <form:checkbox path="enabled" class="check" />
-            <form:errors path="enabled" class="error" />
+
             </div>
             <div class="user-form-input">
                 <input class="submit-button" type="submit" value="Zatwierdź">
