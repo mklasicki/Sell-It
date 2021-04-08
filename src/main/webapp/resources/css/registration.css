@@ -11,10 +11,11 @@ body {
 input {
     height: 31px;
     width: 220px;
-    border-radius: 10px;
+    border-radius: 5px;
     border: 2px solid #ccc;
     background-color: whitesmoke;
     font-size: 18px;
+    padding: 10px;
 }
 
 a {
@@ -34,7 +35,7 @@ a:visited {
     margin-right: auto;
     text-align: center;
     background-color: whitesmoke;
-    border-radius: 10px;
+    border-radius: 5px;
     box-shadow: 3px 3px 20px 2px #ccc;
     resize: vertical;
     overflow: auto;
@@ -87,4 +88,8 @@ a:visited {
 .error {
     color: red;
     font-size: 18px;
+}
+
+input.error {
+    border:1px solid red;
 }

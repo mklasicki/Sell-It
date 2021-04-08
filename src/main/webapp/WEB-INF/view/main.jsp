@@ -24,7 +24,7 @@
         </div>
         <div id="main-page-search-item-form">
             <form:form action="product/search" modelAttribute="products"  method="get">
-                <input type="text" placeholder="Szukaj" name="productName"/>
+                <input type="text"  name="productName" placeholder="Szukaj.."/>
                 <button id="search-button" type="submit">Szukaj</button>
             </form:form>
         </div>
