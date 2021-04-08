@@ -66,5 +66,11 @@ public class ProductController {
         return "search-result";
     }
 
+    @GetMapping("/tiles")
+    public String homePage(Model model) throws IOException {
+        model.addAttribute("products", productFacade.getAll());
+        return "home";
+    }
+
 
 }
