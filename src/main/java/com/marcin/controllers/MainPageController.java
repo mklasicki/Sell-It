@@ -26,6 +26,6 @@ public class MainPageController {
 
         logger.info("[MainPageController]: Getting main page");
 
-        return "main";
+        return "index";
     }
 }

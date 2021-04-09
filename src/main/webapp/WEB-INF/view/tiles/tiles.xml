@@ -11,12 +11,13 @@
             <put-attribute name="body" value="" />
             <put-attribute name="footer" value="/WEB-INF/view/tiles/templates/defaultFooter.jsp" />
         </definition>
-
-        <definition name="home" extends="template-def">
+        <definition name="index" extends="template-def">
             <put-attribute name="title" value="Strona główna" />
-            <put-attribute name="body" value="/WEB-INF/view/home.jsp"/>
+            <put-attribute name="body" value="/WEB-INF/view/index.jsp"/>
         </definition>
-
-
+        <definition name="category" extends="template-def">
+            <put-attribute name="title" value="Kategoria przedmiotu"/>
+            <put-attribute name="body" value="/WEB-INF/view/category.jsp" />
+        </definition>
 
         </tiles-definitions>

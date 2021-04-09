@@ -56,7 +56,7 @@ public class ProductController {
     public String showProductsByCategory(@PathVariable String category, Model model) throws IOException {
         model.addAttribute("products", productFacade.getProductsByCategory(category));
         logger.info("Searching for item in category {}", category);
-        return "category-product";
+        return "category";
     }
 
     @GetMapping("/search")
@@ -65,12 +65,5 @@ public class ProductController {
         model.addAttribute("listSize", productFacade.searchProductsByName(productName).size());
         return "search-result";
     }
-
-    @GetMapping("/tiles")
-    public String homePage(Model model) throws IOException {
-        model.addAttribute("products", productFacade.getAll());
-        return "home";
-    }
-
 
 }

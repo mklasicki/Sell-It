@@ -1,1 +1,1 @@
-<footer>copyright © Marcin</footer>
+<footer>&copy Marcin</footer>
