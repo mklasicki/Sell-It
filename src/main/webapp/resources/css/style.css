@@ -188,6 +188,10 @@ ol > li:hover > ul {
     letter-spacing: 2px;
 }
 
+#username-input, #user-password {
+    border-radius: 5px;
+}
+
 #search-button:hover {
     background-color: #007BAA;
 }
@@ -275,42 +279,42 @@ a:hover {
 /* CSS for adding product site*/
 
 #wrapper {
-    margin-top: 20px;
+    margin-top: 50px;
     width: 700px;
     height: 800px;
     margin-left: auto;
     margin-right: auto;
-    background-color: white;
+    background-color: whitesmoke;
     text-align: center;
+    vertical-align: middle;
     letter-spacing: 2px;
-    border-radius: 10px;
+    border-radius: 5px;
     box-shadow: 3px 3px 20px 2px #ccc;
 }
 
 #add-product-head {
-    height: 80px;
-    background-color: #fce45dd3;
+    height: 60px;
     letter-spacing: 2px;
-    border-bottom: 2px solid #ccc;
-    border-radius: 10px 10px 0px 0px;
-    padding: 1px;
+
 }
 
+#add-product-header {
+    display:inline-block;
+    padding: 15px;
+}
 
 #product-name {
     font-size: 22px;
     padding: 10px;
     height:100px;
-    background-color: whitesmoke;
-    border-bottom: 2px solid #ccc;
+
 }
 
 #add-product-input {
-    height: 26px;
-    width: 300px;
-    border-radius: 10px;
+    height: 30px;
+    width: 400px;
+    border-radius: 5px;
     border: 2px solid #ccc;
-    background-color: white;
     font-size: 18px;
 }
 
@@ -319,8 +323,8 @@ a:hover {
     height: 90px;
     padding: 10px;
     font-size: 22px;
-    background-color: white;
-    border-bottom: 2px solid #ccc;
+    background-color: whitesmoke;
+
 }
 
 #product-description {
@@ -334,8 +338,7 @@ a:hover {
     height: 150px;
     width: 400px;
     border-radius: 10px;
-    border: 2px solid #ccc;
-    background-color: white;
+    background-color:whitesmoke ;
     font-family: 'Lato', sans-serif;
     font-size: 18px;
 }
@@ -343,21 +346,17 @@ a:hover {
 #text-area {
     height: 180px;
     background-color: whitesmoke;
-    border-bottom: 2px solid #ccc;
 }
 
 #product-price {
     padding: 20px;
     height: 70px;
-    border-bottom: 2px solid #ccc;
-
 }
 
 #product-photo-add {
     height: 135px;
     padding: 20px;
     background-color: whitesmoke;
-    border-bottom: 2px solid #ccc;
 }
 
 #add-product-button {
@@ -372,6 +371,12 @@ input {
 img {
  width: 200px;
  height: 200px;
+
+}
+
+#product-photo-info {
+    font-size: 15px;
+    padding: 15px;
 
 }
 

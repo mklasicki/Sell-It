@@ -52,7 +52,7 @@
                 <div id="product-photo-add">
                      Dodaj zdjęcie
                         <input name="image" type="file"/>
-                        <p>* dodanie zdjęcia zwiększy szansę na sprzedaż przedmiotu.</p>
+                        <p id="product-photo-info">* dodanie zdjęcia zwiększy szansę na sprzedaż przedmiotu.</p>
                 </div>
                 <div id="add-product-button">
                       <button type="submit" class="login-button">Prześlij</button>
