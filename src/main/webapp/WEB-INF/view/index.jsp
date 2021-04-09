@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<body>
+
 <div id="content">
     <h3 id="category-header">Kategorie przedmiotów</h3>
     <ol>
@@ -23,5 +23,4 @@
                 </div>
             </c:forEach>
     </div>
-</body>
-</html>
+</div>

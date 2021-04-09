@@ -9,7 +9,7 @@
             -->
             <put-attribute name="menu" value="/WEB-INF/view/tiles/templates/default/defaultMenu.jsp" />
             <put-attribute name="body" value="" />
-            <put-attribute name="footer" value="/WEB-INF/view/tiles/templates/default/defaultFooter.jsp" />
+            <put-attribute name="footer" value="" />
         </definition>
         <definition name="index" extends="template-def">
             <put-attribute name="title" value="Strona główna" />
@@ -25,12 +25,19 @@
         </definition>
         <definition name="add-item" extends="template-def">
             <put-attribute name="title" value="Dodaj przedmiot" />
-            <put-attribute name="menu" value="/WEB-INF/view/tiles/templates/logged/loggedUserMenu.jsp" />
             <put-attribute name="body" value="/WEB-INF/view/product-form.jsp" />
         </definition>
         <definition name="user-page" extends="template-def">
             <put-attribute name="title" value="Twoja strona" />
-            <put-attribute name="menu" value="/WEB-INF/view/tiles/templates/logged/loggedUserMenu-search.jsp" />
             <put-attribute name="body" value="/WEB-INF/view/index.jsp" />
+        </definition>
+        <definition name="user-items" extends="template-def">
+            <put-attribute name="title" value="Twoje ogłoszenia" />
+            <put-attribute name="body" value="/WEB-INF/view/user-items.jsp" />
+        </definition>
+        <definition name="login" extends="template-def">
+            <put-attribute name="title" value="Strona logowania" />
+            <put-attribute name="menu" value="" />
+            <put-attribute name="body" value="/WEB-INF/view/login-form.jsp" />
         </definition>
         </tiles-definitions>

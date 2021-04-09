@@ -14,12 +14,10 @@
 </head>
 
 <body>
-    <div>
-        <tiles:insertAttribute name="menu" />
-        <article class="article">
-		    <tiles:insertAttribute name="body" />
-        </article>
-    <tiles:insertAttribute name="footer" />
-    </div>
+   <tiles:insertAttribute name="menu" />
+<article>
+   <tiles:insertAttribute name="body" />
+</article>
+<tiles:insertAttribute name="footer" />
 </body>
 </html>

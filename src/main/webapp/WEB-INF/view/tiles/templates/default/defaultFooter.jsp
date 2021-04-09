@@ -1,2 +1,1 @@
-
-<footer id="footer-container">&copy Marcin</footer>
+<footer id="footer">&copy Marcin</footer>
