@@ -30,21 +30,14 @@ public class ProfilePageController {
     public String myPage(Model model, Principal principal) throws IOException {
         model.addAttribute("user", getLoggedUser(principal));
         model.addAttribute("products", productFacade.getAll());
-        return "my-page";
+        return "user-page";
     }
 
     @GetMapping("/my-products")
     public String myProducts(Model model, Principal principal) throws IOException {
         model.addAttribute("user", getLoggedUser(principal));
         model.addAttribute("products", productFacade.getProductsByUserId(getLoggedUser(principal).getId()));
-        return "my-products-page";
-    }
-
-    @GetMapping("/my-page/search")
-    public String search(@RequestParam("productName") String productName, Model model) throws IOException {
-        model.addAttribute("products", productFacade.searchProductsByName(productName));
-        model.addAttribute("listSize", productFacade.searchProductsByName(productName).size());
-        return "search-result";
+        return "user-items";
     }
 
     private User getLoggedUser(Principal principal) {

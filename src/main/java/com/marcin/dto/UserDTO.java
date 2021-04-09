@@ -17,15 +17,15 @@ import javax.validation.constraints.Size;
 public class UserDTO {
 
     private Long id;
-    @NotBlank(message = "To pole nie może być puste")
+    @NotBlank(message = "Pole imię nie może byc puste")
     private String username;
-    @NotBlank(message = "To pole nie może być puste")
+    @NotBlank(message = "Pole nazwisko nie może być puste")
     private String lastName;
-    @NotBlank(message = "To pole nie może być puste")
+    @NotBlank(message = "Pole login nie może być puste")
     private String login;
-    @NotBlank(message = "To pole nie może być puste")
+    @NotBlank(message = "Pole hasło nie może być puste")
     private String password;
-    @NotBlank(message = "To pole nie może być puste")
+    @NotBlank(message = "Pole e-mail nie może być puste")
     @Email(message = "Wprowadzone dane są nieprawidłowe")
     private String email;
     @AssertTrue(message = "Aby się zarejestrowac musisz zaakceptować regulamin")

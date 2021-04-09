@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+        <tiles-definitions>
+        <definition name="template-def" template="/WEB-INF/view/tiles/layouts/defaultLayout.jsp">
+            <put-attribute name="title" value="" />
+           <!--
+                this is part for header
+            <put-attribute name="header" value="/WEB-INF/view/tiles/templates/defaultHeader.jsp" />
+            -->
+            <put-attribute name="menu" value="/WEB-INF/view/tiles/templates/default/defaultMenu.jsp" />
+            <put-attribute name="body" value="" />
+            <put-attribute name="footer" value="" />
+        </definition>
+        <definition name="index" extends="template-def">
+            <put-attribute name="title" value="Strona główna" />
+            <put-attribute name="body" value="/WEB-INF/view/index.jsp"/>
+        </definition>
+        <definition name="category" extends="template-def">
+            <put-attribute name="title" value="Kategoria przedmiotu"/>
+            <put-attribute name="body" value="/WEB-INF/view/category.jsp" />
+        </definition>
+        <definition name="search" extends="template-def">
+            <put-attribute name="title" value="Wyniki wyszukiwania" />
+            <put-attribute name="body" value="/WEB-INF/view/index.jsp" />
+        </definition>
+        <definition name="add-item" extends="template-def">
+            <put-attribute name="title" value="Dodaj przedmiot" />
+            <put-attribute name="body" value="/WEB-INF/view/product-form.jsp" />
+        </definition>
+        <definition name="user-page" extends="template-def">
+            <put-attribute name="title" value="Twoja strona" />
+            <put-attribute name="body" value="/WEB-INF/view/index.jsp" />
+        </definition>
+        <definition name="user-items" extends="template-def">
+            <put-attribute name="title" value="Twoje ogłoszenia" />
+            <put-attribute name="body" value="/WEB-INF/view/user-items.jsp" />
+        </definition>
+        <definition name="login" extends="template-def">
+            <put-attribute name="title" value="Strona logowania" />
+            <put-attribute name="menu" value="" />
+            <put-attribute name="body" value="/WEB-INF/view/login-form.jsp" />
+        </definition>
+        </tiles-definitions>
