@@ -30,14 +30,14 @@ public class ProfilePageController {
     public String myPage(Model model, Principal principal) throws IOException {
         model.addAttribute("user", getLoggedUser(principal));
         model.addAttribute("products", productFacade.getAll());
-        return "my-page";
+        return "user-page";
     }
 
     @GetMapping("/my-products")
     public String myProducts(Model model, Principal principal) throws IOException {
         model.addAttribute("user", getLoggedUser(principal));
         model.addAttribute("products", productFacade.getProductsByUserId(getLoggedUser(principal).getId()));
-        return "my-products-page";
+        return "user-page";
     }
 
     @GetMapping("/my-page/search")

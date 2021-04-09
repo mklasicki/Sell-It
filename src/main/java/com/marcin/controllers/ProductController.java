@@ -35,7 +35,7 @@ public class ProductController {
     public String showProduct(Model model) {
         model.addAttribute("categories", categoryFacade.getAllCategories());
         model.addAttribute("product", new ProductDTO());
-        return "product-form";
+        return "add-item";
     }
 
     @PostMapping("/save")
@@ -63,7 +63,7 @@ public class ProductController {
     public String search(@RequestParam("productName") String productName, Model model) throws IOException {
         model.addAttribute("products", productFacade.searchProductsByName(productName));
         model.addAttribute("listSize", productFacade.searchProductsByName(productName).size());
-        return "search-result";
+        return "search";
     }
 
 }

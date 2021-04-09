@@ -438,6 +438,15 @@ img {
 }
 
 footer {
-    margin-top: 30px;
-    text-align: center;
+     width: 100%;
+     background-color: whitesmoke;
+     padding:15px;
+     height: 60px;
+     text-align:center;
+     text-transform: uppercase;
+     margin-top: 30px;
+     margin-bottom: 0px;
+     border-top : 1px solid #ccc;
+     border-bottom : 1px solid #ccc;
+
 }

@@ -1,4 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+
 <div id="menu">
     <ol>
         <li><a href="/product/add-form">Nowe Ogłoszenie</a></li>
@@ -7,7 +10,7 @@
     </ol>
 </div>
 <div id="main-page-search-item-form">
-    <form:form action="product/search" modelAttribute="products"  method="get">
+    <form:form action="/product/search" modelAttribute="products"  method="get">
         <input type="text"  name="productName" placeholder="Szukaj.."/>
         <button id="search-button" type="submit">Szukaj</button>
     </form:form>
