@@ -2,18 +2,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-
-<head>
-    <meta charset="UTF-8">
-    <title>Zaloguj się.</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
-    <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
-    <link href="<c:url value="/resources/css/fontello.css" />" rel="stylesheet">
-
-
-</head>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"  %>
 
 <body>
     <div id="login-head">

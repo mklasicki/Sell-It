@@ -44,7 +44,7 @@ public class UserFacadeImpl implements UserFacade {
                 log.info("Can't register new user, errors occurred during filling form {}", error);
             }
 
-            return "register-user-form";
+            return "user-form";
         } else {
 
             userService.saveUser(createUserForm(userDTO, new Authorities()));
