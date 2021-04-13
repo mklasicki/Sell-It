@@ -6,7 +6,7 @@
 <security:authorize access="!isAuthenticated()">
 <div id="menu">
     <ol>
-        <li><a href="/product/add-form">Nowe Ogłoszenie</a></li>
+        <li><a href="/product/product-form">Nowe Ogłoszenie</a></li>
         <li><a href="/login">Zaloguj się</a></li>
         <li><a href="/user/register">Załóż konto</a></li>
     </ol>
@@ -22,7 +22,7 @@
                     Witaj <security:authentication property="principal.username" /> !
                 </a>
                     <ul>
-                        <li><a href="/product/add-form">Dodaj ogłoszenie</a></li>
+                        <li><a href="/product/product-form">Dodaj ogłoszenie</a></li>
                         <li><a href="/my-products">Twoje ogłoszenia</a></li>
                         <li>
                             <c:url var="updateLink" value="/user/update-form">

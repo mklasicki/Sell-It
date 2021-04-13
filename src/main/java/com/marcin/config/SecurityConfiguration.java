@@ -41,7 +41,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/my-page/**").authenticated()
-                .antMatchers("/product/add-form").authenticated()
+                .antMatchers("/product/product-form").authenticated()
                 .antMatchers("/user/register", "/user/save").permitAll()
                 .antMatchers("/user/**").authenticated()
                 .antMatchers("/h2-console").permitAll()

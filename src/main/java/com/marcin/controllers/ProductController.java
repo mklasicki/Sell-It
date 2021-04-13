@@ -31,11 +31,11 @@ public class ProductController {
         this.categoryFacade = categoryFacade;
     }
 
-    @GetMapping("/add-form")
+    @GetMapping("/product-form")
     public String showProduct(Model model) {
         model.addAttribute("categories", categoryFacade.getAllCategories());
         model.addAttribute("product", new ProductDTO());
-        return "add-item";
+        return "product-form";
     }
 
     @PostMapping("/save")
