@@ -6,7 +6,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 
-<body>
+
     <div id="wrapper">
         <div id="add-product-head">
             <h3 id="add-product-header">Dodaj nowy przedmiot</h3>
@@ -50,6 +50,5 @@
                 </div>
             </form:form>
     </div>
-</body>
 </html>
 

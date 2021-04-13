@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"  %>
 
-<body>
+
     <div id="login-head">
         <h3 id="login-header"><i class="icon-user-male"></i> Zaloguj się</h3>
     </div>
@@ -26,4 +26,3 @@
         <div id="main-page-link-on-login-page">
             <a href="/main">Wróć na stronę główną</a>
         </div>
-</body>
