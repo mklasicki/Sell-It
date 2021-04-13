@@ -29,7 +29,7 @@ public class UserController {
 
     @GetMapping("/register")
     public String registerUser(@ModelAttribute("UserDTO") UserDTO userDTO) {
-        return "register-user-form";
+        return "user-form";
     }
 
     @PostMapping("/save")
@@ -39,8 +39,8 @@ public class UserController {
 
     @GetMapping("/update-form")
     public String showUpdateForm(@RequestParam("userId") Long id, Model model) throws IOException {
-        model.addAttribute("userDTO", userFacade.fillUserUpdateForm(id));
-        return "update-user-form";
+        model.addAttribute("UserDTO", userFacade.fillUserUpdateForm(id));
+        return "user-form";
     }
 
     @PostMapping("/update")
