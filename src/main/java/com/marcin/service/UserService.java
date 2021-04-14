@@ -20,4 +20,6 @@ public interface UserService  {
 
     void updateUser(Long id, UserDTO userDTO);
 
+    boolean isEmailTaken(String email);
+
 }

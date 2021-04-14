@@ -56,10 +56,22 @@ public class UserServiceImpl implements UserService {
             .filter(user -> user.getName().equals(name)).findFirst().orElse(null);
     }
 
+
     @Override
     public User findUserByLogin(String login) {
         return userRepository.findAll().stream()
             .filter(user -> user.getLogin().equals(login)).findFirst().orElse(null);
+    }
+
+    @Override
+    public boolean isEmailTaken(String email) {
+        User user = userRepository.findAll().stream()
+            .filter(u -> u.getEmail().equals(email)).findFirst().orElse(null);
+        if (user != null) {
+            return false;
+        }
+
+        return true;
     }
 
     @Override
