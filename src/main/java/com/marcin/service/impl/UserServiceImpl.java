@@ -37,10 +37,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void saveUser(User user) {
-        if (userRepository.findOneByNameAndLastName(user.getName(), user.getLastName()).isPresent()) {
-            throw new DuplicatedDataException("User with name " + user.getName()
-                                                +  " and last name " + user.getLastName() + "already exists");
-        }
         userRepository.save(user);
     }
 
@@ -56,10 +52,34 @@ public class UserServiceImpl implements UserService {
             .filter(user -> user.getName().equals(name)).findFirst().orElse(null);
     }
 
+
     @Override
     public User findUserByLogin(String login) {
         return userRepository.findAll().stream()
             .filter(user -> user.getLogin().equals(login)).findFirst().orElse(null);
+    }
+
+    @Override
+    public boolean isEmailTaken(String email) {
+        User user = userRepository.findAll().stream()
+            .filter(u -> u.getEmail().equals(email)).findFirst().orElse(null);
+        if (user != null) {
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean isUsernameTaken(String username) {
+        User user = userRepository.findAll().stream()
+            .filter(u -> u.getLogin().equals(username)).findFirst().orElse(null);
+
+        if (user != null) {
+            return false;
+        }
+
+        return true;
     }
 
     @Override
