@@ -4,6 +4,7 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 import com.marcin.service.UserService;
+import com.marcin.validaton.annotation.UniqueUsername;
 
 public class CustomUsernameValidator implements ConstraintValidator<UniqueUsername, String> {
 

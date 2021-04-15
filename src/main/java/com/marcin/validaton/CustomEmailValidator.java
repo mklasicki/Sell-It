@@ -5,6 +5,7 @@ import javax.validation.ConstraintValidatorContext;
 
 
 import com.marcin.service.UserService;
+import com.marcin.validaton.annotation.UniqueEmail;
 
 public class CustomEmailValidator implements ConstraintValidator<UniqueEmail, String> {
 

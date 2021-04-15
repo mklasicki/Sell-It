@@ -1,7 +1,7 @@
 package com.marcin.dto;
 
-import com.marcin.validaton.UniqueEmail;
-import com.marcin.validaton.UniqueUsername;
+import com.marcin.validaton.annotation.UniqueEmail;
+import com.marcin.validaton.annotation.UniqueUsername;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
