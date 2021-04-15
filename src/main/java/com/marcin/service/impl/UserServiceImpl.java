@@ -75,6 +75,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean isUsernameTaken(String username) {
+        User user = userRepository.findAll().stream()
+            .filter(u -> u.getLogin().equals(username)).findFirst().orElse(null);
+
+        if (user != null) {
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
     public void updateUser(Long id, UserDTO userDTO) {
         if (userDTO != null) {
 

@@ -22,4 +22,6 @@ public interface UserService  {
 
     boolean isEmailTaken(String email);
 
+    boolean isUsernameTaken(String username);
+
 }

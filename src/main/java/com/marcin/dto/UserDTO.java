@@ -1,6 +1,7 @@
 package com.marcin.dto;
 
-import com.marcin.util.UniqueEmail;
+import com.marcin.validaton.UniqueEmail;
+import com.marcin.validaton.UniqueUsername;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +10,6 @@ import lombok.Setter;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 @Getter
 @Setter
@@ -23,6 +23,7 @@ public class UserDTO {
     @NotBlank(message = "Pole nazwisko nie może być puste")
     private String lastName;
     @NotBlank(message = "Pole login nie może być puste")
+    @UniqueUsername(message = "Podany login jest już zajęty")
     private String login;
     @NotBlank(message = "Pole hasło nie może być puste")
     private String password;
