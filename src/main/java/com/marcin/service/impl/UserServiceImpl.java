@@ -37,10 +37,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void saveUser(User user) {
-        if (userRepository.findOneByNameAndLastName(user.getName(), user.getLastName()).isPresent()) {
-            throw new DuplicatedDataException("User with name " + user.getName()
-                                                +  " and last name " + user.getLastName() + "already exists");
-        }
         userRepository.save(user);
     }
 

@@ -29,7 +29,7 @@ public class UserDTO {
     private String password;
     @NotBlank(message = "Pole e-mail nie może być puste")
     @Email(message = "Wprowadzone dane są nieprawidłowe")
-    @UniqueEmail(message = "Podany mail jest już zajęty")
+    @UniqueEmail(message = "Podany e-mail jest już zajęty")
     private String email;
     @AssertTrue(message = "Aby się zarejestrowac musisz zaakceptować regulamin")
     private boolean enabled;
