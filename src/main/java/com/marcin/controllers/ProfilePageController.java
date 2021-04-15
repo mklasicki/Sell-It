@@ -4,7 +4,6 @@ package com.marcin.controllers;
 import com.marcin.domain.User;
 import com.marcin.dto.UserDetailsDTO;
 import com.marcin.facades.ProductFacade;
-import com.marcin.facades.UserFacade;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -19,7 +18,6 @@ import java.io.IOException;
 public class ProfilePageController {
 
     private final ProductFacade productFacade;
-
 
     public ProfilePageController(ProductFacade productFacade) {
         this.productFacade = productFacade;
