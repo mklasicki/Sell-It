@@ -21,8 +21,10 @@ import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -69,13 +71,15 @@ class UserServiceImplTest {
     void should_throw_DataNotFoundException_when_list_of_all_users_is_empty() {
 
         //given
-        //when
         List<User> users = Collections.emptyList();
+
+        //when
         when(userRepository.findAll()).thenReturn(users);
 
         //then
         assertThat(users, is(empty()));
         assertThrows(DataNotFoundException.class, () -> userService.getAll());
+        verify(userRepository, times(1)).findAll();
     }
 
     @Test
@@ -83,22 +87,21 @@ class UserServiceImplTest {
 
         //given
         when(userRepository.save(user)).thenReturn(user);
+        when(userRepository.existsById(user.getId())).thenReturn(true);
         ArgumentCaptor<User> argumentCaptor = ArgumentCaptor.forClass(User.class);
 
         //when
         userService.saveUser(user);
+        boolean doExist = userRepository.existsById(USER_ID);
 
         //then
         verify(userRepository).save(argumentCaptor.capture());
         User addedUser = argumentCaptor.getValue();
         assertThat(addedUser, is(user));
+        assertTrue(doExist);
 
     }
 
-    @Test
-    void should_throw_DuplicatedDataException_when_user_With_same_name_and_lastName_will_be_added() {
-
-    }
 
     @Test
     void should_return_user_when_given_id() {
@@ -110,8 +113,9 @@ class UserServiceImplTest {
         User userResult = userService.findById(USER_ID);
 
         //than
-        verify(userRepository, times(1)).findById(USER_ID);
         assertThat(userResult.getName(), is(user.getName()));
+        verify(userRepository, times(1)).findById(USER_ID);
+
 
     }
 
@@ -120,7 +124,7 @@ class UserServiceImplTest {
 
         //given
         //when
-        when(userRepository.findById(USER_ID)).thenThrow(new UserNotFoundException("User not found"));
+        when(userRepository.findById(USER_ID)).thenReturn(Optional.empty());
 
         //then
         assertThrows(UserNotFoundException.class, () -> userService.findById(USER_ID));
