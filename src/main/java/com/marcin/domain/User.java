@@ -3,6 +3,7 @@ package com.marcin.domain;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -134,6 +135,27 @@ public class User {
 
         roles.add(authority);
         authority.setUser(this);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return isEnabled() == user.isEnabled() &&
+            Objects.equals(getId(), user.getId()) &&
+            Objects.equals(getName(), user.getName()) &&
+            Objects.equals(getLastName(), user.getLastName()) &&
+            Objects.equals(getLogin(), user.getLogin()) &&
+            Objects.equals(getPassword(), user.getPassword()) &&
+            Objects.equals(getEmail(), user.getEmail()) &&
+            Objects.equals(getProducts(), user.getProducts()) &&
+            Objects.equals(getRoles(), user.getRoles());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName(), getLastName(), getLogin(), getPassword(), getEmail(), isEnabled(), getProducts(), getRoles());
     }
 
     @Override

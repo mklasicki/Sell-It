@@ -21,6 +21,7 @@ import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -45,6 +46,7 @@ class UserServiceImplTest {
             .id(USER_ID)
             .name("Marcin")
             .lastName("Klasicki")
+            .password("pass123")
             .login("mar")
             .email("marcin@klasicki.pl")
             .build();
@@ -107,12 +109,15 @@ class UserServiceImplTest {
 
         //given
         when(userRepository.findById(USER_ID)).thenReturn(Optional.of(user));
+        when(userRepository.existsById(USER_ID)).thenReturn(true);
 
         //when
         User userResult = userService.findById(USER_ID);
+        boolean doExists = userRepository.existsById(USER_ID);
 
         //than
         assertThat(userResult.getName(), is(user.getName()));
+        assertTrue(doExists);
         verify(userRepository, times(1)).findById(USER_ID);
 
 
@@ -135,16 +140,36 @@ class UserServiceImplTest {
 
         //given
         when(userRepository.findAll()).thenReturn(generateTestData());
+        User testUser = generateTestData().get(0);
 
         //when
-        User searchResult = userService.findByName(user.getName());
+        User searchResult = userService.findByName("Marcin");
 
         //then
         assertThat(searchResult.getName(), is(user.getName()));
+        assertThat(searchResult, is(user));
         verify(userRepository, times(1)).findAll();
 
+    }
+
+    @Test
+    void should_return_user_when_given_login() {
+
+        //given
+        when(userRepository.findAll()).thenReturn(generateTestData());
+        User testUser = generateTestData().get(1);
+        String userLogin = "seb";
+
+        //when
+        User searchResult = userService.findUserByLogin(userLogin);
+
+        //then
+        assertThat(searchResult.getName(), is(testUser.getName()));
+        assertThat(searchResult, is(testUser));
+        verify(userRepository, times(1)).findAll();
 
     }
+
 
     private List<User> generateTestData() {
 
