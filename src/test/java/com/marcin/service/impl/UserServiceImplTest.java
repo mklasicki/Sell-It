@@ -100,9 +100,7 @@ class UserServiceImplTest {
         User addedUser = argumentCaptor.getValue();
         assertThat(addedUser, is(user));
         assertTrue(doExist);
-
     }
-
 
     @Test
     void should_return_user_when_given_id() {
@@ -119,8 +117,6 @@ class UserServiceImplTest {
         assertThat(userResult.getName(), is(user.getName()));
         assertTrue(doExists);
         verify(userRepository, times(1)).findById(USER_ID);
-
-
     }
 
     @Test
@@ -141,15 +137,15 @@ class UserServiceImplTest {
         //given
         when(userRepository.findAll()).thenReturn(generateTestData());
         User testUser = generateTestData().get(0);
+        String userName = "Marcin";
 
         //when
-        User searchResult = userService.findByName("Marcin");
+        User searchResult = userService.findByName(userName);
 
         //then
-        assertThat(searchResult.getName(), is(user.getName()));
-        assertThat(searchResult, is(user));
+        assertThat(searchResult.getName(), is(testUser.getName()));
+        assertThat(searchResult, is(testUser));
         verify(userRepository, times(1)).findAll();
-
     }
 
     @Test
@@ -167,9 +163,7 @@ class UserServiceImplTest {
         assertThat(searchResult.getName(), is(testUser.getName()));
         assertThat(searchResult, is(testUser));
         verify(userRepository, times(1)).findAll();
-
     }
-
 
     private List<User> generateTestData() {
 
@@ -179,5 +173,4 @@ class UserServiceImplTest {
 
         return Arrays.asList(user1, user2, user3);
     }
-
 }
