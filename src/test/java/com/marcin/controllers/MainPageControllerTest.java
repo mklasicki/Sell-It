@@ -47,14 +47,16 @@ class MainPageControllerTest {
     @Test
     void getProducts() throws Exception {
 
+        //given
+        //when
         String viewName = mainPageController.getProducts(model);
         productFacade.getAll();
 
         mockMvc.perform(MockMvcRequestBuilders.get("/main")).andDo(print())
-            .andExpect(MockMvcResultMatchers.view().name("main"));
+            .andExpect(MockMvcResultMatchers.view().name("index"));
 
-
-        assertEquals("main", viewName);
+        //then
+        assertEquals("index", viewName);
         verify(productFacade, times(1)).getAll();
         verify(model, times(1)).addAttribute(eq("products"), anyList());
 
