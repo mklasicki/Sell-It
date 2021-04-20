@@ -7,6 +7,7 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.io.IOException;
 
@@ -53,6 +54,7 @@ class MainPageControllerTest {
         productFacade.getAll();
 
         mockMvc.perform(MockMvcRequestBuilders.get("/main")).andDo(print())
+            .andExpect(status().isOk())
             .andExpect(MockMvcResultMatchers.view().name("index"));
 
         //then

@@ -1,6 +1,7 @@
 package com.marcin.controllers;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -32,6 +33,7 @@ class LoginControllerTest {
      String viewName = loginController.loginForm();
 
      mockMvc.perform(MockMvcRequestBuilders.get("/login"))
+         .andExpect(status().isOk())
          .andExpect(MockMvcResultMatchers.view().name("login"));
 
      //then

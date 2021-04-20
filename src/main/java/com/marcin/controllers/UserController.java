@@ -5,6 +5,7 @@ import com.marcin.dto.UserDTO;
 import com.marcin.facades.UserFacade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,22 +29,26 @@ public class UserController {
     }
 
     @GetMapping("/register")
+    @ResponseStatus(HttpStatus.OK)
     public String registerUser(@ModelAttribute("UserDTO") UserDTO userDTO) {
         return "user-form";
     }
 
     @PostMapping("/save")
+    @ResponseStatus(HttpStatus.CREATED)
     public String saveUser(@Valid @ModelAttribute("UserDTO") UserDTO userDTO, BindingResult result) throws MessagingException {
         return userFacade.validateAndRegisterNewUser(userDTO, result);
     }
 
     @GetMapping("/update-form")
+    @ResponseStatus(HttpStatus.OK)
     public String showUpdateForm(@RequestParam("userId") Long id, Model model) throws IOException {
         model.addAttribute("UserDTO", userFacade.fillUserUpdateForm(id));
         return "user-form";
     }
 
     @PostMapping("/update")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public String update(Long id, UserDTO userDTO) {
        userFacade.updateUser(id, userDTO);
         return "redirect:/my-page";
