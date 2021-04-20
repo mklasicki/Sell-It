@@ -108,7 +108,13 @@ class ProductControllerTest {
     }
 
     @Test
-    void search() {
+    void should_return_httpStatus_200_with_correct_url_param() throws Exception {
+
+        String param = "Rower";
+
+        mockMvc
+            .perform(MockMvcRequestBuilders.get("/product/search").param("productName", param))
+            .andExpect(status().isOk()).andDo(print());
     }
 
     private List<Category> generateCategoryList() {
