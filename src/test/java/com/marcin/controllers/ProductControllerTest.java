@@ -8,6 +8,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
@@ -23,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -55,29 +57,25 @@ class ProductControllerTest {
 
     @Test
     @WithMockUser(username = "Mar", password = "pass")
-    void should_return_product_form_page() throws Exception {
+    void should_return_httpStatus200_when_user_is_authorized() throws Exception {
 
-        //given
-        String viewName = productController.showProduct(model);
         when(categoryFacade.getAllCategories()).thenReturn(generateCategoryList());
-        //when
+
         mockMvc.perform(MockMvcRequestBuilders.get("/product/product-form"))
             .andExpect(status().isOk()).andDo(print())
             .andExpect(view().name("product-form"))
             .andExpect(forwardedUrl("/WEB-INF/view/tiles/layouts/defaultLayout.jsp"))
             .andExpect(model().attribute("categories", categoryFacade.getAllCategories()))
             .andExpect(model().attribute("product", new ProductDTO()));
-
-        //then
-        assertEquals("product-form", viewName);
-        verify(categoryFacade, times(1)).getAllCategories();
     }
 
     @Test
-    void should_return_login_form_page() throws Exception {
+    void should_return_httpStatus302_and_redirect_to_login_page_when_user_is_not_authorized() throws Exception {
 
         mockMvc.perform(MockMvcRequestBuilders.get("/product/product-form"))
-            .andExpect(status().is3xxRedirection()).andDo(print());
+            .andExpect(status().is3xxRedirection()).andDo(print())
+            .andExpect(redirectedUrl("http://localhost/login"))
+            .andReturn();
 
     }
 
@@ -90,7 +88,23 @@ class ProductControllerTest {
     }
 
     @Test
-    void showProductsByCategory() {
+    void should_return_httpStatus200_with_correct_url_param() throws Exception {
+
+        String param = "Elektronika";
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/product/" + param))
+                .andExpect(status().isOk()).andDo(print())
+                .andExpect(view().name("category"));
+    }
+
+    @Test
+    void should_return_httpStatus404_with_incorrect_url_param() throws Exception {
+
+        String param = "Elektronika/4";
+
+        mockMvc
+            .perform(MockMvcRequestBuilders.get("/product/" + param))
+            .andExpect(status().is4xxClientError()).andDo(print());
     }
 
     @Test
