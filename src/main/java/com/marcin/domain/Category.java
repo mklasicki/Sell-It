@@ -1,5 +1,6 @@
 package com.marcin.domain;
 
+import java.util.Objects;
 import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
@@ -56,6 +57,22 @@ public class Category {
 
     public void setIconUrl(String iconUrl) {
         this.iconUrl = iconUrl;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Category)) return false;
+        Category category = (Category) o;
+        return Objects.equals(getId(), category.getId()) &&
+            Objects.equals(getName(), category.getName()) &&
+            Objects.equals(isActive(), category.isActive()) &&
+            Objects.equals(getIconUrl(), category.getIconUrl());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName(), isActive(), getIconUrl());
     }
 
     @Override
