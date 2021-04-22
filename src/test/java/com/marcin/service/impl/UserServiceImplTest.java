@@ -19,9 +19,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
@@ -52,23 +55,23 @@ class UserServiceImplTest {
     }
 
     @Test
-    void should_return_list_of_all_the_users() {
+    void shouldReturnListOfAllUsers() {
 
         //given
-        List<User> users = generateTestData();
+        List<User> users = Arrays.asList(User.builder().id(1L).build(),User.builder().id(2L).build());
+
         when(userRepository.findAll()).thenReturn(users);
 
         //when
-        List<User> userResultList = userService.getAll();
+        List<User> result = userService.getAll();
 
         //then
-        assertThat(users, hasSize(3));
-        assertNotNull(userResultList);
+        assertThat(result, hasSize(2));
         verify(userRepository, times(1)).findAll();
     }
 
     @Test
-    void should_throw_DataNotFoundException_when_list_of_all_users_is_empty() {
+    void shouldThrowDataNotFoundExceptionWhenListOfAllUsersIsEmpty() {
 
         //given
         List<User> users = Collections.emptyList();
@@ -83,7 +86,41 @@ class UserServiceImplTest {
     }
 
     @Test
-    void should_add_new_user() {
+    void shouldReturnUserWhenGivenId() {
+
+        //given
+        //when
+        when(userRepository.findById(USER_ID)).thenReturn(Optional.of(user));
+        when(userRepository.existsById(USER_ID)).thenReturn(true);
+
+        User userResult = userService.findById(USER_ID);
+        boolean doExists = userRepository.existsById(USER_ID);
+
+        //then
+        assertThat(userResult.getName(), is(user.getName()));
+        assertTrue(doExists);
+        assertNotNull(userResult);
+        verify(userRepository, times(1)).findById(USER_ID);
+    }
+
+    @Test
+    void shouldThrowUserNotFoundExceptionWhenUserNotFoundById() {
+
+        //given
+        //when
+        when(userRepository.findById(USER_ID)).thenReturn(Optional.empty());
+        when(userRepository.existsById(USER_ID)).thenReturn(false);
+
+        boolean doExists = userRepository.existsById(USER_ID);
+
+        //then
+        assertFalse(doExists);
+        assertThrows(UserNotFoundException.class, () -> userService.findById(USER_ID));
+        verify(userRepository, times(1)).findById(any());
+    }
+
+    @Test
+    void shouldAddNewUser() {
 
         //given
         when(userRepository.save(user)).thenReturn(user);
@@ -102,65 +139,123 @@ class UserServiceImplTest {
     }
 
     @Test
-    void should_return_user_when_given_id() {
+    void shouldReturnUserWhenGivenName() {
 
         //given
-        when(userRepository.findById(USER_ID)).thenReturn(Optional.of(user));
-        when(userRepository.existsById(USER_ID)).thenReturn(true);
-
-        //when
-        User userResult = userService.findById(USER_ID);
-        boolean doExists = userRepository.existsById(USER_ID);
-
-        //then
-        assertThat(userResult.getName(), is(user.getName()));
-        assertTrue(doExists);
-        verify(userRepository, times(1)).findById(USER_ID);
-    }
-
-    @Test
-    void should_throw_UserNotFoundException_when_user_not_found_by_id() {
-
-        //given
-        //when
-        when(userRepository.findById(USER_ID)).thenReturn(Optional.empty());
-
-        //then
-        assertThrows(UserNotFoundException.class, () -> userService.findById(USER_ID));
-        verify(userRepository, times(1)).findById(any());
-    }
-
-    @Test
-    void should_return_user_when_given_name() {
-
-        //given
-        when(userRepository.findAll()).thenReturn(generateTestData());
-        User testUser = generateTestData().get(0);
         String userName = "Marcin";
+        when(userRepository.findAll()).thenReturn(generateTestData());
 
         //when
         User searchResult = userService.findByName(userName);
 
         //then
-        assertThat(searchResult.getName(), is(testUser.getName()));
-        assertThat(searchResult, is(testUser));
+        assertNotNull(searchResult);
+        assertThat(searchResult.getName(), is(userName));
         verify(userRepository, times(1)).findAll();
     }
 
     @Test
-    void should_return_user_when_given_login() {
+    void shouldReturnNullWhenUserIsNotFoundByGivenName() {
+
+        //given
+        String userName = "Rafał";
+        when(userRepository.findAll()).thenReturn(generateTestData());
+
+        //when
+        User searchResult = userService.findByName(userName);
+
+        //then
+        assertNull(searchResult);
+        verify(userRepository, times(1)).findAll();
+    }
+
+    @Test
+    void shouldReturnUserWhenGivenLogin() {
 
         //given
         when(userRepository.findAll()).thenReturn(generateTestData());
-        User testUser = generateTestData().get(1);
         String userLogin = "seb";
 
         //when
         User searchResult = userService.findUserByLogin(userLogin);
 
         //then
-        assertThat(searchResult.getName(), is(testUser.getName()));
-        assertThat(searchResult, is(testUser));
+       assertNotNull(searchResult);
+       verify(userRepository, times(1)).findAll();
+    }
+
+    @Test
+    void shouldReturnNullWhenUserIsNotFoundByGivenLogin() {
+
+        //given
+        when(userRepository.findAll()).thenReturn(generateTestData());
+        String userLogin = "lol";
+
+        //when
+        User searchResult = userService.findUserByLogin(userLogin);
+
+        //then
+        assertNull(searchResult);
+        verify(userRepository, times(1)).findAll();
+    }
+
+    @Test
+    void shouldReturnFalseIfEmailIsTaken() {
+
+        //given
+        when(userRepository.findAll()).thenReturn(generateTestData());
+        String email = "marcin@klasicki.pl";
+
+        //when
+        boolean result = userService.isEmailTaken(email);
+
+        //then
+        assertFalse(result);
+        verify(userRepository, times(1)).findAll();
+    }
+
+    @Test
+    void shouldReturnTrueIfEmailIsNotTaken() {
+
+        //given
+        when(userRepository.findAll()).thenReturn(generateTestData());
+        String email = "rafix@klasicki.pl";
+
+        //when
+        boolean result = userService.isEmailTaken(email);
+
+        //then
+        assertTrue(result);
+        verify(userRepository, times(1)).findAll();
+    }
+
+    @Test
+    void shouldReturnFalseIfLoginIsTaken() {
+
+        //given
+        when(userRepository.findAll()).thenReturn(generateTestData());
+        String login = "mar";
+
+        //when
+        boolean result = userService.isUsernameTaken(login);
+
+        //then
+        assertFalse(result);
+        verify(userRepository, times(1)).findAll();
+    }
+
+    @Test
+    void shouldReturnTrueIfLoginIsNotTaken() {
+
+        //given
+        when(userRepository.findAll()).thenReturn(generateTestData());
+        String login = "lol";
+
+        //when
+        boolean result = userService.isUsernameTaken(login);
+
+        //then
+        assertTrue(result);
         verify(userRepository, times(1)).findAll();
     }
 
