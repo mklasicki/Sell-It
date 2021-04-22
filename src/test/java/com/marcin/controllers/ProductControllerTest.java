@@ -1,12 +1,13 @@
 package com.marcin.controllers;
 
-import static org.hibernate.criterion.Restrictions.eq;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.hamcrest.Matchers.hasSize;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -16,71 +17,101 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.Arrays;
 import java.util.List;
 
+
 import com.marcin.domain.Category;
+import com.marcin.domain.Product;
 import com.marcin.dto.ProductDTO;
 import com.marcin.facades.CategoryFacade;
 import com.marcin.facades.ProductFacade;
+import com.marcin.service.impl.StorageServiceImpl;
+import com.marcin.service.impl.UserDetailsServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.springframework.ui.Model;
+
+
 
 @ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
-@SpringBootTest
+@WebMvcTest(ProductController.class)
 class ProductControllerTest {
 
     @Autowired
-    MockMvc mockMvc;
+    private MockMvc mockMvc;
 
-    @Mock
+    @MockBean
     ProductFacade productFacade;
 
-    @Mock
+    @MockBean
     CategoryFacade categoryFacade;
 
-    @Mock
-    Model model;
+    @MockBean
+    UserDetailsServiceImpl userDetailsService;
+
+    @MockBean
+    StorageServiceImpl storageService;
 
     @InjectMocks
     ProductController productController;
 
     @Test
     @WithMockUser(username = "Mar", password = "pass")
-    void should_return_httpStatus200_when_user_is_authorized() throws Exception {
+    void shouldReturnOkStatusWhenUserIsLoggedIn() throws Exception {
 
+        //given
+        String url = "/product/product-form";
+
+        //when
         when(categoryFacade.getAllCategories()).thenReturn(generateCategoryList());
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/product/product-form"))
-            .andExpect(status().isOk()).andDo(print())
+        //then
+        mockMvc.perform(MockMvcRequestBuilders.get(url))
+            .andExpect(status().isOk())
+            .andDo(print())
             .andExpect(view().name("product-form"))
-            .andExpect(forwardedUrl("/WEB-INF/view/tiles/layouts/defaultLayout.jsp"))
-            .andExpect(model().attribute("categories", categoryFacade.getAllCategories()))
+            .andExpect(model().attribute("categories",generateCategoryList()))
             .andExpect(model().attribute("product", new ProductDTO()));
+
+        verify(categoryFacade, times(1)).getAllCategories();
+        verifyNoMoreInteractions(categoryFacade);
     }
 
     @Test
-    void should_return_httpStatus302_and_redirect_to_login_page_when_user_is_not_authorized() throws Exception {
+    void shouldReturnRedirectStatusWhenUserIsNotLoggedIn() throws Exception {
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/product/product-form"))
-            .andExpect(status().is3xxRedirection()).andDo(print())
+        //given
+        String url = "/product/product-form";
+
+        //then
+        mockMvc.perform(MockMvcRequestBuilders.get(url))
+            .andExpect(status().is3xxRedirection())
+            .andDo(print())
             .andExpect(redirectedUrl("http://localhost/login"))
             .andReturn();
 
+        verify(categoryFacade,never()).getAllCategories();
     }
 
     @Test
-    void saveProduct() {
+    void saveProduct() throws Exception {
+
+        //given
+//        when(productFacade.validateAndRegisterNewProduct(any(ProductDTO.class),any(BindingResult.class), any(Principal.class)))
+//            .thenReturn(anyString());
+
+        //when
+        //then
+        mockMvc.perform(MockMvcRequestBuilders.post("/product/save"))
+                .andExpect(status().is2xxSuccessful()).andDo(print());
+
     }
 
     @Test
@@ -88,23 +119,33 @@ class ProductControllerTest {
     }
 
     @Test
-    void should_return_httpStatus200_with_correct_url_param() throws Exception {
+    void shouldReturnOkStatusWhenUrlIsCorrect() throws Exception {
 
-        String param = "Elektronika";
+        //given
+        String categoryName = "Elektronika";
+        String url = "/product/" + categoryName;
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/product/" + param))
-                .andExpect(status().isOk()).andDo(print())
+        //when
+        //then
+        mockMvc.perform(MockMvcRequestBuilders.get(url))
+                .andExpect(status().isOk())
+                .andDo(print())
                 .andExpect(view().name("category"));
     }
 
     @Test
-    void should_return_httpStatus404_with_incorrect_url_param() throws Exception {
+    void shouldReturnNotFoundStatusWhenUrlIsIncorrect() throws Exception {
 
-        String param = "Elektronika/4";
+        //given
+        String categoryName = "Elektronika/4";
+        String url = "/product/" + categoryName;
 
+        //when
+        //then
         mockMvc
-            .perform(MockMvcRequestBuilders.get("/product/" + param))
-            .andExpect(status().is4xxClientError()).andDo(print());
+            .perform(MockMvcRequestBuilders.get(url))
+            .andExpect(status().isNotFound())
+            .andDo(print());
     }
 
     @Test
