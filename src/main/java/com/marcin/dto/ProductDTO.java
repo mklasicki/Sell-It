@@ -10,6 +10,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.security.Principal;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -101,6 +102,26 @@ public class ProductDTO {
 
     public void setPrincipal(Principal principal) {
         this.principal = principal;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ProductDTO)) return false;
+        ProductDTO that = (ProductDTO) o;
+        return Objects.equals(getId(), that.getId()) &&
+            Objects.equals(getProductName(), that.getProductName()) &&
+            Objects.equals(getCategory(), that.getCategory()) &&
+            Objects.equals(getProductDescription(), that.getProductDescription()) &&
+            Objects.equals(getProductPrice(), that.getProductPrice()) &&
+            Objects.equals(getImage(), that.getImage()) &&
+            Objects.equals(getPrincipal(), that.getPrincipal()) &&
+            Objects.equals(getImageName(), that.getImageName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getProductName(), getCategory(), getProductDescription(), getProductPrice(), getImage(), getPrincipal(), getImageName());
     }
 
     @Override

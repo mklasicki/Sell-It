@@ -52,7 +52,6 @@ public class UserServiceImpl implements UserService {
             .filter(user -> user.getName().equals(name)).findFirst().orElse(null);
     }
 
-
     @Override
     public User findUserByLogin(String login) {
         return userRepository.findAll().stream()

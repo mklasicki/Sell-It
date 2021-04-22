@@ -1,41 +1,54 @@
 package com.marcin.controllers;
 
-import static org.junit.jupiter.api.Assertions.*;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+
+
+import com.marcin.service.impl.StorageServiceImpl;
+import com.marcin.service.impl.UserDetailsServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
 
 @ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
-@SpringBootTest
+@WebMvcTest(LoginController.class)
 class LoginControllerTest {
 
- @Autowired
- MockMvc mockMvc;
+    @Autowired
+    MockMvc mockMvc;
 
- @InjectMocks
- LoginController loginController;
+    @MockBean
+    UserDetailsServiceImpl userDetailsService;
 
- @Test
- void should_return_login_page() throws Exception {
+    @MockBean
+    StorageServiceImpl storageService;
 
-     //given
-     //when
-     String viewName = loginController.loginForm();
+    @InjectMocks
+    LoginController loginController;
 
-     mockMvc.perform(MockMvcRequestBuilders.get("/login"))
-         .andExpect(MockMvcResultMatchers.view().name("login"));
+    @Test
+    void shouldReturnLoginPage() throws Exception {
 
-     //then
-     assertEquals("login", viewName);
- }
+        //given
+        String url = "/login";
 
+        //then
+        mockMvc.perform(MockMvcRequestBuilders.get(url))
+            .andExpect(status().isOk())
+            .andDo(print())
+            .andExpect(view().name("login"))
+            .andExpect(forwardedUrl("/WEB-INF/view/tiles/layouts/defaultLayout.jsp"));
+    }
 }

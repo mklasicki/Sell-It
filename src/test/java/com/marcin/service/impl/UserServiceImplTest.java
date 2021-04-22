@@ -112,7 +112,7 @@ class UserServiceImplTest {
         User userResult = userService.findById(USER_ID);
         boolean doExists = userRepository.existsById(USER_ID);
 
-        //than
+        //then
         assertThat(userResult.getName(), is(user.getName()));
         assertTrue(doExists);
         verify(userRepository, times(1)).findById(USER_ID);

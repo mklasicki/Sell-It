@@ -43,7 +43,7 @@ class ProductServiceImplTest {
         //when
         List<Product> allProducts = productService.getAll();
 
-        //than
+        //then
         assertThat(allProducts, hasSize(2));
         assertThat(allProducts, is(not(empty())));
         verify(productRepository, times(1)).findAll();
