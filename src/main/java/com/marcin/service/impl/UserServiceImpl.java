@@ -83,9 +83,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUser(Long id, UserDTO userDTO) {
-        if (userDTO != null) {
 
-            User userToUpdate = userRepository.findById(id).get();
+            User userToUpdate = userRepository.findById(id)
+                .orElseThrow(() -> new  UserNotFoundException("User with id " + id + " not found"));
 
             if (valueCheck(userDTO.getUsername())) {
                 userToUpdate.setName(userDTO.getUsername());
@@ -101,9 +101,6 @@ public class UserServiceImpl implements UserService {
             }
 
             userRepository.save(userToUpdate);
-        } else {
-            throw new NullPointerException("User not found");
-        }
     }
 
     private boolean valueCheck(String value) {
