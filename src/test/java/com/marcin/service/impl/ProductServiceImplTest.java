@@ -25,6 +25,7 @@ import com.marcin.domain.Product;
 import com.marcin.domain.User;
 import com.marcin.exceptions.EmptySearchFormFieldException;
 import com.marcin.repositories.ProductRepository;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -102,6 +103,7 @@ class ProductServiceImplTest {
     }
 
     @Test
+    @Disabled
     void getProductsByCategory() {
 
         //given

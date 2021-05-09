@@ -37,16 +37,13 @@ public class ProductServiceImpl implements ProductService {
             throw new EmptySearchFormFieldException("Search field cannot be empty");
         }
 
-        List<Product> allProducts = productRepository.findAll();
-        List<Product> resultProducts = new ArrayList<>();
+        List<Product> resultProducts;
 
-        for (Product allProduct : allProducts) {
-            if (StringUtils.containsIgnoreCase(allProduct.getProductName(), productName)) {
-                resultProducts.add(allProduct);
-            }
-        }
+        resultProducts = productRepository.findAll().stream()
+                        .filter(p -> StringUtils.containsIgnoreCase(p.getProductName(),productName))
+                        .collect(Collectors.toList());
 
-        log.info("[ProductServiceImpl]: All products: {}, found products: {}", allProducts.size(), resultProducts.size());
+        log.info("[ProductServiceImpl]: All products: {}, found products: {}", productRepository.findAll().size(), resultProducts.size());
 
         return resultProducts;
     }
@@ -59,15 +56,15 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> getProductsByUserId(Long userId) {
         log.info("[ProductServiceImpl]: Getting all products for user with id {}", userId);
-        return productRepository.findAll()
-            .stream().filter(p -> p.getUser().getId().equals(userId)).collect(Collectors.toList());
+        return productRepository.findAll().stream()
+                    .filter(p -> p.getUser().getId().equals(userId)).collect(Collectors.toList());
     }
 
     @Override
     public List<Product> getProductsByCategory(String category) {
         log.info("[ProductServiceImpl]: Getting all products from category {}", category);
-        return productRepository.findAll()
-            .stream().filter(p -> p.getCategory().getName().equals(category)).collect(Collectors.toList());
+        return productRepository.findAll().stream()
+                    .filter(p -> p.getCategory().getName().equals(category)).collect(Collectors.toList());
     }
 
     @Override
