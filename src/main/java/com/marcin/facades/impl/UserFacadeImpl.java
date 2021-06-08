@@ -38,14 +38,9 @@ public class UserFacadeImpl implements UserFacade {
     @Override
     public String validateAndRegisterNewUser(UserDTO userDTO, BindingResult result) throws MessagingException {
 
-        if (result.hasErrors()) {
-            List<ObjectError> errors = result.getAllErrors();
-            for (ObjectError error : errors) {
-                log.info("Can't register new user, errors occurred during filling form {}", error);
-            }
-
+        if (!isUserValidated(userDTO, result)) {
             return "user-form";
-        } else {
+        }
 
             userService.saveUser(createUserForm(userDTO, new Authorities()));
             sendCredentialsMail(userDTO);
@@ -53,7 +48,6 @@ public class UserFacadeImpl implements UserFacade {
             log.info("created new user {} sent email on address {}", userDTO.getUsername(), userDTO.getEmail());
 
             return "register-success-page";
-        }
     }
 
     @Override
@@ -90,5 +84,15 @@ public class UserFacadeImpl implements UserFacade {
         user.addAuthority(authorities);
         user.setEnabled(true);
         return user;
+    }
+
+    private boolean isUserValidated(UserDTO userDTO, BindingResult result) {
+        if (result.hasErrors()) {
+            List<ObjectError> errors = result.getAllErrors();
+            for (ObjectError error : errors) {
+                log.info("Can't register new user, errors occurred during filling form {}", error);
+            }
+            return false;
+        } return true;
     }
 }
