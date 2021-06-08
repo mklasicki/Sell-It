@@ -17,7 +17,16 @@
 
     <properties>
         <java.version>8</java.version>
+        <spring.boot.starter.mail.version>2.2.0.RELEASE</spring.boot.starter.mail.version>
+        <tomcat.embed-jasper.version>9.0.4</tomcat.embed-jasper.version>
+        <commons.io.version>2.6</commons.io.version>
+        <spring.security.taglibs.version>5.3.1.RELEASE</spring.security.taglibs.version>
+        <spring.security.test.version>5.3.3.RELEASE</spring.security.test.version>
+        <validation.api.version>2.0.1.Final</validation.api.version>
+        <hibernate.validator.version>6.1.0.Final</hibernate.validator.version>
+        <lombok.version>1.18.10</lombok.version>
         <apache.commons.version>3.11</apache.commons.version>
+        <apache.tiles.version>3.0.8</apache.tiles.version>
     </properties>
 
     <dependencies>
@@ -66,7 +75,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
-            <version>2.2.0.RELEASE</version>
+            <version>${spring.boot.starter.mail.version}</version>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -75,38 +84,38 @@
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
-            <version>9.0.4</version>
+            <version>${tomcat.embed-jasper.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <version>2.6</version>
+            <version>${commons.io.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-taglibs</artifactId>
-            <version>5.3.1.RELEASE</version>
+            <version>${spring.security.taglibs.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
-            <version>5.3.3.RELEASE</version>
+            <version>${spring.security.test.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
-            <version>2.0.1.Final</version>
+            <version>${validation.api.version}</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>6.1.0.Final</version>
+            <version>${hibernate.validator.version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.10</version>
+            <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -121,7 +130,7 @@
         <dependency>
             <groupId>org.apache.tiles</groupId>
             <artifactId>tiles-jsp</artifactId>
-            <version>3.0.8</version>
+            <version>${apache.tiles.version}</version>
         </dependency>
     </dependencies>
 
