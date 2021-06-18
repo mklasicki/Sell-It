@@ -17,13 +17,9 @@ import java.util.List;
 public class UserConverterImpl implements Converter<UserDTO, User> {
 
     private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-    private final Logger log = LoggerFactory.getLogger(UserConverterImpl.class);
-
 
     @Override
     public User to(UserDTO userDTO) {
-
-        log.info("Converting UserDTO to User");
 
         return new User(
                 userDTO.getId(),
@@ -36,8 +32,6 @@ public class UserConverterImpl implements Converter<UserDTO, User> {
 
     @Override
     public UserDTO from(User user) {
-
-        log.info("Converting User to UserDTO");
 
         return new UserDTO(user.getId(),
                 user.getName(),

@@ -24,8 +24,6 @@ public class ProductConverterImpl implements Converter<ProductDTO, Product> {
     private final UserService userService;
     private final CategoryService categoryService;
     private final StorageService storageService;
-    private final Logger log = LoggerFactory.getLogger(ProductConverterImpl.class);
-
 
     @Override
     public Product to(ProductDTO productDTO) {
@@ -51,14 +49,10 @@ public class ProductConverterImpl implements Converter<ProductDTO, Product> {
         productDTO.setProductDescription(product.getProductDescription());
         productDTO.setImageName(product.getImage());
 
-        log.info("Conversion from product do productDTO");
-
         return productDTO;
     }
 
     public List<ProductDTO> listConverter(List<Product> products) {
-
-        log.info("Conversion of list with products to list with productsDTO");
 
         return products.stream().map(this::from).collect(Collectors.toList());
     }
@@ -74,7 +68,6 @@ public class ProductConverterImpl implements Converter<ProductDTO, Product> {
     private User setUser(ProductDTO productDTO) {
         return userService.findByName(productDTO.getPrincipal().getName());
     }
-
 
 }
 
