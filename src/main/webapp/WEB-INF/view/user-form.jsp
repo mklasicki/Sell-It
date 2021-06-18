@@ -43,6 +43,7 @@
             <div class="user-form-input">
                 <input class="submit-button" type="submit" value="Zatwierdź">
             </div>
+              <div class="g-recaptcha" data-sitekey="6LdW-y4bAAAAAGvxMyqvCYeobnLMM39wSkugO0A7"></div>
         </form:form>
     </div>
     <div class="main-page_link">
