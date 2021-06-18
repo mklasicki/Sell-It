@@ -19,7 +19,7 @@
         <java.version>8</java.version>
         <spring.boot.starter.mail.version>2.2.0.RELEASE</spring.boot.starter.mail.version>
         <tomcat.embed-jasper.version>9.0.4</tomcat.embed-jasper.version>
-        <commons.io.version>2.6</commons.io.version>
+        <commons.io.version>2.7</commons.io.version>
         <spring.security.taglibs.version>5.3.1.RELEASE</spring.security.taglibs.version>
         <spring.security.test.version>5.3.3.RELEASE</spring.security.test.version>
         <validation.api.version>2.0.1.Final</validation.api.version>
