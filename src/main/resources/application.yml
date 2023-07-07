@@ -1,0 +1,25 @@
+
+server:
+  port: 8081
+
+spring:
+  jpa:
+    show-sql: true
+  hibernate:
+    ddl-auto: create-drop
+  mvc:
+    view:
+      prefix: '/WEB-INF/view/'
+      suffix: '.jsp'
+
+  mail:
+    host: 'smtp.mailtrap.io'
+    port: 2525
+    username: 'cd221fafca6005'
+    password: 'a43df26fe517c5'
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
