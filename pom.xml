@@ -27,6 +27,8 @@
         <lombok.version>1.18.10</lombok.version>
         <apache.commons.version>3.11</apache.commons.version>
         <apache.tiles.version>3.0.8</apache.tiles.version>
+        <sonar.organization>mklasicki</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
 
     <dependencies>
@@ -127,6 +129,10 @@
             <groupId>org.apache.tiles</groupId>
             <artifactId>tiles-jsp</artifactId>
             <version>${apache.tiles.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
         </dependency>
     </dependencies>
 
