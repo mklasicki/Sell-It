@@ -23,3 +23,7 @@ spring:
           auth: true
           starttls:
             enable: true
+
+
+user:
+  endpoint: '/v1/user'
